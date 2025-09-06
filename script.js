@@ -568,6 +568,140 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Admin shortcut removed
     
+    // Logo Carousel Enhancement
+    initLogoCarousel();
+    
     console.log('Luxury Estates website initialized successfully');
 });
+
+// Logo Carousel Functionality
+function initLogoCarousel() {
+    const carousel = document.querySelector('.logo-carousel');
+    const track = document.querySelector('.logo-track');
+    
+    if (!carousel || !track) return;
+    
+    // Add smooth scroll behavior
+    let isScrolling = false;
+    let scrollDirection = 1; // 1 for right, -1 for left
+    
+    // Pause animation on hover and resume on mouse leave
+    carousel.addEventListener('mouseenter', function() {
+        track.style.animationPlayState = 'paused';
+    });
+    
+    carousel.addEventListener('mouseleave', function() {
+        track.style.animationPlayState = 'running';
+    });
+    
+    // Add touch/swipe support for mobile
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    
+    carousel.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        track.style.animationPlayState = 'paused';
+    });
+    
+    carousel.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+        const diffX = startX - currentX;
+        
+        // Add slight resistance to dragging
+        if (Math.abs(diffX) > 10) {
+            e.preventDefault();
+        }
+    });
+    
+    carousel.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const diffX = startX - currentX;
+        if (Math.abs(diffX) > 50) {
+            // User swiped significantly, change direction
+            scrollDirection = diffX > 0 ? 1 : -1;
+            updateCarouselDirection();
+        }
+        
+        track.style.animationPlayState = 'running';
+    });
+    
+    // Add click to change direction
+    carousel.addEventListener('click', function(e) {
+        if (e.target.closest('.logo-slide')) {
+            scrollDirection *= -1;
+            updateCarouselDirection();
+        }
+    });
+    
+    function updateCarouselDirection() {
+        const currentTransform = track.style.transform || 'translateX(0px)';
+        const currentX = parseFloat(currentTransform.match(/-?\d+\.?\d*/) || [0])[0];
+        
+        // Smooth transition to new direction
+        track.style.transition = 'transform 0.5s ease-in-out';
+        track.style.transform = `translateX(${currentX}px)`;
+        
+        setTimeout(() => {
+            track.style.transition = '';
+            if (scrollDirection === 1) {
+                track.style.animation = 'scroll 30s linear infinite';
+            } else {
+                track.style.animation = 'scrollReverse 30s linear infinite';
+            }
+        }, 500);
+    }
+    
+    // Add CSS for reverse animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes scrollReverse {
+            0% {
+                transform: translateX(-33.333%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        
+        .logo-track {
+            will-change: transform;
+        }
+        
+        .logo-slide {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add intersection observer to pause animation when not visible
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                track.style.animationPlayState = 'running';
+            } else {
+                track.style.animationPlayState = 'paused';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    observer.observe(carousel);
+    
+    // Add performance optimization
+    carousel.style.willChange = 'transform';
+    
+    // Add keyboard support
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            scrollDirection = e.key === 'ArrowLeft' ? -1 : 1;
+            updateCarouselDirection();
+        }
+    });
+}
 
