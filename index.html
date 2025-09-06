@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxury Estates | Premium Property Group</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2.0">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Fallback CSS for carousel logos - DOMAIN FIX -->
+    <style>
+        .carousel-logo {
+            max-height: 80px !important;
+            max-width: 100% !important;
+            height: auto !important;
+            width: auto !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: 0 auto !important;
+        }
+        .carousel-logo[src*="icici"] {
+            max-height: 60px !important;
+            max-width: 150px !important;
+        }
+        .carousel-logo[src*="pirmal"] {
+            max-height: 70px !important;
+            max-width: 160px !important;
+        }
+        .carousel-logo[src*="aavas"] {
+            max-height: 65px !important;
+            max-width: 140px !important;
+        }
+        .logo-slide {
+            width: 200px !important;
+            height: 120px !important;
+            overflow: hidden !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->

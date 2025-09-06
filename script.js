@@ -571,6 +571,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Logo Carousel Enhancement
     initLogoCarousel();
     
+    // DOMAIN FIX: Force logo sizing as fallback
+    forceLogoSize();
+    
     console.log('Luxury Estates website initialized successfully');
 });
 
@@ -703,5 +706,48 @@ function initLogoCarousel() {
             updateCarouselDirection();
         }
     });
+}
+
+// DOMAIN FIX: Force logo sizing as fallback
+function forceLogoSize() {
+    const carouselLogos = document.querySelectorAll('.carousel-logo');
+    
+    carouselLogos.forEach(logo => {
+        // Force specific sizing based on logo type
+        if (logo.src && logo.src.includes('icici')) {
+            logo.style.maxHeight = '60px';
+            logo.style.maxWidth = '150px';
+        } else if (logo.src && logo.src.includes('pirmal')) {
+            logo.style.maxHeight = '70px';
+            logo.style.maxWidth = '160px';
+        } else if (logo.src && logo.src.includes('aavas')) {
+            logo.style.maxHeight = '65px';
+            logo.style.maxWidth = '140px';
+        } else {
+            // Fallback for any other logos
+            logo.style.maxHeight = '80px';
+            logo.style.maxWidth = '100%';
+        }
+        
+        // Ensure these properties are always applied
+        logo.style.height = 'auto';
+        logo.style.width = 'auto';
+        logo.style.objectFit = 'contain';
+        logo.style.display = 'block';
+        logo.style.margin = '0 auto';
+    });
+    
+    // Also ensure logo slides are properly sized
+    const logoSlides = document.querySelectorAll('.logo-slide');
+    logoSlides.forEach(slide => {
+        slide.style.width = '200px';
+        slide.style.height = '120px';
+        slide.style.overflow = 'hidden';
+        slide.style.display = 'flex';
+        slide.style.alignItems = 'center';
+        slide.style.justifyContent = 'center';
+    });
+    
+    console.log('Logo sizing forced as fallback for domain deployment');
 }
 
