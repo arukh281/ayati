@@ -1,9 +1,9 @@
 
 // EmailJS configuration (replace with your actual IDs)
-const EMAILJS_SERVICE_ID = 'service_l607vzc';
-const EMAILJS_TEMPLATE_ID_CALLBACK = 'template_7rxl5pq';
-const EMAILJS_TEMPLATE_ID_CONTACT = 'template_g2q9uhq';
-const EMAILJS_PUBLIC_KEY = 'TZfjfDln9TjuLVtzS';
+const EMAILJS_SERVICE_ID = 'service_gjgupdq';
+const EMAILJS_TEMPLATE_ID_CALLBACK = 'template_f3cx98q';
+const EMAILJS_TEMPLATE_ID_CONTACT = 'template_j8r7kwi';
+const EMAILJS_PUBLIC_KEY = '000Q39I3ifhYbRgpu';
 
 document.addEventListener('DOMContentLoaded', function() {
     
