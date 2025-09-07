@@ -751,3 +751,59 @@ function forceLogoSize() {
     console.log('Logo sizing forced as fallback for domain deployment');
 }
 
+// Finance Logo Carousel Functionality
+function initFinanceCarousel() {
+    const carouselTrack = document.getElementById('carousel-track');
+    if (!carouselTrack) return;
+    
+    // Pause animation on hover
+    carouselTrack.addEventListener('mouseenter', function() {
+        this.style.animationPlayState = 'paused';
+    });
+    
+    carouselTrack.addEventListener('mouseleave', function() {
+        this.style.animationPlayState = 'running';
+    });
+    
+    // Add touch/swipe support for mobile
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    
+    carouselTrack.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        this.style.animationPlayState = 'paused';
+    });
+    
+    carouselTrack.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+        const diffX = startX - currentX;
+        
+        // Add slight drag effect
+        if (Math.abs(diffX) > 10) {
+            this.style.transform = `translateX(${-diffX * 0.1}px)`;
+        }
+    });
+    
+    carouselTrack.addEventListener('touchend', function() {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        // Reset transform and resume animation
+        this.style.transform = '';
+        this.style.animationPlayState = 'running';
+    });
+    
+    // Ensure carousel starts automatically
+    carouselTrack.style.animationPlayState = 'running';
+    
+    console.log('Finance carousel initialized');
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initFinanceCarousel();
+});
+

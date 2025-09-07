@@ -3178,24 +3178,25 @@ section {
     margin-bottom: 2rem;
 }
 
-/* Fixed Logo Grid Styles */
-.logo-grid-container {
+/* Auto-playing Carousel Styles */
+.carousel-container {
     margin-top: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.logo-grid {
+.carousel-track {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-    max-width: 800px;
+    animation: scroll 20s linear infinite;
+    gap: 2rem;
+    width: calc(200% + 2rem); /* Double width for seamless loop */
 }
 
-.logo-item {
+.carousel-slide {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3208,9 +3209,10 @@ section {
     min-width: 200px;
     height: 120px;
     box-shadow: var(--shadow-light);
+    flex-shrink: 0;
 }
 
-.logo-item:hover {
+.carousel-slide:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-medium);
     background: rgba(255, 255, 255, 0.08);
@@ -3228,9 +3230,18 @@ section {
     transition: var(--transition);
 }
 
-.logo-item:hover .finance-logo {
+.carousel-slide:hover .finance-logo {
     filter: grayscale(0%) opacity(1);
     transform: scale(1.05);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* Specific logo sizing */
@@ -4528,12 +4539,12 @@ section {
         border-bottom: 18px solid #90EE90;
     }
 
-    /* Logo grid tablet responsive */
-    .logo-grid {
-        gap: 2rem;
+    /* Carousel tablet responsive */
+    .carousel-track {
+        gap: 1.5rem;
     }
     
-    .logo-item {
+    .carousel-slide {
         min-width: 180px;
         height: 110px;
         padding: 1.2rem;
@@ -5027,13 +5038,13 @@ section {
         border-bottom: 15px solid #90EE90;
     }
 
-    /* Logo grid mobile responsive */
-    .logo-grid {
-        gap: 1.5rem;
-        flex-direction: column;
+    /* Carousel mobile responsive */
+    .carousel-track {
+        gap: 1rem;
+        animation-duration: 15s; /* Faster on mobile */
     }
     
-    .logo-item {
+    .carousel-slide {
         min-width: 150px;
         height: 100px;
         padding: 1rem;
