@@ -4146,13 +4146,9 @@ section {
 }
 
 @media (max-width: 768px) {
-    /* Buildings Flex Container Mobile Styles */
+    /* Hide buildings container completely on phones */
     .buildings-flex-container {
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-        padding: 1rem;
-        gap: 0.5rem;
+        display: none !important;
     }
     
     .scroll-to-explore-container {
@@ -4176,10 +4172,15 @@ section {
         display: none !important;
     }
     
-    /* Show mobile animations on mobile devices */
+    /* Hide cloud animation container on phones */
+    .cloud-animation {
+        display: none !important;
+    }
+    
+    /* Hide mobile animations on phones */
     .mobile-animation,
     .mobile-thin-building-animation {
-        display: block !important;
+        display: none !important;
     }
     
     .hamburger {
@@ -4735,10 +4736,10 @@ section {
         display: none !important;
     }
     
-    /* Show mobile animations on very small screens too */
+    /* Hide mobile animations on very small screens too */
     .mobile-animation,
     .mobile-thin-building-animation {
-        display: block !important;
+        display: none !important;
     }
     
     .hero-title {
