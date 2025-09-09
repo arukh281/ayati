@@ -445,6 +445,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show welcome message on brochure interaction
         showNotification('Welcome to Ayati Developer.', 'success');
 
+        // Send data to Google Sheets for brochure tracking
+        sendToGoogleSheet({
+            type: 'brochure',
+            name: formValues.name || '',
+            no: formValues.phone || '',
+            email: formValues.email || ''
+        });
+
         if (mode === 'preview') {
             const win = window.open(brochureSrc, '_blank', 'noopener');
             if (!win) {
@@ -467,33 +475,56 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleCallbackSubmit(formValues) {
         showNotification('Submitting your request...', 'success');
 
-        // Send email via EmailJS
-        if (window.emailjs && typeof emailjs.send === 'function') {
-            const params = {
-                to_name: formValues.name || 'Customer',
-                to_email: formValues.email,
-                reply_to: formValues.email,
-                from_name: 'Ayati Developers',
+        // Return a Promise to handle async operations properly
+        return new Promise((resolve, reject) => {
+            // Send data to Google Sheets for visit scheduling tracking
+            console.log('Sending callback data to Google Sheets:', {
+                type: 'visit',
+                name: formValues.name || '',
                 phone: formValues.phone || '',
-                message: (formValues.message && formValues.message.trim())
-                    ? formValues.message.trim()
-                    : 'Thank you for reaching out. We will contact you shortly.'
-            };
+                email: formValues.email || '',
+                msg: formValues.message || ''
+            });
+            
+            sendToGoogleSheet({
+                type: 'visit',
+                name: formValues.name || '',
+                phone: formValues.phone || '',
+                email: formValues.email || '',
+                msg: formValues.message || ''
+            });
 
-            emailjs
-                .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_CALLBACK, params, { publicKey: EMAILJS_PUBLIC_KEY })
-                .then(() => {
-                    showNotification('Email sent successfully.', 'success');
-                })
-                .catch((err) => {
-                    console.error('EmailJS error:', err);
-                    const msg = err && (err.text || err.message) ? (err.text || err.message) : 'Unknown error';
-                    showNotification(`Email failed: ${msg}`, 'error');
-                });
-        } else {
-            console.error('EmailJS SDK not available');
-            showNotification('Email service unavailable. Please try again later.', 'error');
-        }
+            // Send email via EmailJS
+            if (window.emailjs && typeof emailjs.send === 'function') {
+                const params = {
+                    to_name: formValues.name || 'Customer',
+                    to_email: formValues.email,
+                    reply_to: formValues.email,
+                    from_name: 'Ayati Developers',
+                    phone: formValues.phone || '',
+                    message: (formValues.message && formValues.message.trim())
+                        ? formValues.message.trim()
+                        : 'Thank you for reaching out. We will contact you shortly.'
+                };
+
+                emailjs
+                    .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_CALLBACK, params, { publicKey: EMAILJS_PUBLIC_KEY })
+                    .then(() => {
+                        showNotification('Request submitted successfully!', 'success');
+                        resolve();
+                    })
+                    .catch((err) => {
+                        console.error('EmailJS error:', err);
+                        const msg = err && (err.text || err.message) ? (err.text || err.message) : 'Unknown error';
+                        showNotification(`Email failed: ${msg}`, 'error');
+                        reject(err);
+                    });
+            } else {
+                console.error('EmailJS SDK not available');
+                showNotification('Email service unavailable. Please try again later.', 'error');
+                reject(new Error('EmailJS SDK not available'));
+            }
+        });
     }
 
     // Attach handlers to brochure buttons to open modal first
@@ -560,9 +591,42 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const formData = new FormData(callbackForm);
             const values = Object.fromEntries(formData.entries());
-            handleCallbackSubmit(values);
-            callbackForm.reset();
-            closeModals();
+            
+            // Add some debugging
+            console.log('Callback form values:', values);
+            
+            // Call the handler and wait for it to complete
+            handleCallbackSubmit(values).then(() => {
+                // Only reset and close after successful submission
+                callbackForm.reset();
+                closeModals();
+            }).catch((error) => {
+                console.error('Callback submission error:', error);
+                showNotification('There was an error submitting your request. Please try again.', 'error');
+            });
+        });
+    }
+
+    // Handle main contact form submission (Schedule Visit button)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const values = Object.fromEntries(formData.entries());
+            
+            // Add some debugging
+            console.log('Contact form values:', values);
+            
+            // Call the handler and wait for it to complete
+            handleCallbackSubmit(values).then(() => {
+                // Only reset after successful submission
+                contactForm.reset();
+                showNotification('Thank you! We will contact you shortly to schedule your visit.', 'success');
+            }).catch((error) => {
+                console.error('Contact form submission error:', error);
+                showNotification('There was an error submitting your request. Please try again.', 'error');
+            });
         });
     }
     
@@ -575,6 +639,18 @@ document.addEventListener('DOMContentLoaded', function() {
     forceLogoSize();
     
     console.log('Luxury Estates website initialized successfully');
+    
+    // Add test function for debugging Google Sheets
+    window.testGoogleSheets = function() {
+        console.log('Testing Google Sheets connection...');
+        sendToGoogleSheet({
+            type: 'visit',
+            name: 'Test User',
+            phone: '1234567890',
+            email: 'test@example.com',
+            msg: 'This is a test message from callback form'
+        });
+    };
 });
 
 // Logo Carousel Functionality
@@ -801,9 +877,50 @@ function initFinanceCarousel() {
     
     console.log('Finance carousel initialized');
 }
+function sendToGoogleSheet(data) {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwrUo4cq5kINMHwdCaqSQsu7s5DRGj_5GKiOrZzuUBz3WdNC_jyay5AG5v2ykmHW67b/exec'; // Replace with your Web App URL
 
+    console.log('Sending data to Google Sheets:', data);
+
+    // Use a more CORS-friendly approach
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(data));
+
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // This bypasses CORS but we won't get response data
+        body: formData
+    })
+    .then(() => {
+        console.log('Data sent to Google Sheets successfully (no-cors mode)');
+    })
+    .catch(error => {
+        console.error('Error updating sheet (no-cors mode):', error);
+        // Fallback: try with JSON but without CORS mode
+        console.log('Trying fallback method...');
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            console.log('Fallback method response:', response);
+            if (response.ok) {
+                console.log('Data sent to Google Sheets successfully (fallback method)');
+            } else {
+                console.error('Fallback method failed with status:', response.status);
+            }
+        })
+        .catch(fallbackError => {
+            console.error('Fallback also failed:', fallbackError);
+        });
+    });
+}
 // Initialize carousel when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initFinanceCarousel();
 });
+
 
