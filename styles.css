@@ -3178,92 +3178,86 @@ section {
     margin-bottom: 2rem;
 }
 
-/* Auto-playing Carousel Styles */
-.carousel-container {
-    margin-top: 4rem;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.carousel-track {
-    display: flex;
-    animation: scroll 20s linear infinite;
-    gap: 2rem;
-    width: calc(200% + 2rem); /* Double width for seamless loop */
-}
-
-.carousel-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    background: var(--secondary-white);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: var(--transition);
-    backdrop-filter: blur(10px);
-    min-width: 200px;
-    height: 120px;
-    box-shadow: var(--shadow-light);
-    flex-shrink: 0;
-}
-
-.carousel-slide:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.finance-logo {
-    max-width: 100%;
-    max-height: 80px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
-    filter: grayscale(20%) opacity(0.8);
-    transition: var(--transition);
-}
-
-.carousel-slide:hover .finance-logo {
-    filter: grayscale(0%) opacity(1);
-    transform: scale(1.05);
-}
-
-@keyframes scroll {
-    0% {
+/* Logo Animation Styles */
+@keyframes slides {
+    from {
         transform: translateX(0);
     }
-    100% {
-        transform: translateX(-50%);
+    to {
+        transform: translateX(-100%);
     }
 }
 
-/* Specific logo sizing */
-.finance-logo[src*="icici"] {
-    max-height: 60px !important;
-    max-width: 150px !important;
-    height: auto !important;
-    width: auto !important;
+.logos {
+    overflow: hidden;
+    padding: 30px 0px;
+    white-space: nowrap;
+    position: relative;
 }
 
-.finance-logo[src*="pirmal"] {
-    max-height: 70px !important;
-    max-width: 160px !important;
-    height: auto !important;
-    width: auto !important;
+.logos:before, .logos:after {
+    position: absolute;
+    top: 0;
+    content: '';
+    width: 250px;
+    height: 100%;
+    z-index: 2;
 }
 
-.finance-logo[src*="aavas"] {
-    max-height: 65px !important;
-    max-width: 140px !important;
-    height: auto !important;
-    width: auto !important;
+.logos:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255,255,255,0), rgb(255, 255, 255));
+}
+
+.logos:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgb(255, 255, 255));
+}
+
+.logo_items {
+    display: inline-block;
+    animation: 35s slides infinite linear;
+}
+
+.logos:hover .logo_items {
+    animation-play-state: paused;
+}
+
+.logo_items {
+    display: inline-block;
+    animation: 35s slides infinite linear;
+}
+
+.logo_items .logo-container {
+    display: inline-flex;
+    width: 150px;
+    height: 100px;
+    margin: 0 20px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.logo_items .logo-container:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.logo_items img{
+    height: 80px;
+    width: 120px;
+    object-fit: contain;
+    filter: grayscale(60%) opacity(0.7);
+    transition: all 0.3s ease;
+}
+
+.logo_items .logo-container:hover img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
 }
 
 /* Contact Section */
@@ -4539,36 +4533,6 @@ section {
         border-bottom: 18px solid #90EE90;
     }
 
-    /* Carousel tablet responsive */
-    .carousel-track {
-        gap: 1.5rem;
-    }
-    
-    .carousel-slide {
-        min-width: 180px;
-        height: 110px;
-        padding: 1.2rem;
-    }
-    
-    .finance-logo {
-        max-height: 70px;
-    }
-    
-    /* Specific logo sizing for tablet */
-    .finance-logo[src*="icici"] {
-        max-height: 50px;
-        max-width: 130px;
-    }
-    
-    .finance-logo[src*="pirmal"] {
-        max-height: 60px;
-        max-width: 140px;
-    }
-    
-    .finance-logo[src*="aavas"] {
-        max-height: 55px;
-        max-width: 120px;
-    }
 
     /* Cloud animation tablet responsive */
     .cloud-1 {
@@ -5038,37 +5002,6 @@ section {
         border-bottom: 15px solid #90EE90;
     }
 
-    /* Carousel mobile responsive */
-    .carousel-track {
-        gap: 1rem;
-        animation-duration: 15s; /* Faster on mobile */
-    }
-    
-    .carousel-slide {
-        min-width: 150px;
-        height: 100px;
-        padding: 1rem;
-    }
-    
-    .finance-logo {
-        max-height: 60px;
-    }
-    
-    /* Specific logo sizing for mobile */
-    .finance-logo[src*="icici"] {
-        max-height: 40px;
-        max-width: 110px;
-    }
-    
-    .finance-logo[src*="pirmal"] {
-        max-height: 50px;
-        max-width: 120px;
-    }
-    
-    .finance-logo[src*="aavas"] {
-        max-height: 45px;
-        max-width: 100px;
-    }
 
     /* Cloud animation mobile responsive */
     .cloud-1 {
