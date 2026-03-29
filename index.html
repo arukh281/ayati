@@ -3,31 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ayati Group is a real estate developer in Central Noida offering premium residences, transparent practices, and thoughtful design. Explore Aadya Homes, financing partners, and schedule a visit.">
     <title>Ayati Group | Real Estate Developer</title>
-    <link rel="stylesheet" href="styles.css?v=2.0">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/playfair-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/fonts.1a27904f.css">
+    <link rel="stylesheet" href="css/styles.4c880894.min.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="logo (1).png" alt="Ayati Group" class="logo-image">
+                <picture>
+                    <source type="image/webp" srcset="images/webp/logo-1-400.webp">
+                    <img src="images/logos/ayati-primary.png" alt="Ayati Group" class="logo-image" width="1024" height="461" decoding="async" fetchpriority="high">
+                </picture>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#properties">Properties</a></li>
                 <li><a href="#why-choose">Why Choose Us</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <button type="button" class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -630,8 +634,10 @@
                 </div>
                 <div class="about-image">
                     <div class="image-placeholder">
-                        <!-- <i class="fas fa-building"></i> -->
-                        <img src="result.jpeg" alt="Ayati Group" class="about-image">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/result-720.webp 720w, images/webp/result-1024.webp 1024w" sizes="(max-width: 768px) 100vw, 560px">
+                            <img src="images/photos/result.jpeg" alt="Ayati Group residential development" class="about-photo" width="1024" height="1024" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -671,18 +677,23 @@
                             <span><i class="fas fa-bath"></i> 8 Bathrooms</span>
                             <span><i class="fas fa-ruler-combined"></i> 8,500 sq ft</span>
                         </div>
-                        <a href="brochure.pdf" class="property-link" download>View Brochure</a>
+                        <a href="docs/brochures/aadya-homes.pdf" class="property-link" download>View Brochure</a>
                     </div>
                 </div> -->
 
                 <div class="property-card">
                     <div class="property-image">
                         <div class="image-placeholder">
-                            <!-- <i class="fas fa-home"></i> -->
-                            <img src="Aadhya Homes.jpeg" alt="Ayati Group" class="property-image">
+                            <picture>
+                                <source type="image/webp" srcset="images/webp/aadhya-homes-640.webp 640w, images/webp/aadhya-homes-960.webp 960w" sizes="(max-width: 900px) 100vw, 50vw">
+                                <img src="images/photos/aadhya-homes.jpeg" alt="Aadya Homes property in Sector 73 Noida" class="property-photo" width="1333" height="1600" loading="lazy" decoding="async">
+                            </picture>
                         </div>
                         <div class="property-logo">
-                            <img src="adhya_homes.png" alt="Logo of aadhya homes" class="property-logo-image">
+                            <picture>
+                                <source type="image/webp" srcset="images/webp/adhya_homes-240.webp">
+                                <img src="images/logos/aadya-homes-mark.png" alt="Aadya Homes logo" class="property-logo-image" width="800" height="800" loading="lazy" decoding="async">
+                            </picture>
                         </div>
                         <div class="property-overlay">
                             <div class="property-location">Sector 73, NOIDA</div>
@@ -692,16 +703,16 @@
                         <h3>Aadya Homes</h3>
                         <p>Spacious 3BHK independent floors in Sector 73, Noida — thoughtfully designed with modern amenities, and premium construction for a private family lifestyle.</p>
                         <div class="property-details">
-                            <span><i class="fas fa-bed"></i> 3 Bedrooms</span>
-                            <span><i class="fas fa-bath"></i> 2 Bathrooms</span>
-                            <span><i class="fas fa-ruler-combined"></i> 1,280 sq ft</span>
+                            <span><svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-bed"/></svg> 3 Bedrooms</span>
+                            <span><svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-bath"/></svg> 2 Bathrooms</span>
+                            <span><svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-ruler"/></svg> 1,280 sq ft</span>
                         </div>
                         <div class="brochure-actions">
-                            <button class="brochure-btn preview-btn" data-brochure-src="Aadya Homes.pdf" data-property="Aadhya Homes">
-                                <i class="fas fa-eye"></i> Preview Broucher
+                            <button type="button" class="brochure-btn preview-btn" data-brochure-src="docs/brochures/aadya-homes.pdf" data-property="Aadhya Homes">
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-eye"/></svg> Preview Broucher
                             </button>
-                            <button class="brochure-btn download-btn" data-brochure-src="Aadya Homes.pdf" data-property="Aadhya Homes">
-                                <i class="fas fa-download"></i> Download Broucher
+                            <button type="button" class="brochure-btn download-btn" data-brochure-src="docs/brochures/aadya-homes.pdf" data-property="Aadhya Homes">
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-download"/></svg> Download Broucher
                             </button>
                         </div>
                     </div>
@@ -710,11 +721,16 @@
                 <div class="property-card">
                     <div class="property-image">
                         <div class="image-placeholder">
-                            <!-- <i class="fas fa-home"></i> -->
-                            <img src="coming_soon.png" alt="Coming soon" class="property-image">
+                            <picture>
+                                <source type="image/webp" srcset="images/webp/coming_soon-640.webp 640w, images/webp/coming_soon-960.webp 960w" sizes="(max-width: 900px) 100vw, 50vw">
+                                <img src="images/photos/coming-soon.png" alt="Coming soon" class="property-photo" width="1536" height="1024" loading="lazy" decoding="async">
+                            </picture>
                         </div>
                         <div class="property-logo">
-                            <img src="logo.png" alt="Ayati Group" class="property-logo-image">
+                            <picture>
+                                <source type="image/webp" srcset="images/webp/logo-240.webp">
+                                <img src="images/logos/ayati-square.png" alt="Ayati Group" class="property-logo-image" width="1024" height="1024" loading="lazy" decoding="async">
+                            </picture>
                         </div>
                         <div class="property-overlay">
                             <div class="property-location">Coming soon</div>
@@ -729,10 +745,10 @@
                             <span><i class="fas fa-ruler-combined"></i> 12,000 sq ft</span>
                         </div>
                         <div class="brochure-actions">
-                            <button class="brochure-btn preview-btn" data-brochure-src="Aadya Homes.pdf" data-property="Oceanfront Estate">
+                            <button class="brochure-btn preview-btn" data-brochure-src="docs/brochures/aadya-homes.pdf" data-property="Oceanfront Estate">
                                 <i class="fas fa-eye"></i> Preview
                             </button>
-                            <button class="brochure-btn download-btn" data-brochure-src="Aadya Homes.pdf" data-property="Oceanfront Estate">
+                            <button class="brochure-btn download-btn" data-brochure-src="docs/brochures/aadya-homes.pdf" data-property="Oceanfront Estate">
                                 <i class="fas fa-download"></i> Download
                             </button>
                         </div> -->
@@ -758,21 +774,21 @@
             <div class="features-grid">
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-crown"></i>
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-crown"/></svg>
                     </div>
                     <h3>Excellent Quality</h3>
                     <p>From vastu compliant design to premium construction quality, we ensure that every interaction reflects sophistication.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-fingerprint"></i>
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-fingerprint"/></svg>
                     </div>
                     <h3>Transparent in Every Deal</h3>
                     <p>We believes in transparency, we never let down our valued customers, by making fake commitments.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-money-bill-wave"></i>
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-money"/></svg>
                     </div>
                     <h3>Seamless Financing</h3>
                     <p>Our trusted banking and financial partners make ownership easier, offering flexible financing solutions tailored to your needs.</p>
@@ -801,53 +817,88 @@
             <div class="logos">
                 <div class="logo_items">
                     <div class="logo-container">
-                        <img src="icici.svg" alt="ICICI Bank">
+                        <img src="images/partners/icici.svg" alt="ICICI Bank" width="200" height="80" decoding="async">
                     </div>
                     <div class="logo-container">
-                        <img src="pirmal.svg" alt="Piramal Finance">
+                        <img src="images/partners/pirmal.svg" alt="Piramal Finance" width="200" height="80" decoding="async">
                     </div>
                     <div class="logo-container">
-                        <img src="aavas-logo.png" alt="Aavas">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/aavas-logo-320.webp">
+                            <img src="images/partners/aavas-logo.png" alt="Aavas" width="220" height="76" decoding="async">
+                        </picture>
                     </div>
                     <div class="logo-container">
-                        <img src="adhaar.png" alt="Adhaar">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/adhaar-400.webp">
+                            <img src="images/partners/adhaar.png" alt="Adhaar Housing Finance" width="500" height="192" decoding="async">
+                        </picture>
                     </div>
                     <div class="logo-container">
-                        <img src="aditya birla.jpg" alt="Aditya Birla">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/aditya-birla.webp">
+                            <img src="images/partners/aditya-birla.jpg" alt="Aditya Birla Capital" width="132" height="64" decoding="async">
+                        </picture>
                     </div>
                     <div class="logo-container">
-                        <img src="Bajaj-Finserv-Logo.jpg" alt="Bajaj Finserv">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/bajaj-400.webp">
+                            <img src="images/partners/bajaj-finserv.jpg" alt="Bajaj Finserv" width="854" height="293" decoding="async">
+                        </picture>
                     </div>
                     <div class="logo-container">
-                        <img src="fmcg.png" alt="SMFG">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/fmcg-320.webp">
+                            <img src="images/partners/fmcg.png" alt="SMFG India Credit" width="370" height="136" decoding="async">
+                        </picture>
                     </div>
                     <div class="logo-container">
-                        <img src="GIC.png" alt="GIC">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/gic-480.webp">
+                            <img src="images/partners/gic.png" alt="GIC Housing Finance" width="1346" height="417" decoding="async">
+                        </picture>
                     </div>
-                    <!-- Duplicate logos for seamless loop -->
-                    <div class="logo-container">
-                        <img src="icici.svg" alt="ICICI Bank">
+                    <div class="logo-container logo-container--dup" aria-hidden="true">
+                        <img src="images/partners/icici.svg" alt="" width="200" height="80" decoding="async" loading="lazy">
                     </div>
-                    <div class="logo-container">
-                        <img src="pirmal.svg" alt="Piramal Finance">
+                    <div class="logo-container logo-container--dup" aria-hidden="true">
+                        <img src="images/partners/pirmal.svg" alt="" width="200" height="80" decoding="async" loading="lazy">
                     </div>
-                    <div class="logo-container">
-                        <img src="aavas-logo.png" alt="Aavas">
+                    <div class="logo-container logo-container--dup" aria-hidden="true">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/aavas-logo-320.webp">
+                            <img src="images/partners/aavas-logo.png" alt="" width="220" height="76" decoding="async" loading="lazy">
+                        </picture>
                     </div>
-                    <div class="logo-container">
-                        <img src="adhaar.png" alt="Adhaar">
+                    <div class="logo-container logo-container--dup" aria-hidden="true">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/adhaar-400.webp">
+                            <img src="images/partners/adhaar.png" alt="" width="500" height="192" decoding="async" loading="lazy">
+                        </picture>
                     </div>
-                    <div class="logo-container">
-                        <img src="aditya birla.jpg" alt="Aditya Birla">
+                    <div class="logo-container logo-container--dup" aria-hidden="true">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/aditya-birla.webp">
+                            <img src="images/partners/aditya-birla.jpg" alt="" width="132" height="64" decoding="async" loading="lazy">
+                        </picture>
                     </div>
-                    <div class="logo-container">
-                        <img src="Bajaj-Finserv-Logo.jpg" alt="Bajaj Finserv">
+                    <div class="logo-container logo-container--dup" aria-hidden="true">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/bajaj-400.webp">
+                            <img src="images/partners/bajaj-finserv.jpg" alt="" width="854" height="293" decoding="async" loading="lazy">
+                        </picture>
                     </div>
-                    <div class="logo-container">
-                        <img src="fmcg.png" alt="SMFG">
+                    <div class="logo-container logo-container--dup" aria-hidden="true">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/fmcg-320.webp">
+                            <img src="images/partners/fmcg.png" alt="" width="370" height="136" decoding="async" loading="lazy">
+                        </picture>
                     </div>
-                    <div class="logo-container">
-                        <img src="GIC.png" alt="GIC">
+                    <div class="logo-container logo-container--dup" aria-hidden="true">
+                        <picture>
+                            <source type="image/webp" srcset="images/webp/gic-480.webp">
+                            <img src="images/partners/gic.png" alt="" width="1346" height="417" decoding="async" loading="lazy">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -896,21 +947,21 @@
                 </div>
                 <div class="contact-info"><br>
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-location"/></svg>
                         <div>
                             <h4>Corporate Office:</h4>
                             <p>A-243, Sector-43, Noida, Uttar Pradesh, 201301</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i>
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-phone"/></svg>
                         <div>
                             <h4>Phone</h4>
                             <p>+91 99535-33766, +91 98717-96816</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-envelope"/></svg>
                         <div>
                             <h4>Email</h4>
                             <p>ayatidevelopers@gmail.com</p>
@@ -926,14 +977,17 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="logo (1).png" alt="Ayati Group" class="footer-logo-image">
+                    <picture>
+                        <source type="image/webp" srcset="images/webp/logo-1-400.webp">
+                        <img src="images/logos/ayati-primary.png" alt="Ayati Group" class="footer-logo-image" width="1024" height="461" loading="lazy" decoding="async">
+                    </picture>
                     <p>A new name, with a clear understanding of your needs.</p>  
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Ayati Developers. All rights reserved.</p>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/ayatigroup/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/ayatigroup/" aria-label="Ayati Group on Instagram" rel="noopener noreferrer" target="_blank"><svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-instagram"/></svg></a>
                     <!-- <a href="#"><i class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a> -->
                 </div>
@@ -994,14 +1048,7 @@
         </form>
     </div>
 
-    <!-- External SDKs -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-        // Initialize EmailJS (replace with your actual Public Key)
-        if (window.emailjs && typeof emailjs.init === 'function') {
-            emailjs.init({ publicKey: '000Q39I3ifhYbRgpu' });
-        }
-    </script>
-    <script src="script.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script defer src="js/script.e8d415e1.min.js"></script>
 </body>
 </html>

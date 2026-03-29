@@ -6,7 +6,10 @@ const EMAILJS_TEMPLATE_ID_CONTACT = 'template_j8r7kwi';
 const EMAILJS_PUBLIC_KEY = '000Q39I3ifhYbRgpu';
 
 document.addEventListener('DOMContentLoaded', function() {
-    
+    if (window.emailjs && typeof emailjs.init === 'function') {
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+
     // Mobile navigation toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
@@ -14,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        const open = navMenu.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     
     // Close mobile menu when clicking on a link
@@ -21,21 +27,46 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.setAttribute('aria-label', 'Open menu');
         });
     });
     
     
-    // Navbar background on scroll
     const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
+    const heroBackground = document.querySelector('.hero-background');
+    const scrollProgress = document.createElement('div');
+    scrollProgress.style.cssText = 'position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,#d4af37,#f4e4bc);z-index:10001;transition:width 0.1s ease-out;';
+    document.body.appendChild(scrollProgress);
+
+    let scrollTicking = false;
+    function applyScrollDrivenUI() {
+        const y = window.scrollY;
+        if (navbar) {
+            if (y > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
         }
-    });
+        if (heroBackground) {
+            heroBackground.style.transform = 'translateY(' + (y * -0.5) + 'px)';
+        }
+        const docHeight = document.body.offsetHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+        scrollProgress.style.width = pct + '%';
+        scrollTicking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        if (!scrollTicking) {
+            scrollTicking = true;
+            requestAnimationFrame(applyScrollDrivenUI);
+        }
+    }, { passive: true });
+    requestAnimationFrame(applyScrollDrivenUI);
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -50,19 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-    });
-    
-    // Parallax effect for hero section
-    const hero = document.querySelector('.hero');
-    const heroBackground = document.querySelector('.hero-background');
-    
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-        
-        if (heroBackground) {
-            heroBackground.style.transform = `translateY(${rate}px)`;
-        }
     });
     
     // Intersection Observer for fade-in animations
@@ -251,39 +269,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(divider);
     });
     
-    // Scroll progress indicator
-    const scrollProgress = document.createElement('div');
-    scrollProgress.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #d4af37, #f4e4bc);
-        z-index: 10001;
-        transition: width 0.1s ease-out;
-    `;
-    document.body.appendChild(scrollProgress);
-    
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset;
-        const docHeight = document.body.offsetHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        scrollProgress.style.width = scrollPercent + '%';
-    });
-    
-    // Lazy loading for images (if any are added later)
-    const imageObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
     // Add loading animation to buttons
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(button => {
@@ -366,22 +351,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize all animations
     initScrollAnimations();
-    
-    // Performance optimization: Throttle scroll events
-    let ticking = false;
-    function updateOnScroll() {
-        // Scroll-based animations here
-        ticking = false;
-    }
-    
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateOnScroll);
-            ticking = true;
-        }
-    }
-    
-    window.addEventListener('scroll', requestTick);
     
     // Add smooth reveal animation for sections
     const sections = document.querySelectorAll('section');
@@ -632,12 +601,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Admin shortcut removed
     
-    // Logo Carousel Enhancement
     initLogoCarousel();
-    
-    // DOMAIN FIX: Force logo sizing as fallback
-    forceLogoSize();
-    
+
     console.log('Luxury Estates website initialized successfully');
     
     // Add test function for debugging Google Sheets
@@ -782,49 +747,6 @@ function initLogoCarousel() {
             updateCarouselDirection();
         }
     });
-}
-
-// DOMAIN FIX: Force logo sizing as fallback
-function forceLogoSize() {
-    const carouselLogos = document.querySelectorAll('.carousel-logo');
-    
-    carouselLogos.forEach(logo => {
-        // Force specific sizing based on logo type
-        if (logo.src && logo.src.includes('icici')) {
-            logo.style.maxHeight = '60px';
-            logo.style.maxWidth = '150px';
-        } else if (logo.src && logo.src.includes('pirmal')) {
-            logo.style.maxHeight = '70px';
-            logo.style.maxWidth = '160px';
-        } else if (logo.src && logo.src.includes('aavas')) {
-            logo.style.maxHeight = '65px';
-            logo.style.maxWidth = '140px';
-        } else {
-            // Fallback for any other logos
-            logo.style.maxHeight = '80px';
-            logo.style.maxWidth = '100%';
-        }
-        
-        // Ensure these properties are always applied
-        logo.style.height = 'auto';
-        logo.style.width = 'auto';
-        logo.style.objectFit = 'contain';
-        logo.style.display = 'block';
-        logo.style.margin = '0 auto';
-    });
-    
-    // Also ensure logo slides are properly sized
-    const logoSlides = document.querySelectorAll('.logo-slide');
-    logoSlides.forEach(slide => {
-        slide.style.width = '200px';
-        slide.style.height = '120px';
-        slide.style.overflow = 'hidden';
-        slide.style.display = 'flex';
-        slide.style.alignItems = 'center';
-        slide.style.justifyContent = 'center';
-    });
-    
-    console.log('Logo sizing forced as fallback for domain deployment');
 }
 
 // Finance Logo Carousel Functionality

@@ -40,9 +40,13 @@ body {
 }
 
 /* Prevent horizontal overflow from any element */
-* {
+*:not(svg) {
     max-width: 100%;
-    box-sizing: border-box;
+}
+
+svg,
+svg * {
+    max-width: none;
 }
 
 /* Typography */
@@ -65,6 +69,24 @@ p {
 
 .gold-text {
     color: var(--gold);
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    flex-shrink: 0;
+}
+
+.feature-icon .icon {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.social-links a .icon {
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
 /* Container */
@@ -165,6 +187,10 @@ p {
     padding: 0.5rem;
     border-radius: 4px;
     transition: var(--transition);
+    border: none;
+    background: transparent;
+    font: inherit;
+    color: inherit;
 }
 
 .hamburger:hover {
@@ -281,12 +307,6 @@ p {
     top: 10%;
     left: 50%;
     animation-delay: 7s, 3.5s;
-}
-
-/* Performance Optimization */
-* {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
 }
 
 /* Cloud Animation Keyframes */
@@ -1108,43 +1128,43 @@ p {
 
 @keyframes buildingGlow {
     0%, 100% {
-        box-shadow: 0 0 20px rgba(191, 130, 17, 0.4);
+        opacity: 1;
+        filter: brightness(1);
     }
     50% {
-        box-shadow: 0 0 30px rgba(191, 130, 17, 0.6);
+        opacity: 0.92;
+        filter: brightness(1.08);
     }
 }
 
 @keyframes windowGlow {
     0%, 100% {
-        box-shadow: 0 0 10px rgba(191, 130, 17, 0.6);
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 15px rgba(191, 130, 17, 0.8);
-        transform: scale(1.02);
+        transform: scale(1.06);
     }
 }
 
 @keyframes particleGlow {
     0%, 100% {
-        box-shadow: 0 0 6px rgba(191, 130, 17, 0.6);
         transform: scale(1);
+        opacity: 0.85;
     }
     50% {
-        box-shadow: 0 0 10px rgba(191, 130, 17, 0.8);
-        transform: scale(1.05);
+        transform: scale(1.08);
+        opacity: 1;
     }
 }
 
 @keyframes smokeGlow {
     0%, 100% {
-        box-shadow: 0 0 8px rgba(191, 130, 17, 0.4);
-        opacity: 0.6;
+        opacity: 0.55;
+        transform: translateY(0) scale(1);
     }
     50% {
-        box-shadow: 0 0 12px rgba(191, 130, 17, 0.6);
-        opacity: 0.8;
+        opacity: 0.85;
+        transform: translateY(-1px) scale(1.02);
     }
 }
 
@@ -2832,6 +2852,19 @@ section {
     background: linear-gradient(45deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
 }
 
+.image-placeholder picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.image-placeholder picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
 /* Properties Section */
 .properties-grid {
     display: grid;
@@ -2952,8 +2985,10 @@ section {
     color: var(--text-light);
 }
 
-.property-details i {
+.property-details .icon {
     color: var(--gold);
+    width: 1em;
+    height: 1em;
 }
 
 .property-link {
@@ -3033,8 +3068,10 @@ section {
     box-shadow: var(--shadow-medium);
 }
 
-.brochure-btn i {
-    font-size: 0.8rem;
+.brochure-btn .icon {
+    width: 0.85em;
+    height: 0.85em;
+    flex-shrink: 0;
 }
 
 .brochure-btn::before {
@@ -3247,12 +3284,32 @@ section {
     transform: translateY(-2px);
 }
 
-.logo_items img{
-    height: 80px;
-    width: 120px;
+.logo_items img,
+.logo_items picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 80px;
+    max-width: 160px;
+}
+
+.logo_items img {
+    width: auto;
+    height: auto;
+    max-height: 80px;
+    max-width: 160px;
     object-fit: contain;
     filter: grayscale(60%) opacity(0.7);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo_items picture img {
+    display: block;
+    max-height: 80px;
+    max-width: 160px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
 }
 
 .logo_items .logo-container:hover img {
@@ -3319,10 +3376,12 @@ section {
     gap: 1rem;
 }
 
-.contact-item i {
-    color: var(--gold);
-    font-size: 1.2rem;
+.contact-item .icon {
+    width: 1.25rem;
+    height: 1.25rem;
     margin-top: 0.2rem;
+    color: var(--gold);
+    flex-shrink: 0;
 }
 
 .contact-item h4 {
@@ -3791,37 +3850,21 @@ section {
 
 @keyframes mobileApartmentGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 20px rgba(52, 73, 94, 0.6),
-            0 0 40px rgba(52, 73, 94, 0.4),
-            0 0 60px rgba(52, 73, 94, 0.2),
-            inset 0 0 8px rgba(52, 73, 94, 0.3);
+        transform: scale(1);
+        opacity: 1;
     }
     50% {
-        box-shadow: 
-            0 0 30px rgba(52, 73, 94, 0.8),
-            0 0 60px rgba(52, 73, 94, 0.6),
-            0 0 90px rgba(52, 73, 94, 0.4),
-            inset 0 0 12px rgba(52, 73, 94, 0.5);
+        transform: scale(1.01);
+        opacity: 0.92;
     }
 }
 
 @keyframes mobileApartmentWindowGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 12px rgba(52, 152, 219, 0.8),
-            0 0 24px rgba(52, 152, 219, 0.6),
-            0 0 36px rgba(52, 152, 219, 0.4),
-            inset 0 0 3px rgba(52, 152, 219, 0.4);
         transform: scale(1);
     }
     50% {
-        box-shadow: 
-            0 0 18px rgba(52, 152, 219, 1),
-            0 0 36px rgba(52, 152, 219, 0.8),
-            0 0 54px rgba(52, 152, 219, 0.6),
-            inset 0 0 5px rgba(52, 152, 219, 0.6);
-        transform: scale(1.05);
+        transform: scale(1.06);
     }
 }
 
@@ -3838,75 +3881,43 @@ section {
 
 @keyframes mobileParticleGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 6px rgba(52, 152, 219, 0.8),
-            0 0 12px rgba(52, 152, 219, 0.6),
-            0 0 18px rgba(52, 152, 219, 0.4),
-            inset 0 0 2px rgba(52, 152, 219, 0.4);
         transform: scale(1);
+        opacity: 0.85;
     }
     50% {
-        box-shadow: 
-            0 0 9px rgba(52, 152, 219, 1),
-            0 0 18px rgba(52, 152, 219, 0.8),
-            0 0 27px rgba(52, 152, 219, 0.6),
-            inset 0 0 3px rgba(52, 152, 219, 0.6);
-        transform: scale(1.05);
+        transform: scale(1.08);
+        opacity: 1;
     }
 }
 
 @keyframes mobileGoldGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 20px rgba(191, 130, 17, 0.6),
-            0 0 40px rgba(191, 130, 17, 0.4),
-            0 0 60px rgba(191, 130, 17, 0.2),
-            inset 0 0 8px rgba(191, 130, 17, 0.3);
+        transform: scale(1);
+        opacity: 1;
     }
     50% {
-        box-shadow: 
-            0 0 30px rgba(191, 130, 17, 0.8),
-            0 0 60px rgba(191, 130, 17, 0.6),
-            0 0 90px rgba(191, 130, 17, 0.4),
-            inset 0 0 12px rgba(191, 130, 17, 0.5);
+        transform: scale(1.01);
+        opacity: 0.92;
     }
 }
 
 @keyframes mobileGoldWindowGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 12px rgba(191, 130, 17, 0.8),
-            0 0 24px rgba(191, 130, 17, 0.6),
-            0 0 36px rgba(191, 130, 17, 0.4),
-            inset 0 0 3px rgba(191, 130, 17, 0.4);
         transform: scale(1);
     }
     50% {
-        box-shadow: 
-            0 0 18px rgba(191, 130, 17, 1),
-            0 0 36px rgba(191, 130, 17, 0.8),
-            0 0 54px rgba(191, 130, 17, 0.6),
-            inset 0 0 5px rgba(191, 130, 17, 0.6);
-        transform: scale(1.05);
+        transform: scale(1.06);
     }
 }
 
 @keyframes mobileGoldParticleGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 6px rgba(191, 130, 17, 0.8),
-            0 0 12px rgba(191, 130, 17, 0.6),
-            0 0 18px rgba(191, 130, 17, 0.4),
-            inset 0 0 2px rgba(191, 130, 17, 0.4);
         transform: scale(1);
+        opacity: 0.85;
     }
     50% {
-        box-shadow: 
-            0 0 9px rgba(191, 130, 17, 1),
-            0 0 18px rgba(191, 130, 17, 0.8),
-            0 0 27px rgba(191, 130, 17, 0.6),
-            inset 0 0 3px rgba(191, 130, 17, 0.6);
-        transform: scale(1.05);
+        transform: scale(1.08);
+        opacity: 1;
     }
 }
 
@@ -5193,50 +5204,32 @@ section {
 /* New Building Animation Keyframes */
 @keyframes skyscraperGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 25px rgba(52, 152, 219, 0.6),
-            0 0 50px rgba(52, 152, 219, 0.4),
-            0 0 75px rgba(52, 152, 219, 0.2);
+        opacity: 1;
+        filter: brightness(1);
     }
     50% {
-        box-shadow: 
-            0 0 35px rgba(52, 152, 219, 0.8),
-            0 0 70px rgba(52, 152, 219, 0.6),
-            0 0 105px rgba(52, 152, 219, 0.4);
+        opacity: 0.92;
+        filter: brightness(1.08);
     }
 }
 
 @keyframes skyscraperWindowGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 12px rgba(52, 152, 219, 0.8),
-            0 0 24px rgba(52, 152, 219, 0.6),
-            0 0 36px rgba(52, 152, 219, 0.4);
         transform: scale(1);
     }
     50% {
-        box-shadow: 
-            0 0 20px rgba(52, 152, 219, 1),
-            0 0 40px rgba(52, 152, 219, 0.8),
-            0 0 60px rgba(52, 152, 219, 0.6);
-        transform: scale(1.05);
+        transform: scale(1.06);
     }
 }
 
 @keyframes ledStripGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 8px rgba(231, 76, 60, 0.8),
-            0 0 16px rgba(231, 76, 60, 0.6),
-            0 0 24px rgba(231, 76, 60, 0.4);
-        opacity: 0.8;
+        opacity: 0.75;
+        transform: scaleY(1);
     }
     50% {
-        box-shadow: 
-            0 0 12px rgba(231, 76, 60, 1),
-            0 0 24px rgba(231, 76, 60, 0.8),
-            0 0 36px rgba(231, 76, 60, 0.6);
         opacity: 1;
+        transform: scaleY(1.04);
     }
 }
 
@@ -5253,33 +5246,21 @@ section {
 
 @keyframes singleApartmentGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 20px rgba(52, 73, 94, 0.6),
-            0 0 40px rgba(52, 73, 94, 0.4),
-            0 0 60px rgba(52, 73, 94, 0.2);
+        opacity: 1;
+        filter: brightness(1);
     }
     50% {
-        box-shadow: 
-            0 0 30px rgba(52, 73, 94, 0.8),
-            0 0 60px rgba(52, 73, 94, 0.6),
-            0 0 90px rgba(52, 73, 94, 0.4);
+        opacity: 0.92;
+        filter: brightness(1.08);
     }
 }
 
 @keyframes singleApartmentWindowGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 12px rgba(52, 152, 219, 0.8),
-            0 0 24px rgba(52, 152, 219, 0.6),
-            0 0 36px rgba(52, 152, 219, 0.4);
         transform: scale(1);
     }
     50% {
-        box-shadow: 
-            0 0 18px rgba(52, 152, 219, 1),
-            0 0 36px rgba(52, 152, 219, 0.8),
-            0 0 54px rgba(52, 152, 219, 0.6);
-        transform: scale(1.05);
+        transform: scale(1.06);
     }
 }
 
@@ -5296,16 +5277,12 @@ section {
 
 @keyframes constructionGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 15px rgba(127, 140, 141, 0.6),
-            0 0 30px rgba(127, 140, 141, 0.4),
-            0 0 45px rgba(127, 140, 141, 0.2);
+        opacity: 1;
+        filter: brightness(1);
     }
     50% {
-        box-shadow: 
-            0 0 25px rgba(127, 140, 141, 0.8),
-            0 0 50px rgba(127, 140, 141, 0.6),
-            0 0 75px rgba(127, 140, 141, 0.4);
+        opacity: 0.9;
+        filter: brightness(1.08);
     }
 }
 
@@ -5334,33 +5311,21 @@ section {
 
 @keyframes officeGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 20px rgba(22, 160, 133, 0.6),
-            0 0 40px rgba(22, 160, 133, 0.4),
-            0 0 60px rgba(22, 160, 133, 0.2);
+        opacity: 1;
+        filter: brightness(1);
     }
     50% {
-        box-shadow: 
-            0 0 30px rgba(22, 160, 133, 0.8),
-            0 0 60px rgba(22, 160, 133, 0.6),
-            0 0 90px rgba(22, 160, 133, 0.4);
+        opacity: 0.92;
+        filter: brightness(1.08);
     }
 }
 
 @keyframes officeLightGlow {
     0%, 100% {
-        box-shadow: 
-            0 0 8px rgba(241, 196, 15, 0.8),
-            0 0 16px rgba(241, 196, 15, 0.6),
-            0 0 24px rgba(241, 196, 15, 0.4);
         transform: scale(1);
     }
     50% {
-        box-shadow: 
-            0 0 12px rgba(241, 196, 15, 1),
-            0 0 24px rgba(241, 196, 15, 0.8),
-            0 0 36px rgba(241, 196, 15, 0.6);
-        transform: scale(1.1);
+        transform: scale(1.08);
     }
 }
 
@@ -5372,6 +5337,17 @@ section {
     50% {
         opacity: 0.8;
         transform: translateY(-18px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
 
