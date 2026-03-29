@@ -1,8 +1,9 @@
 {
   "scripts": {
     "build:assets": "npx clean-css-cli -o css/styles.min.css css/styles.css && npx terser js/script.js -c -m -o js/script.min.js",
-    "fingerprint": "node -e \"const c=require('crypto'),fs=require('fs');['css/styles.min.css','js/script.min.js','css/fonts.css'].forEach(f=>{const h=c.createHash('sha256').update(fs.readFileSync(f)).digest('hex').slice(0,8);console.log(f,h);});\"",
-    "sync-fingerprinted": "node -e \"const c=require('crypto'),fs=require('fs');const h=p=>c.createHash('sha256').update(fs.readFileSync(p)).digest('hex').slice(0,8);const ch=h('css/styles.min.css'),jh=h('js/script.min.js'),fh=h('css/fonts.css');fs.copyFileSync('css/styles.min.css','css/styles.'+ch+'.min.css');fs.copyFileSync('js/script.min.js','js/script.'+jh+'.min.js');fs.copyFileSync('css/fonts.css','css/fonts.'+fh+'.css');console.log('css/styles.'+ch+'.min.css','js/script.'+jh+'.min.js','css/fonts.'+fh+'.css');\""
+    "fingerprint": "node -e \"const c=require('crypto'),fs=require('fs'),p=require('path');const r=process.cwd();const b=fs.readFileSync(p.join(r,'css/fonts.css'),'utf8')+'\\n'+fs.readFileSync(p.join(r,'css/styles.min.css'),'utf8');console.log('css/app.bundle',c.createHash('sha256').update(b).digest('hex').slice(0,8));['css/styles.min.css','js/script.min.js'].forEach(f=>console.log(f,c.createHash('sha256').update(fs.readFileSync(f)).digest('hex').slice(0,8)));\"",
+    "sync-fingerprinted": "node scripts/fingerprint-assets.js",
+    "build:release": "npm run build:assets && npm run sync-fingerprinted"
   },
   "dependencies": {
     "firebase": "^12.2.1"
