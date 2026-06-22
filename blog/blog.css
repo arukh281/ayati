@@ -73,6 +73,12 @@
   overflow: hidden;
 }
 
+@media (max-width: 1023px) {
+  .article-hero {
+    padding-top: clamp(2rem, 5vw, 3rem);
+  }
+}
+
 .article-hero::before {
   content: '';
   position: absolute;

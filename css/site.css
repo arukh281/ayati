@@ -32,6 +32,11 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--site-header-height, 72px);
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
 }
 
 .skip-link {
@@ -133,16 +138,16 @@ header {
 }
 
 .brand-logo img {
-  height: 2rem;
+  height: 1.9rem;
   width: auto;
-  max-width: 9rem;
+  max-width: 8.5rem;
   object-fit: contain;
 }
 
 @media (min-width: 1024px) {
   .brand-logo img {
-    height: 2.35rem;
-    max-width: 10.5rem;
+    height: 2.6rem;
+    max-width: 11.5rem;
   }
 }
 
@@ -904,7 +909,9 @@ a.text-primary-deep,
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding-top: 1.5rem; /* header is hidden when overlay is open */
+  /* Clear the fixed star (top 14px + 44px button + gap) */
+  padding-top: calc(58px + 1.25rem + env(safe-area-inset-top, 0px));
+  padding-left: calc(1.25rem + 44px + 0.75rem + env(safe-area-inset-left, 0px));
 }
 
 .nav-overlay__links {
@@ -953,10 +960,18 @@ a.text-primary-deep,
   background: #9A6A0E;
 }
 
+@media (min-width: 1024px) {
+  .nav-overlay__inner {
+    /* lg:px-margin-desktop already offsets content; only extra top clearance needed */
+    padding-left: 0;
+    padding-top: calc(58px + 1.5rem + env(safe-area-inset-top, 0px));
+  }
+}
+
 /* ─── Mobile responsiveness ─────────────────────────────────────── */
 
 :root {
-  --site-header-height: 4.25rem;
+  --site-header-height: 3.5rem;
 }
 
 @supports (padding: env(safe-area-inset-top)) {
