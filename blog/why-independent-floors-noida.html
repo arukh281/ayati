@@ -13,23 +13,9 @@
   <link rel="icon" href="../favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@300..700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        colors: {
-          primary: '#BF8211', 'primary-deep': '#9A6A0E', secondary: '#5f604d',
-          'dark-olive': '#2d2e1e', 'surface-section': '#F2EFE9',
-          'border-subtle': '#E4E0D8', 'muted-text': '#5C5C4A',
-          'on-surface-variant': '#514535', 'surface-container-lowest': '#ffffff',
-          'surface-container-low': '#f5f3ef', 'surface-container': '#efeeea',
-        },
-        spacing: { 'margin-desktop': '5rem', 'margin-mobile': 'clamp(1rem, 4vw, 1.25rem)', gutter: 'clamp(1.25rem, 3vw, 2rem)', section: 'clamp(3rem, 8vw, 7.5rem)' },
-      }},
-    };
-  </script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@300..700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@300..700&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/tailwind.css">
   <link rel="stylesheet" href="../css/site.css">
   <link rel="stylesheet" href="blog.css">
   <script type="application/ld+json">
@@ -115,8 +101,8 @@
       </div>
 
       <button type="button" id="menu-toggle" class="flex min-h-[44px] min-w-[44px] items-center justify-center text-dark-olive md:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
-        <span class="material-symbols-outlined icon-menu text-[24px]" aria-hidden="true">menu</span>
-        <span class="material-symbols-outlined icon-close text-[24px]" aria-hidden="true">close</span>
+        <svg class="ui-icon ui-icon--24 icon-menu" aria-hidden="true"><use href="/images/icons.svg#icon-menu"></use></svg>
+        <svg class="ui-icon ui-icon--24 icon-close" aria-hidden="true"><use href="/images/icons.svg#icon-close"></use></svg>
       </button>
     </div>
 

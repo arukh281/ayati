@@ -34,7 +34,7 @@
         .from('.hero-subtext', { y: 16, autoAlpha: 0, duration: 0.5 }, '-=0.45')
         .from('.hero-cta', { y: 12, autoAlpha: 0, duration: 0.45, stagger: 0.08 }, '-=0.4')
         .from('.hero-trust-item', { y: 10, autoAlpha: 0, duration: 0.4, stagger: 0.06 }, '-=0.3')
-        .from('.hero-trust-item .material-symbols-outlined',
+        .from('.hero-trust-item .ui-icon',
           { scale: 0.6, autoAlpha: 0, duration: 0.35, stagger: 0.06, transformOrigin: 'center center' },
           '-=0.55');
 

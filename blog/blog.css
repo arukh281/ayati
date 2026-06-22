@@ -77,7 +77,10 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../images/photos/blog-hero-bg.jpg');
+  background-image: image-set(
+    url('../images/webp/blog-hero-bg-800.webp') 1x,
+    url('../images/webp/blog-hero-bg-1200.webp') 2x
+  );
   background-size: cover;
   background-position: center 30%;
   opacity: 0.18;

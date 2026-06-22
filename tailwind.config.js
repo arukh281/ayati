@@ -1,0 +1,56 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./index.html', './blog/**/*.html', './js/**/*.js'],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#BF8211',
+        'primary-deep': '#9A6A0E',
+        'primary-light': '#F0C96A',
+        secondary: '#5f604d',
+        'dark-olive': '#2d2e1e',
+        'surface-section': '#F2EFE9',
+        'border-subtle': '#E4E0D8',
+        'muted-text': '#5C5C4A',
+        'on-surface-variant': '#514535',
+        'on-primary': '#ffffff',
+        'surface-container-lowest': '#ffffff',
+        'surface-container-low': '#f5f3ef',
+        'surface-container': '#efeeea',
+        'success-green': '#2D5A47',
+      },
+      borderRadius: {
+        DEFAULT: '0.125rem',
+        lg: '0.25rem',
+        xl: '0.5rem',
+      },
+      spacing: {
+        'margin-desktop': '5rem',
+        'margin-mobile': 'clamp(1rem, 4vw, 1.25rem)',
+        gutter: 'clamp(1.25rem, 3vw, 2rem)',
+        section: 'clamp(2.25rem, 6vw, 7.5rem)',
+      },
+      fontFamily: {
+        'display-xl': ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
+        'headline-lg': ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
+        'headline-md': ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
+        'body-lg': ['Figtree', 'system-ui', 'sans-serif'],
+        'body-md': ['Figtree', 'system-ui', 'sans-serif'],
+        'label-caps': ['Figtree', 'system-ui', 'sans-serif'],
+        'label-sm': ['Figtree', 'system-ui', 'sans-serif'],
+        display: ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
+        body: ['Figtree', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'display-xl': ['clamp(2.5rem, 6vw, 4.5rem)', { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '600' }],
+        'headline-lg': ['clamp(1.75rem, 3.5vw, 2.5rem)', { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '600' }],
+        'headline-md': ['clamp(1.35rem, 2.5vw, 2rem)', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.65', fontWeight: '400' }],
+        'body-md': ['1rem', { lineHeight: '1.625', fontWeight: '400' }],
+        'label-caps': ['0.8125rem', { lineHeight: '1.4', letterSpacing: '0.04em', fontWeight: '600' }],
+        'label-sm': ['0.75rem', { lineHeight: '1.35', fontWeight: '500' }],
+      },
+    },
+  },
+  plugins: [require('@tailwindcss/forms')],
+};

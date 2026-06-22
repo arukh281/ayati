@@ -1,5 +1,24 @@
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+.ui-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: currentColor;
+}
+
+.ui-icon--16 {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ui-icon--18 {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.ui-icon--24 {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .text-dark-olive {
@@ -347,12 +366,12 @@ header {
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #bf8211;
+  color: #7a5509;
   transition: color 0.2s ease, gap 0.2s ease;
 }
 
 .about-section__link:hover {
-  color: #9a6a0e;
+  color: #5c3d07;
   gap: 0.55rem;
 }
 
@@ -484,7 +503,7 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #25d366;
+  background: #0a5c52;
   color: #fff;
   border-radius: 0.25rem;
   padding: 0.875rem 1.5rem;
@@ -497,7 +516,7 @@ header {
 }
 
 .btn-whatsapp:hover {
-  background: #1da851;
+  background: #084840;
 }
 
 .btn-whatsapp svg {
@@ -609,7 +628,7 @@ header {
   background: #f4f3ef;
 }
 
-.lead-modal__close .material-symbols-outlined {
+.lead-modal__close .ui-icon {
   font-size: 1.25rem;
 }
 
@@ -710,7 +729,21 @@ header {
   object-position: center 40%;
 }
 
-/* AA-compliant gold for inline text links on white */
+/* AA-compliant gold buttons and links on light backgrounds */
+.bg-primary {
+  background-color: #9a6a0e;
+}
+
+a.bg-primary:hover,
+button.bg-primary:hover,
+.hover\:bg-primary-deep:hover {
+  background-color: #7a5509;
+}
+
+.text-primary {
+  color: #9a6a0e;
+}
+
 .text-link,
 .blog-preview-card__link,
 .blog-preview-card__tag,
@@ -719,7 +752,7 @@ header {
 .blog-card__link,
 .blog-card__tag,
 .nav-link--active {
-  color: #9a6a0e;
+  color: #7a5509;
 }
 
 a.text-primary-deep,
@@ -738,6 +771,10 @@ a.text-primary-deep,
 
 #schedule .schedule-card {
   border-color: rgba(255, 255, 255, 0.25);
+}
+
+#schedule .schedule-card.bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.18);
 }
 
 /* Project render label */

@@ -37,62 +37,11 @@
   <link rel="apple-touch-icon" href="images/logos/STAR.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@300..700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#BF8211',
-            'primary-deep': '#9A6A0E',
-            'primary-light': '#F0C96A',
-            secondary: '#5f604d',
-            'dark-olive': '#2d2e1e',
-            'surface-section': '#F2EFE9',
-            'border-subtle': '#E4E0D8',
-            'muted-text': '#5C5C4A',
-            'on-surface-variant': '#514535',
-            'on-primary': '#ffffff',
-            'surface-container-lowest': '#ffffff',
-            'surface-container-low': '#f5f3ef',
-            'surface-container': '#efeeea',
-            'success-green': '#2D5A47',
-          },
-          borderRadius: {
-            DEFAULT: '0.125rem',
-            lg: '0.25rem',
-            xl: '0.5rem',
-          },
-          spacing: {
-            'margin-desktop': '5rem',
-            'margin-mobile': 'clamp(1rem, 4vw, 1.25rem)',
-            gutter: 'clamp(1.25rem, 3vw, 2rem)',
-            section: 'clamp(2.25rem, 6vw, 7.5rem)',
-          },
-          fontFamily: {
-            'display-xl': ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
-            'headline-lg': ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
-            'headline-md': ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
-            'body-lg': ['Figtree', 'system-ui', 'sans-serif'],
-            'body-md': ['Figtree', 'system-ui', 'sans-serif'],
-            'label-caps': ['Figtree', 'system-ui', 'sans-serif'],
-            'label-sm': ['Figtree', 'system-ui', 'sans-serif'],
-          },
-          fontSize: {
-            'display-xl': ['clamp(2.5rem, 6vw, 4.5rem)', { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '600' }],
-            'headline-lg': ['clamp(1.75rem, 3.5vw, 2.5rem)', { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '600' }],
-            'headline-md': ['clamp(1.35rem, 2.5vw, 2rem)', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '600' }],
-            'body-lg': ['1.125rem', { lineHeight: '1.65', fontWeight: '400' }],
-            'body-md': ['1rem', { lineHeight: '1.625', fontWeight: '400' }],
-            'label-caps': ['0.8125rem', { lineHeight: '1.4', letterSpacing: '0.04em', fontWeight: '600' }],
-            'label-sm': ['0.75rem', { lineHeight: '1.35', fontWeight: '500' }],
-          },
-        },
-      },
-    };
-  </script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@300..700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@300..700&display=swap"></noscript>
+  <link rel="preload" as="image" type="image/webp" href="images/webp/blueprint-hero-640.webp" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" as="image" type="image/webp" href="images/photos/blueprint-hero.webp" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="stylesheet" href="css/tailwind.css">
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body class="overflow-x-hidden bg-surface-container-lowest text-dark-olive antialiased font-body-md">
@@ -121,8 +70,8 @@
       </div>
 
       <button type="button" id="menu-toggle" class="flex min-h-[44px] min-w-[44px] items-center justify-center text-dark-olive lg:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
-        <span class="material-symbols-outlined icon-menu text-[24px]" aria-hidden="true">menu</span>
-        <span class="material-symbols-outlined icon-close text-[24px]" aria-hidden="true">close</span>
+        <svg class="ui-icon ui-icon--24 icon-menu" aria-hidden="true"><use href="/images/icons.svg#icon-menu"></use></svg>
+        <svg class="ui-icon ui-icon--24 icon-close" aria-hidden="true"><use href="/images/icons.svg#icon-close"></use></svg>
       </button>
     </div>
 
@@ -158,7 +107,7 @@
     <section class="hero-section relative flex w-full items-center overflow-hidden bg-surface-container-lowest pb-section pt-16 sm:min-h-[85vh] sm:pt-28 lg:min-h-[calc(100dvh-var(--site-header-height,4.25rem))]" aria-labelledby="hero-heading">
       <div class="hero-section__blueprint pointer-events-none absolute inset-0 w-full opacity-[0.15] mix-blend-multiply" aria-hidden="true">
         <picture>
-          <source type="image/webp" srcset="images/photos/blueprint-hero.webp">
+          <source type="image/webp" srcset="images/webp/blueprint-hero-640.webp 640w, images/webp/blueprint-hero-828.webp 828w, images/photos/blueprint-hero.webp 1376w" sizes="100vw">
           <img src="images/photos/blueprint-hero.png" alt="" class="h-full w-full object-cover object-right" width="1376" height="768" decoding="async" fetchpriority="high">
         </picture>
       </div>
@@ -183,19 +132,19 @@
 
         <ul class="hero-trust grid grid-cols-2 gap-x-4 gap-y-3 border-t border-border-subtle pt-5 lg:flex lg:flex-wrap lg:gap-x-8 lg:gap-y-4 lg:pt-6" aria-label="Why buyers trust Ayati Group">
           <li class="hero-trust-item flex items-center gap-2">
-            <span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">verified</span>
+            <svg class="ui-icon ui-icon--18 text-primary" aria-hidden="true"><use href="/images/icons.svg#icon-verified"></use></svg>
             <span class="font-label-sm text-label-sm text-on-surface-variant">Transparent practices</span>
           </li>
           <li class="hero-trust-item hidden items-center gap-2 lg:flex">
-            <span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">architecture</span>
+            <svg class="ui-icon ui-icon--18 text-primary" aria-hidden="true"><use href="/images/icons.svg#icon-architecture"></use></svg>
             <span class="font-label-sm text-label-sm text-on-surface-variant">Vastu compliant design</span>
           </li>
           <li class="hero-trust-item hidden items-center gap-2 lg:flex">
-            <span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">account_balance</span>
+            <svg class="ui-icon ui-icon--18 text-primary" aria-hidden="true"><use href="/images/icons.svg#icon-bank"></use></svg>
             <span class="font-label-sm text-label-sm text-on-surface-variant">Finance available</span>
           </li>
           <li class="hero-trust-item flex items-center gap-2">
-            <span class="material-symbols-outlined text-[18px] text-success-green" aria-hidden="true">shield</span>
+            <svg class="ui-icon ui-icon--18 text-success-green" aria-hidden="true"><use href="/images/icons.svg#icon-shield"></use></svg>
             <span class="font-label-sm text-label-sm text-on-surface-variant">UP RERA registered</span>
           </li>
         </ul>
@@ -219,12 +168,12 @@
             <p class="hidden lg:block">Every active project is registered under UP RERA. Home finance is available through approved lending partners. On a site visit, you walk the build with someone who knows it, not a script.</p>
             <a class="about-section__link" href="#properties">
               See our developments
-              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+              <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
             </a>
           </div>
           <div class="about-section__accent hidden lg:block">
             <picture>
-              <source type="image/webp" srcset="images/webp/result-400.webp 400w, images/webp/result-720.webp 720w, images/webp/result-1024.webp 1024w" sizes="(max-width: 768px) 100vw, 28rem">
+              <source type="image/webp" srcset="images/webp/result-400.webp 400w, images/webp/result-720.webp 720w" sizes="(max-width: 768px) min(100vw, 28rem), 28rem">
               <img src="images/photos/result.jpeg" alt="Ayati Group residential development in Noida" width="1024" height="1024" loading="lazy" decoding="async">
             </picture>
           </div>
@@ -247,7 +196,7 @@
           <article class="project-card group">
             <div class="project-card__media relative mb-5 aspect-[3/2] overflow-hidden bg-surface-container-low">
               <picture>
-                <source type="image/webp" srcset="images/webp/aadhya-homes-400.webp 400w, images/webp/aadhya-homes-640.webp 640w, images/webp/aadhya-homes-960.webp 960w" sizes="(max-width: 768px) 100vw, 50vw">
+                <source type="image/webp" srcset="images/webp/aadhya-homes-400.webp 400w, images/webp/aadhya-homes-640.webp 640w" sizes="(max-width: 768px) 100vw, 50vw">
                 <img src="images/photos/aadhya-homes.jpeg" alt="Aadya Homes, Sector 73, Noida" class="h-full w-full object-cover" width="1333" height="1600" loading="lazy" decoding="async">
               </picture>
               <div class="property-mark">
@@ -280,10 +229,10 @@
               <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                 <button type="button" class="brochure-btn inline-flex w-full items-center justify-center gap-1 rounded border border-dark-olive px-5 py-3 font-label-caps text-label-caps tracking-wider text-dark-olive transition-colors hover:bg-surface-container-low sm:w-auto sm:justify-start sm:py-2.5" data-brochure-src="docs/brochures/aadya-homes.pdf" data-property="Aadya Homes" aria-label="Download Aadya Homes brochure (PDF)">
                   Download brochure
-                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">download</span>
+                  <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-download"></use></svg>
                 </button>
                 <a class="flex items-center gap-1 font-label-caps text-label-caps tracking-wider text-primary transition-colors hover:text-primary-deep" href="#schedule">
-                  Schedule a visit <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+                  Schedule a visit <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
                 </a>
               </div>
             </div>
@@ -309,7 +258,7 @@
               <h3 class="mb-2 font-headline-md text-headline-md text-dark-olive">Aadya Residency</h3>
               <p class="mb-4 font-body-md text-body-md text-on-surface-variant">Our upcoming premium development in Central Noida: elevated living standards, contemporary design, and transparent pricing from day one.</p>
               <a class="inline-flex items-center gap-1 font-label-caps text-label-caps tracking-wider text-dark-olive transition-colors hover:text-primary" href="#schedule">
-                Register your interest <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+                Register your interest <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
               </a>
             </div>
           </article>
@@ -352,6 +301,7 @@
     <section class="relative w-full bg-surface-section px-margin-mobile py-section lg:px-margin-desktop" id="insights" aria-labelledby="insights-heading">
       <div class="insights-section__bg pointer-events-none absolute inset-0 w-full opacity-[0.15] mix-blend-multiply" aria-hidden="true">
         <picture>
+          <source type="image/webp" srcset="images/webp/blog-hero-bg-800.webp 800w, images/webp/blog-hero-bg-1200.webp 1200w" sizes="100vw">
           <img src="images/photos/blog-hero-bg.jpg" alt="" class="h-full w-full object-cover object-center" width="1920" height="1080" loading="lazy" decoding="async">
         </picture>
       </div>
@@ -363,7 +313,7 @@
             <p class="section-head__lede hidden font-body-md text-body-md text-on-surface-variant lg:block">Guides on Vastu, independent floors, and the Central Noida market.</p>
           </div>
           <a href="blog/index.html" class="font-label-caps text-label-caps tracking-wider text-primary hover:text-primary-deep transition-colors inline-flex items-center gap-1 shrink-0">
-            All articles <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+            All articles <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
           </a>
         </div>
 
@@ -376,21 +326,21 @@
               <span class="lg:hidden">Why Central Noida continues to outperform for homebuyers.</span>
               <span class="hidden lg:inline">Expressway access, metro connectivity, and proximity to IT parks — why Central Noida continues to outperform.</span>
             </p>
-            <span class="blog-preview-card__link">Read article <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></span>
+            <span class="blog-preview-card__link">Read article <svg class="ui-icon ui-icon--16" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg></span>
           </a>
 
           <a href="blog/why-independent-floors-noida.html" class="blog-preview-card group hidden md:flex">
             <p class="blog-preview-card__tag">Living &amp; Design</p>
             <h3 class="blog-preview-card__title">Why Independent Floors Are the Future of Comfortable Living</h3>
             <p class="blog-preview-card__excerpt">More space, a private entrance, and land ownership — what makes independent floors the smart choice for families.</p>
-            <span class="blog-preview-card__link">Read article <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></span>
+            <span class="blog-preview-card__link">Read article <svg class="ui-icon ui-icon--16" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg></span>
           </a>
 
           <a href="blog/vastu-compliant-homes-india.html" class="blog-preview-card group hidden lg:flex">
             <p class="blog-preview-card__tag">Architecture &amp; Wellbeing</p>
             <h3 class="blog-preview-card__title">Why Vastu-Compliant Homes Are a Must for Indian Families</h3>
             <p class="blog-preview-card__excerpt">Vastu guides light, ventilation, and spatial flow — here's how it shapes every floor plan we design.</p>
-            <span class="blog-preview-card__link">Read article <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></span>
+            <span class="blog-preview-card__link">Read article <svg class="ui-icon ui-icon--16" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg></span>
           </a>
 
         </div>
@@ -598,7 +548,7 @@
       <header class="lead-modal__header">
         <h2 class="lead-modal__title" id="brochure-modal-title">Download brochure</h2>
         <button type="button" class="lead-modal__close" data-brochure-close aria-label="Close dialog">
-          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+          <svg class="ui-icon ui-icon--24" aria-hidden="true"><use href="/images/icons.svg#icon-close"></use></svg>
         </button>
       </header>
       <form id="brochure-form" class="lead-modal__form" novalidate>
