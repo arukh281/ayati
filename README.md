@@ -22,8 +22,6 @@ Static marketing site for Ayati Group (Noida residential developer).
 │   ├── webp/           Responsive WebP derivatives
 │   └── icons.svg       Inline SVG icon sprite
 ├── docs/brochures/     PDF brochures (lead-gated download)
-├── assets/sources/     Design sources & intermediate crops (not served)
-├── scripts/            Dev tooling (favicon build, etc.)
 ├── _headers            Security headers (Netlify / compatible hosts)
 └── vercel.json         Cache headers for static assets
 ```
