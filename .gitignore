@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+.venv-crop/
+.cursor/
+.impeccable/
+stitch/
+stitch_aayati_developers_noida/
+elegant_architectural_line_drawing_technical_blueprint_of_a_modern_luxury.png
+blog/*.docx
+DESIGN.md
+PRODUCT.md
+docs/STITCH-BRIEF.md
