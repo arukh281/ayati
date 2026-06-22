@@ -909,9 +909,9 @@ a.text-primary-deep,
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  /* Clear the fixed star (top 14px + 44px button + gap) */
   padding-top: calc(58px + 1.25rem + env(safe-area-inset-top, 0px));
-  padding-left: calc(1.25rem + 44px + 0.75rem + env(safe-area-inset-left, 0px));
+  padding-left: clamp(1.5rem, 5vw, 2rem);
+  padding-right: clamp(1.5rem, 5vw, 2rem);
 }
 
 .nav-overlay__links {
@@ -962,9 +962,15 @@ a.text-primary-deep,
 
 @media (min-width: 1024px) {
   .nav-overlay__inner {
-    /* lg:px-margin-desktop already offsets content; only extra top clearance needed */
-    padding-left: 0;
     padding-top: calc(58px + 1.5rem + env(safe-area-inset-top, 0px));
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .nav-overlay__links,
+  .nav-overlay__cta {
+    margin-left: 2.5rem;
+    max-width: 32rem;
   }
 }
 
