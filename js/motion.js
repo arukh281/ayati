@@ -12,6 +12,7 @@
     {
       reduceMotion: '(prefers-reduced-motion: reduce)',
       desktop: '(min-width: 1024px)',
+      mobile: '(max-width: 1023px)',
     },
     (context) => {
       const { reduceMotion, desktop } = context.conditions;
@@ -60,7 +61,7 @@
         ['#about .section-head__title', { y: 22, duration: 0.55 }, '-=0.2'],
         ['#about .about-section__copy p', { y: 16, stagger: 0.08, duration: 0.5 }, '-=0.35'],
         ['#about .about-section__link', { y: 10, duration: 0.4 }, '-=0.25'],
-        ['#about .about-section__accent', {
+        ['#about .about-carousel', {
           x: desktop ? 32 : 0, y: desktop ? 0 : 24, duration: 0.65,
         }, '-=0.55'],
       ]);

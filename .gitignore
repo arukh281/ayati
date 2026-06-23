@@ -1,5 +1,7 @@
 .DS_Store
 node_modules/
+test-results/
+playwright-report/
 .venv-crop/
 .cursor/
 .impeccable/
@@ -7,5 +9,7 @@ stitch/
 stitch_aayati_developers_noida/
 elegant_architectural_line_drawing_technical_blueprint_of_a_modern_luxury.png
 blog/*.docx
+images/models/*.glb
+docs/brochures/ayati-green-1.pdf
 DESIGN.md
 PRODUCT.md

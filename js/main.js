@@ -22,6 +22,31 @@
   syncHeaderHeight();
   window.addEventListener('resize', syncHeaderHeight, { passive: true });
 
+  // ── Project WhatsApp links ─────────────────────────────────────────
+  const WHATSAPP_NUMBER = '919953533766';
+
+  function buildPropertyWhatsAppUrl(property, location) {
+    const lines = [
+      'Hi Ayati Group,',
+      '',
+      `I'd like to schedule a site visit for ${property}.`,
+    ];
+    if (location) lines.push('', `Location: ${location}`);
+    lines.push(
+      '',
+      'Please share available slots, pricing, and floor plan options.',
+      '',
+      'Thank you.'
+    );
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+  }
+
+  document.querySelectorAll('[data-property-whatsapp]').forEach((link) => {
+    const property = link.dataset.propertyWhatsapp?.trim();
+    if (!property) return;
+    link.href = buildPropertyWhatsAppUrl(property, link.dataset.propertyLocation?.trim() || '');
+  });
+
   menuToggle?.addEventListener('click', () => {
     const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
     setMenuOpen(!isOpen);
