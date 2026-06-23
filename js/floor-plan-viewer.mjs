@@ -3,6 +3,7 @@
  */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const VIEW_SETTINGS = {
@@ -456,7 +457,13 @@ export function createFloorPlanViewer(container) {
       initScene();
       if (!animationId) animate();
 
-      new GLTFLoader().load(
+      new GLTFLoader()
+        .setDRACOLoader(
+          new DRACOLoader().setDecoderPath(
+            'https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/libs/draco/gltf/'
+          )
+        )
+        .load(
         MODEL_SRC,
         (gltf) => {
           model = gltf.scene;
