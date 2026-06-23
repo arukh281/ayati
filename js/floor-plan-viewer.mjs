@@ -6,12 +6,6 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-const VIEW_SETTINGS = {
-  zoom: 0.234,
-  center: { x: 11.4, y: 0.9, z: -3.9 },
-};
-
-const MODEL_SRC = 'images/models/Untitled2.glb';
 const DEFAULT_VIEW_DIR = new THREE.Vector3(1, 1, 1).normalize();
 
 const COLOR_TEXTURE_KEYS = ['map', 'emissiveMap', 'sheenColorMap', 'specularColorMap'];
@@ -98,6 +92,8 @@ export function createFloorPlanViewer(container) {
   let floorY = 0;
   let activeTool = 'rotate';
   let suppressViewSync = false;
+  let activeViewSettings = null;
+  let modelSrc = null;
 
   function getMeshSize(node) {
     if (!node.geometry) return null;
@@ -222,6 +218,28 @@ export function createFloorPlanViewer(container) {
     defaultView = getCurrentView();
   }
 
+  function getViewDefaults() {
+    if (!model) {
+      return { zoom: 1, center: { x: 0, y: 0, z: 0 } };
+    }
+
+    const box = getWorldBox(model);
+    const sphere = box.getBoundingSphere(new THREE.Sphere());
+    return {
+      zoom: 1,
+      center: {
+        x: sphere.center.x,
+        y: sphere.center.y,
+        z: sphere.center.z,
+      },
+    };
+  }
+
+  function resolveViewSettings(viewSettings) {
+    if (viewSettings?.zoom != null && viewSettings?.center) return viewSettings;
+    return getViewDefaults();
+  }
+
   function frameToBox(box) {
     const sphere = box.getBoundingSphere(new THREE.Sphere());
     fitRadius = Math.max(sphere.radius, 1);
@@ -229,7 +247,8 @@ export function createFloorPlanViewer(container) {
 
     updateCameraPlanes();
 
-    applyCameraFromSettings(VIEW_SETTINGS.zoom, VIEW_SETTINGS.center, { resetDirection: true });
+    const resolved = resolveViewSettings(activeViewSettings);
+    applyCameraFromSettings(resolved.zoom, resolved.center, { resetDirection: true });
 
     setupFloorCap(box);
 
@@ -242,14 +261,11 @@ export function createFloorPlanViewer(container) {
 
   function getCurrentView() {
     if (!camera || !controls) {
-      return {
-        zoom: VIEW_SETTINGS.zoom,
-        center: { ...VIEW_SETTINGS.center },
-      };
+      return resolveViewSettings(activeViewSettings);
     }
 
     const dist = camera.position.distanceTo(controls.target);
-    const zoom = baseFitDistance > 0 ? dist / baseFitDistance : VIEW_SETTINGS.zoom;
+    const zoom = baseFitDistance > 0 ? dist / baseFitDistance : resolveViewSettings(activeViewSettings).zoom;
 
     return {
       zoom: Math.round(zoom * 1000) / 1000,
@@ -452,10 +468,37 @@ export function createFloorPlanViewer(container) {
     frameToBox(getWorldBox(model));
   }
 
-  function loadModel() {
+  function unloadModel() {
+    if (!model || !scene) return;
+
+    scene.remove(model);
+    model.traverse((node) => {
+      if (!node.isMesh) return;
+      node.geometry?.dispose();
+      const materials = Array.isArray(node.material) ? node.material : [node.material];
+      materials.forEach((mat) => mat?.dispose?.());
+    });
+    model = null;
+    defaultView = null;
+    modelSrc = null;
+    activeViewSettings = null;
+  }
+
+  function loadModel(src, viewSettings = null) {
     return new Promise((resolve, reject) => {
       initScene();
       if (!animationId) animate();
+
+      if (model && modelSrc !== src) unloadModel();
+
+      modelSrc = src;
+      activeViewSettings = viewSettings;
+
+      if (model) {
+        refit();
+        resolve();
+        return;
+      }
 
       new GLTFLoader()
         .setDRACOLoader(
@@ -464,7 +507,7 @@ export function createFloorPlanViewer(container) {
           )
         )
         .load(
-        MODEL_SRC,
+        src,
         (gltf) => {
           model = gltf.scene;
           prepareModel(model);
@@ -487,10 +530,11 @@ export function createFloorPlanViewer(container) {
       applyViewSettings(defaultView);
       return;
     }
-    applyViewSettings(VIEW_SETTINGS);
+    applyViewSettings(defaultView || resolveViewSettings(activeViewSettings));
   }
 
   function dispose() {
+    unloadModel();
     if (animationId) cancelAnimationFrame(animationId);
     animationId = null;
     controls?.dispose();
@@ -506,6 +550,7 @@ export function createFloorPlanViewer(container) {
 
   return {
     loadModel,
+    unloadModel,
     resize,
     refit,
     recenter,

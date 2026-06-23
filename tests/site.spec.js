@@ -150,6 +150,26 @@ test.describe('About carousel', () => {
     await page.waitForTimeout(3000);
     await expect(progress).not.toHaveAttribute('aria-valuenow', initial ?? '1');
   });
+
+  test('opens 3D model viewer for Ayati Greens 1', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#properties').scrollIntoViewIfNeeded();
+    await page.locator('[data-floor-plan-open="ayati-green-1"]').click();
+    const modal = page.locator('#floor-plan-modal');
+    await expect(modal).toBeVisible();
+    await expect(modal).toHaveAttribute('aria-hidden', 'false');
+    await expect(page.locator('#floor-plan-modal-title')).toHaveText(/Ayati Greens 1/);
+  });
+
+  test('opens 3D views gallery for Ayati Greens 1', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#properties').scrollIntoViewIfNeeded();
+    await page.locator('[data-views-gallery-open="ayati-greens-1"]').click();
+    const modal = page.locator('#project-views-modal');
+    await expect(modal).toBeVisible();
+    await expect(modal).toHaveAttribute('aria-hidden', 'false');
+    await expect(page.locator('[data-views-gallery-image]')).toHaveAttribute('src', /ayati-green/);
+  });
 });
 
 test.describe('Site quality scorecard', () => {
