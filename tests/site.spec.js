@@ -139,6 +139,17 @@ test.describe('About carousel', () => {
     await page.locator('[data-carousel-next]').click();
     await expect(progress).not.toHaveAttribute('aria-valuenow', initial ?? '1');
   });
+
+  test('keeps advancing while hovered', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#about').scrollIntoViewIfNeeded();
+    const carousel = page.locator('[data-about-carousel]');
+    const progress = page.locator('[data-carousel-progressbar]');
+    const initial = await progress.getAttribute('aria-valuenow');
+    await carousel.hover();
+    await page.waitForTimeout(3000);
+    await expect(progress).not.toHaveAttribute('aria-valuenow', initial ?? '1');
+  });
 });
 
 test.describe('Site quality scorecard', () => {
