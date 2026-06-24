@@ -3,7 +3,7 @@
 
   const GALLERIES = {
     'ayati-greens-1': {
-      title: 'Ayati Greens 1 · 3D views',
+      title: 'Ayati Greens 1 · 3D images',
       images: [
         {
           src: 'images/photos/about-carousel/04-ayati-green-day.png',
