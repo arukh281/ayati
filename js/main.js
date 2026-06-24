@@ -107,13 +107,14 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
   }
 
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const nameEl  = form.querySelector('#visit-name');
     const phoneEl = form.querySelector('#visit-phone');
     const emailEl = form.querySelector('#visit-email');
     const msgEl   = form.querySelector('#visit-message');
+    const submitBtn = form.querySelector('[type="submit"]');
 
     const name    = nameEl?.value.trim() ?? '';
     const phone   = phoneEl?.value.trim() ?? '';
@@ -132,18 +133,40 @@
       return;
     }
 
-    // Build WhatsApp message
+    if (email && !validateEmail(email)) {
+      showMsg('Please enter a valid email address.', 'error');
+      emailEl?.focus();
+      return;
+    }
+
     let waText = `Hi Ayati Group,\n\nI'd like to request a callback for a site visit.\n\nName: ${name}\nPhone: ${phone}`;
     if (email)   waText += `\nEmail: ${email}`;
     if (message) waText += `\n\nRequirements: ${message}`;
 
-    window.AyatiLeads?.sendToGoogleSheet({
-      type: 'visit',
-      name,
-      phone,
-      email,
-      msg: message,
-    });
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+    }
+
+    try {
+      await window.AyatiLeads?.sendToGoogleSheet({
+        type: 'visit',
+        name,
+        phone,
+        email,
+        msg: message,
+      });
+    } catch {
+      showMsg(
+        'We could not save your details right now. Please call +91 99535 33766 or message us on WhatsApp.',
+        'error'
+      );
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
+      }
+      return;
+    }
 
     window.open(`https://wa.me/919953533766?text=${encodeURIComponent(waText)}`, '_blank', 'noopener,noreferrer');
 
@@ -153,6 +176,11 @@
     );
 
     form.reset();
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.removeAttribute('aria-busy');
+    }
   });
 
   // ── Brochure lead-capture modal ─────────────────────────────────────
@@ -249,7 +277,7 @@
     true
   );
 
-  brochureForm?.addEventListener('submit', (e) => {
+  brochureForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearBrochureMsg();
 
@@ -263,6 +291,7 @@
     const src = sanitizeBrochureSrc(
       brochureSrcInput?.value || brochureForm.dataset.brochureSrc || ''
     );
+    const submitBtn = brochureForm.querySelector('[type="submit"]');
 
     if (!name) {
       showBrochureMsg('Please enter your name.', 'error');
@@ -288,17 +317,44 @@
       return;
     }
 
-    window.AyatiLeads?.sendToGoogleSheet({
-      type: 'brochure',
-      name,
-      no: phone,
-      email,
-      msg: propertyName,
-    });
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+    }
 
-    if (!downloadBrochure(src)) return;
+    try {
+      await window.AyatiLeads?.sendToGoogleSheet({
+        type: 'brochure',
+        name,
+        no: phone,
+        email,
+        msg: propertyName,
+      });
+    } catch {
+      showBrochureMsg(
+        'We could not save your details right now. Call +91 99535 33766 and we will email the brochure.',
+        'error'
+      );
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
+      }
+      return;
+    }
+
+    if (!downloadBrochure(src)) {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
+      }
+      return;
+    }
 
     showBrochureMsg('Download started — thank you for your interest.', 'success');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.removeAttribute('aria-busy');
+    }
     setTimeout(() => {
       closeBrochureModal();
     }, 1500);

@@ -11,7 +11,7 @@ module.exports = {
         'dark-olive': '#2d2e1e',
         'surface-section': '#F2EFE9',
         'border-subtle': '#E4E0D8',
-        'muted-text': '#454535',
+        'muted-text': '#3a3a2c',
         'on-surface-variant': '#3a3228',
         'on-primary': '#ffffff',
         'surface-container-lowest': '#ffffff',

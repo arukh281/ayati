@@ -11,12 +11,36 @@
   const nextBtn = root.querySelector('[data-carousel-next]');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const intervalMs = 2800;
+  const fadeMs = 750;
 
   let slides = [];
   let index = 0;
   let timer = null;
+  let leaveTimer = null;
   let touchStartX = 0;
   let isPlaying = false;
+
+  function setSlideDuration() {
+    root.style.setProperty('--slide-duration', `${intervalMs}ms`);
+  }
+
+  function restartKenBurns(slide) {
+    const img = slide?.querySelector('img');
+    if (!img || reduceMotion) return;
+
+    img.style.animation = 'none';
+    void img.offsetWidth;
+    img.style.removeProperty('animation');
+  }
+
+  function clearLeaveState() {
+    if (leaveTimer) {
+      window.clearTimeout(leaveTimer);
+      leaveTimer = null;
+    }
+
+    slides.forEach((slide) => slide.classList.remove('is-leaving'));
+  }
 
   function initSlides() {
     if (!viewport) return;
@@ -24,7 +48,9 @@
     slides = [...viewport.querySelectorAll('.about-carousel__slide')];
     slides.forEach((slide, i) => {
       slide.classList.toggle('is-active', i === 0);
+      slide.classList.remove('is-leaving');
       slide.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+      if (i === 0) restartKenBurns(slide);
     });
   }
 
@@ -71,14 +97,27 @@
     const wrapped = (nextIndex + slides.length) % slides.length;
     if (wrapped === index) return;
 
-    slides[index].classList.remove('is-active');
-    slides[index].setAttribute('aria-hidden', 'true');
+    const outgoing = slides[index];
+    const incoming = slides[wrapped];
+
+    clearLeaveState();
+
+    incoming.classList.add('is-active');
+    incoming.setAttribute('aria-hidden', 'false');
+    restartKenBurns(incoming);
+
+    outgoing.classList.add('is-leaving');
+    outgoing.classList.remove('is-active');
+    outgoing.setAttribute('aria-hidden', 'true');
+    restartKenBurns(outgoing);
 
     index = wrapped;
-
-    slides[index].classList.add('is-active');
-    slides[index].setAttribute('aria-hidden', 'false');
     syncProgressAttrs();
+
+    leaveTimer = window.setTimeout(() => {
+      outgoing.classList.remove('is-leaving');
+      leaveTimer = null;
+    }, fadeMs);
 
     if (reduceMotion && progressFill) {
       progressFill.style.width = '100%';
@@ -105,6 +144,7 @@
     clearTimer();
   }
 
+  setSlideDuration();
   initSlides();
   syncProgressAttrs();
 
