@@ -6,7 +6,7 @@
     'aadhya-residency': {
       title: 'Aadya Residency · 3D floor plan',
       ariaLabel: 'Interactive 3D floor plan of Aadya Residency',
-      src: 'images/models/Untitled2.glb',
+      src: 'images/models/aadhya-residency.glb',
       viewSettings: {
         zoom: 0.234,
         center: { x: 11.4, y: 0.9, z: -3.9 },

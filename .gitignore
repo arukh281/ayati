@@ -12,3 +12,8 @@ blog/*.docx
 docs/brochures/ayati-green-1-original.pdf
 DESIGN.md
 PRODUCT.md
+
+# Client source drops — process into images/ before committing
+aadhya_residency/
+ayati green/
+/view *.png
