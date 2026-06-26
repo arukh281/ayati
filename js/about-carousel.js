@@ -4,193 +4,98 @@
   const root = document.querySelector('[data-about-carousel]');
   if (!root) return;
 
-  const viewport = root.querySelector('.about-carousel__viewport');
-  const progressBar = root.querySelector('[data-carousel-progressbar]');
-  const progressFill = root.querySelector('[data-carousel-progress]');
+  const viewport = root.querySelector('[data-carousel-viewport]');
+  const label = root.querySelector('[data-carousel-label]');
+  const dotsRoot = root.querySelector('[data-carousel-dots]');
   const prevBtn = root.querySelector('[data-carousel-prev]');
   const nextBtn = root.querySelector('[data-carousel-next]');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const intervalMs = 2800;
-  const fadeMs = 750;
 
-  let slides = [];
-  let index = 0;
-  let timer = null;
-  let leaveTimer = null;
+  const slides = [...root.querySelectorAll('.about-carousel__slide')];
+  let index = slides.findIndex((slide) => slide.classList.contains('is-active'));
+  if (index < 0) index = 0;
+
   let touchStartX = 0;
-  let isPlaying = false;
+  let isTransitioning = false;
 
-  function setSlideDuration() {
-    root.style.setProperty('--slide-duration', `${intervalMs}ms`);
-  }
-
-  function restartKenBurns(slide) {
-    const img = slide?.querySelector('img');
-    if (!img || reduceMotion) return;
-
-    img.style.animation = 'none';
-    void img.offsetWidth;
-    img.style.removeProperty('animation');
-  }
-
-  function clearLeaveState() {
-    if (leaveTimer) {
-      window.clearTimeout(leaveTimer);
-      leaveTimer = null;
-    }
-
-    slides.forEach((slide) => slide.classList.remove('is-leaving'));
-  }
-
-  function initSlides() {
-    if (!viewport) return;
-
-    slides = [...viewport.querySelectorAll('.about-carousel__slide')];
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('is-active', i === 0);
-      slide.classList.remove('is-leaving');
-      slide.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
-      if (i === 0) restartKenBurns(slide);
+  function buildDots() {
+    if (!dotsRoot) return;
+    dotsRoot.innerHTML = '';
+    slides.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'about-carousel__dot';
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-label', `Show image ${i + 1} of ${slides.length}`);
+      btn.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      if (i === index) btn.classList.add('is-active');
+      btn.addEventListener('click', () => goTo(i));
+      dotsRoot.appendChild(btn);
     });
   }
 
-  function syncProgressAttrs() {
-    if (!progressBar) return;
+  function sync() {
+    const activeSlide = slides[index];
+    
+    slides.forEach((slide, i) => {
+      const active = i === index;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
 
-    progressBar.setAttribute('aria-valuemin', '1');
-    progressBar.setAttribute('aria-valuemax', String(slides.length));
-    progressBar.setAttribute('aria-valuenow', String(index + 1));
-  }
-
-  function clearTimer() {
-    if (timer) {
-      window.clearTimeout(timer);
-      timer = null;
+    if (label && activeSlide) {
+      label.textContent = activeSlide.dataset.caption || '';
     }
-    progressFill?.classList.remove('is-animating');
-  }
 
-  function runProgressAnimation() {
-    if (!progressFill || reduceMotion || slides.length < 2) return;
+    dotsRoot?.querySelectorAll('.about-carousel__dot').forEach((dot, i) => {
+      const active = i === index;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
 
-    progressFill.classList.remove('is-animating');
-    progressFill.style.width = '0%';
-    progressFill.style.setProperty('--duration', `${intervalMs}ms`);
-    void progressFill.offsetWidth;
-    progressFill.classList.add('is-animating');
-  }
-
-  function queueAdvance() {
-    clearTimer();
-    if (!isPlaying || reduceMotion || slides.length < 2 || document.hidden) return;
-
-    runProgressAnimation();
-    timer = window.setTimeout(() => {
-      goTo(index + 1);
-      queueAdvance();
-    }, intervalMs);
+    isTransitioning = false;
   }
 
   function goTo(nextIndex) {
-    if (!slides.length) return;
+    if (!slides.length || isTransitioning) return;
+    
+    isTransitioning = true;
+    index = (nextIndex + slides.length) % slides.length;
+    sync();
+  }
 
-    const wrapped = (nextIndex + slides.length) % slides.length;
-    if (wrapped === index) return;
+  prevBtn?.addEventListener('click', () => goTo(index - 1));
+  nextBtn?.addEventListener('click', () => goTo(index + 1));
 
-    const outgoing = slides[index];
-    const incoming = slides[wrapped];
-
-    clearLeaveState();
-
-    incoming.classList.add('is-active');
-    incoming.setAttribute('aria-hidden', 'false');
-    restartKenBurns(incoming);
-
-    outgoing.classList.add('is-leaving');
-    outgoing.classList.remove('is-active');
-    outgoing.setAttribute('aria-hidden', 'true');
-    restartKenBurns(outgoing);
-
-    index = wrapped;
-    syncProgressAttrs();
-
-    leaveTimer = window.setTimeout(() => {
-      outgoing.classList.remove('is-leaving');
-      leaveTimer = null;
-    }, fadeMs);
-
-    if (reduceMotion && progressFill) {
-      progressFill.style.width = '100%';
+  root.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      goTo(index - 1);
     }
-  }
-
-  function next() {
-    goTo(index + 1);
-    queueAdvance();
-  }
-
-  function prev() {
-    goTo(index - 1);
-    queueAdvance();
-  }
-
-  function startAutoplay() {
-    if (reduceMotion || slides.length < 2) return;
-    isPlaying = true;
-    queueAdvance();
-  }
-
-  function pauseTimer() {
-    clearTimer();
-  }
-
-  setSlideDuration();
-  initSlides();
-  syncProgressAttrs();
-
-  if (reduceMotion && progressFill) {
-    progressFill.style.width = '100%';
-  }
-
-  prevBtn?.addEventListener('click', prev);
-  nextBtn?.addEventListener('click', next);
-
-  root.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      prev();
-    }
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      next();
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      goTo(index + 1);
     }
   });
 
-  root.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0]?.clientX ?? 0;
-    pauseTimer();
-  }, { passive: true });
+  viewport?.addEventListener(
+    'touchstart',
+    (event) => {
+      touchStartX = event.changedTouches[0]?.clientX ?? 0;
+    },
+    { passive: true },
+  );
 
-  root.addEventListener('touchend', (e) => {
-    const touchEndX = e.changedTouches[0]?.clientX ?? 0;
-    const delta = touchEndX - touchStartX;
+  viewport?.addEventListener(
+    'touchend',
+    (event) => {
+      const delta = (event.changedTouches[0]?.clientX ?? 0) - touchStartX;
+      if (Math.abs(delta) < 40) return;
+      goTo(delta < 0 ? index + 1 : index - 1);
+    },
+    { passive: true },
+  );
 
-    if (Math.abs(delta) > 40) {
-      if (delta < 0) next();
-      else prev();
-      return;
-    }
-
-    if (isPlaying) queueAdvance();
-  }, { passive: true });
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      pauseTimer();
-      return;
-    }
-    if (isPlaying) queueAdvance();
-  });
-
-  startAutoplay();
+  root.setAttribute('tabindex', '0');
+  buildDots();
+  sync();
 })();

@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ayati Group — a Noida-based residential developer building thoughtfully designed homes across Noida and Greater Noida. Transparent practices, vastu compliant design, finance available.">
+  <meta name="description" content="Ayati Group — Noida-based residential developer of independent-floor homes and low-density apartments. Documented pricing, Vastu-aware design, home finance through 8 lenders.">
   <title>Ayati Group | Nurturing Spaces</title>
   <link rel="canonical" href="https://ayatigroup.com/">
   <meta property="og:title" content="Ayati Group | Nurturing Spaces">
-  <meta property="og:description" content="Thoughtfully designed residential homes across Noida and Greater Noida. Transparent practices, Vastu compliant design, finance available.">
+  <meta property="og:description" content="Independent-floor homes and low-density apartments in the NCR. Documented pricing, Vastu-aware design, home finance through 8 lenders.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ayatigroup.com/">
   <meta property="og:image" content="https://ayatigroup.com/images/logos/ayati-primary.png">
@@ -18,7 +18,7 @@
     "name": "Ayati Group",
     "url": "https://ayatigroup.com",
     "logo": "https://ayatigroup.com/images/logos/ayati-primary.png",
-    "description": "Noida-based residential developer building thoughtfully designed homes across Noida and Greater Noida.",
+    "description": "Noida-based developer of independent-floor homes and low-density residential communities.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "A-243, Sector 43",
@@ -43,6 +43,7 @@
   <link rel="preload" as="image" type="image/webp" href="images/photos/blueprint-hero.webp" media="(min-width: 768px)" fetchpriority="high">
   <link rel="stylesheet" href="css/tailwind.css">
   <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/about-section.css">
   <script type="importmap">
   {
     "imports": {
@@ -53,6 +54,18 @@
   </script>
 </head>
 <body class="bg-surface-container-lowest text-dark-olive antialiased font-body-md">
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+    <symbol id="icon-bed" viewBox="0 0 576 512"><path fill="currentColor" d="M32 32c17.7 0 32 14.3 32 32l0 224 224 0 0-128c0-17.7 14.3-32 32-32l160 0c53 0 96 43 96 96l0 224c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64-448 0 0 64c0 17.7-14.3 32-32 32S0 465.7 0 448L0 64C0 46.3 14.3 32 32 32zm80 160a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"/></symbol>
+    <symbol id="icon-ruler" viewBox="0 0 448 512"><path fill="currentColor" d="M1 441.7C5.5 463.5 24.8 480 48 480l352 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-48 0 0 72c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-72-64 0 0 72c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-72-72 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l72 0 0-64-72 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l72 0 0-48c0-26.5-21.5-48-48-48L48 32C21.5 32 0 53.5 0 80L0 432c0 3.3 .3 6.6 1 9.7z"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 448 512"><path fill="currentColor" d="M256 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 210.7-41.4-41.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 242.7 256 32zM64 320c-35.3 0-64 28.7-64 64l0 32c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-32c0-35.3-28.7-64-64-64l-46.9 0-56.6 56.6c-31.2 31.2-81.9 31.2-113.1 0L110.9 320 64 320zm304 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></symbol>
+    <symbol id="icon-instagram" viewBox="0 0 448 512"><path fill="currentColor" d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 384 512"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></symbol>
+    <symbol id="icon-verified" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm-6.9 139.3-65.6 65.6 31 31 81.2-81.2L303.6 139 238 204.6l-31-31 42.1-34.3z"/></symbol>
+    <symbol id="icon-architecture" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40H416c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 384c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v48 16.2c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V288 224c0-17.7-14.3-32-32-32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H96 128c22.1 0 40 17.9 40 40v64 24c0 8.8 7.2 16 16 16s16-7.2 16-16V184c0-22.1 17.9-40 40-40H272c8.8 0 16-7.2 16-16s-7.2-16-16-16H200c-22.1 0-40-17.9-40-40s17.9-40 40-40H256c8.8 0 16-7.2 16-16s-7.2-16-16-16H40C17.9 32 0 49.9 0 72s17.9 40 40 40H200c8.8 0 16-7.2 16-16s-7.2-16-16-16H40c-22.1 0-40-17.9-40-40s17.9-40 40-40H256c8.8 0 16-7.2 16-16s-7.2-16-16-16H72c-22.1 0-40-17.9-40-40s17.9-40 40-40H528c8.8 0 16-7.2 16-16s-7.2-16-16-16H264c-8.8 0-16 7.2-16 16s7.2 16 16 16H528c22.1 0 40 17.9 40 40s-17.9 40-40 40H264c-8.8 0-16 7.2-16 16s7.2 16 16 16H528c22.1 0 40 17.9 40 40z"/></symbol>
+    <symbol id="icon-bank" viewBox="0 0 512 512"><path fill="currentColor" d="M57.7 193l9.4 16.4c8.3 14.5 21.9 25.2 38.4 29.8L163 258.7c11.1 3.3 23.2 .5 31.4-7.2l65.3-64.9c6.5-6.5 15-10.1 24-10.1H384c35.3 0 64 28.7 64 64v32c0 8.8-7.2 16-16 16H368c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h32c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H368c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h32c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H368c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h32c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H112c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16h32c8.8 0 16-7.2 16-16V320c0-8.8-7.2-16-16-16H112c-8.8 0-16-7.2-16-16V288c0-8.8 7.2-16 16-16h32c8.8 0 16-7.2 16-16V224c0-8.8-7.2-16-16-16H112c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H112c-8.8 0-16-7.2-16-16V80c0-8.8 7.2-16 16-16h32c8.8 0 16-7.2 16-16V32c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h32c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H80c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h32c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H80c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h32c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H80c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16V432c0-8.8-7.2-16-16-16H368c-8.8 0-16-7.2-16-16V400c0-8.8 7.2-16 16-16h64c8.8 0 16-7.2 16-16V352c0-8.8-7.2-16-16-16H368c-8.8 0-16-7.2-16-16V304c0-8.8 7.2-16 16-16h64c8.8 0 16-7.2 16-16V256c0-8.8-7.2-16-16-16H368c-8.8 0-16-7.2-16-16V208c0-8.8 7.2-16 16-16h64c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H368c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16h64c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H272c-9 0-17.5 3.6-24 10.1L182.7 139 117.4 203.9c-8.2 7.7-20.3 10.5-31.4 7.2L105.5 239.2c-16.5-4.6-30.1-15.3-38.4-29.8L57.7 193z"/></symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 448 512"><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 256 233.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></symbol>
+  </svg>
   <a class="skip-link" href="#home">Skip to content</a>
 
   <!-- ── Navigation ───────────────────────────────────────────────── -->
@@ -70,6 +83,7 @@
         <a class="nav-link font-label-caps text-label-caps text-secondary transition-colors hover:text-primary-deep" href="#properties">Developments</a>
         <a class="nav-link font-label-caps text-label-caps text-secondary transition-colors hover:text-primary-deep" href="#why-us">Philosophy</a>
         <a class="nav-link font-label-caps text-label-caps text-secondary transition-colors hover:text-primary-deep" href="blog/index.html">Insights</a>
+        <a class="nav-link font-label-caps text-label-caps text-secondary transition-colors hover:text-primary-deep" href="careers/index.html">Careers</a>
         <a class="nav-link font-label-caps text-label-caps text-secondary transition-colors hover:text-primary-deep" href="#contact">Contact</a>
       </nav>
 
@@ -78,8 +92,8 @@
       </div>
 
       <button type="button" id="menu-toggle" class="flex min-h-[44px] min-w-[44px] items-center justify-center text-dark-olive lg:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
-        <svg class="ui-icon ui-icon--24 icon-menu" aria-hidden="true"><use href="/images/icons.svg#icon-menu"></use></svg>
-        <svg class="ui-icon ui-icon--24 icon-close" aria-hidden="true"><use href="/images/icons.svg#icon-close"></use></svg>
+        <svg class="ui-icon ui-icon--24 icon-menu" aria-hidden="true"><use href="#icon-menu"></use></svg>
+        <svg class="ui-icon ui-icon--24 icon-close" aria-hidden="true"><use href="#icon-close"></use></svg>
       </button>
     </div>
   </header>
@@ -90,6 +104,7 @@
       <a class="nav-link py-2 font-label-caps text-label-caps tracking-wider text-secondary" href="#properties">Developments</a>
       <a class="nav-link py-2 font-label-caps text-label-caps tracking-wider text-secondary" href="#why-us">Philosophy</a>
       <a class="nav-link py-2 font-label-caps text-label-caps tracking-wider text-secondary" href="blog/index.html">Insights</a>
+      <a class="nav-link py-2 font-label-caps text-label-caps tracking-wider text-secondary" href="careers/index.html">Careers</a>
       <a class="nav-link py-2 font-label-caps text-label-caps tracking-wider text-secondary" href="#contact">Contact</a>
       <a class="mt-2 rounded bg-primary px-6 py-3 text-center font-label-caps text-label-caps tracking-wider text-on-primary" href="#schedule">Schedule a visit</a>
     </div>
@@ -97,12 +112,13 @@
 
   <!-- ── Nav overlay (visible when star is clicked while scrolled) ─────── -->
   <div id="nav-overlay" class="nav-overlay" aria-hidden="true" aria-modal="true" role="dialog" aria-label="Navigation menu">
-    <div class="nav-overlay__inner mx-auto max-w-[1440px]">
+    <div class="nav-overlay__inner">
       <nav class="nav-overlay__links" aria-label="Overlay navigation">
         <a class="nav-overlay__link" href="#about">About</a>
         <a class="nav-overlay__link" href="#properties">Developments</a>
         <a class="nav-overlay__link" href="#why-us">Philosophy</a>
         <a class="nav-overlay__link" href="blog/index.html">Insights</a>
+        <a class="nav-overlay__link" href="careers/index.html">Careers</a>
         <a class="nav-overlay__link" href="#contact">Contact</a>
       </nav>
       <a href="#schedule" class="nav-overlay__cta">Schedule a visit</a>
@@ -124,14 +140,11 @@
         <div class="max-w-4xl">
         <div class="mb-8">
           <div class="hero-accent mb-4 h-0.5 w-20 bg-primary" aria-hidden="true"></div>
-          <p class="hero-eyebrow font-label-sm text-label-sm text-muted-text">Residential developer in Noida &amp; Greater Noida</p>
+          <p class="hero-eyebrow font-label-sm text-label-sm text-muted-text">Residential developer · Noida &amp; Greater Noida</p>
         </div>
 
         <h1 id="hero-heading" class="hero-heading mb-6 font-display-xl text-display-xl text-dark-olive lg:mb-8">Nurturing spaces for the life you're planning</h1>
-        <p class="hero-subtext mb-8 max-w-2xl font-body-lg text-body-lg text-on-surface-variant lg:mb-12">
-          <span class="lg:hidden">Thoughtfully designed homes across Noida &amp; Greater Noida.</span>
-          <span class="hidden lg:inline">Ayati Group builds residential communities across Noida and Greater Noida. Thoughtfully designed, transparently delivered.</span>
-        </p>
+        <p class="hero-subtext mb-8 max-w-2xl font-body-lg text-body-lg text-on-surface-variant lg:mb-12">Independent-floor homes and low-density apartments — with pricing and timelines fixed before you book.</p>
 
         <div class="mb-10 flex flex-col gap-3 sm:mb-14 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
           <a class="hero-cta w-full rounded bg-primary px-8 py-4 text-center font-label-caps text-label-caps tracking-wider text-on-primary transition-colors hover:bg-primary-deep sm:w-auto" href="#schedule">Schedule a visit</a>
@@ -140,16 +153,16 @@
 
         <ul class="hero-trust grid grid-cols-1 gap-3 border-t border-border-subtle pt-5 sm:grid-cols-2 lg:flex lg:flex-wrap lg:gap-x-8 lg:gap-y-4 lg:pt-6" aria-label="Why buyers trust Ayati Group">
           <li class="hero-trust-item flex items-center gap-2">
-            <svg class="ui-icon ui-icon--18 text-primary" aria-hidden="true"><use href="/images/icons.svg#icon-verified"></use></svg>
-            <span class="font-label-sm text-label-sm text-on-surface-variant">Transparent practices</span>
+            <svg class="hero-trust-icon" width="18" height="18" viewBox="0 0 512 512" aria-hidden="true"><path fill="#bf8211" d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0z"/><path fill="none" stroke="#faf8f4" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" d="M188 258l48 48 100-100"/></svg>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Documented pricing before you sign</span>
           </li>
           <li class="hero-trust-item flex items-center gap-2">
-            <svg class="ui-icon ui-icon--18 text-primary" aria-hidden="true"><use href="/images/icons.svg#icon-architecture"></use></svg>
-            <span class="font-label-sm text-label-sm text-on-surface-variant">Vastu compliant design</span>
+            <svg class="hero-trust-icon" width="18" height="18" viewBox="0 0 384 512" aria-hidden="true"><path fill="#bf8211" d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H48zM464 48V276.7c-6.8 4.1-14.1 7.4-21.9 9.8V48H464z"/></svg>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Low-density layouts (2–3 homes per floor)</span>
           </li>
           <li class="hero-trust-item flex items-center gap-2">
-            <svg class="ui-icon ui-icon--18 text-primary" aria-hidden="true"><use href="/images/icons.svg#icon-bank"></use></svg>
-            <span class="font-label-sm text-label-sm text-on-surface-variant">Finance available</span>
+            <svg class="hero-trust-icon" width="18" height="18" viewBox="0 0 384 512" aria-hidden="true"><path fill="#bf8211" d="M0 188.6C0 84.4 86 0 192 0S384 84.4 384 188.6c0 119.3-120.2 262.3-170.4 316.8-11.8 12.8-31.5 12.8-43.3 0-50.2-54.5-170.4-197.5-170.4-316.8zM192 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128z"/></svg>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Walk the actual build on your visit</span>
           </li>
         </ul>
         </div>
@@ -157,61 +170,121 @@
     </section>
 
     <!-- ── About ─────────────────────────────────────────────────────── -->
-    <section class="about-section relative isolate w-full overflow-hidden bg-surface-section px-margin-mobile py-section lg:px-margin-desktop" id="about" aria-labelledby="about-heading">
-      <div class="about-section__ambient" aria-hidden="true">
-        <span class="about-section__glow about-section__glow--1"></span>
-        <span class="about-section__glow about-section__glow--2"></span>
-        <span class="about-section__glow about-section__glow--3"></span>
-      </div>
+    <section class="about-section relative isolate w-full overflow-hidden px-margin-mobile py-12 lg:px-margin-desktop lg:py-16" id="about" aria-labelledby="about-heading">
       <div class="about-section__inner relative z-10 mx-auto max-w-[1440px]">
-        <div class="section-head about-section__head">
-          <div class="section-head__rule" aria-hidden="true"></div>
-          <h2 id="about-heading" class="section-head__title font-headline-lg text-headline-lg text-dark-olive">
-            <span class="lg:hidden">Homes in Noida &amp; Greater Noida, built for families</span>
-            <span class="hidden lg:inline">Homes in Noida and Greater Noida, built with the standards we'd hold for our own families</span>
-          </h2>
-        </div>
-        <div class="about-section__body">
-          <div class="about-section__copy">
-            <p>Ayati Group develops independent-floor homes and upcoming residential communities across Noida and Greater Noida. Layout, materials, and possession timelines are decided before marketing ever begins.</p>
-            <p class="hidden lg:block">Home finance is available through approved lending partners. On a site visit, you walk the build with someone who knows it, not a script.</p>
-            <p class="lg:hidden">Home finance through approved partners. On a site visit, you walk the build with someone who knows it.</p>
-            <a class="about-section__link" href="#properties">
-              See our developments
-              <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
-            </a>
-          </div>
-          <div class="about-section__accent">
+        <div class="about-section__showcase">
+          <div class="about-section__gallery">
             <div class="about-carousel" data-about-carousel aria-roledescription="carousel" aria-label="Ayati Group project gallery">
-              <div class="about-carousel__viewport">
-                <figure class="about-carousel__slide is-active" aria-hidden="false">
-                  <img src="images/photos/about-carousel/01-ayati-residency-street.png" alt="Aadya Residency street-level exterior" width="1920" height="1080" decoding="async" fetchpriority="low">
+              <div class="about-carousel__viewport" data-carousel-viewport>
+                <figure class="about-carousel__slide is-active" data-caption="Aadya Residency · street view" aria-hidden="false">
+                  <img src="images/photos/about-carousel/uniform/01-ayati-residency-street-cropped.png" alt="Aadya Residency street-level exterior" width="1344" height="1080" decoding="async" fetchpriority="low">
                 </figure>
-                <figure class="about-carousel__slide" aria-hidden="true">
-                  <img src="images/photos/about-carousel/03-aadhya-residency-2.png" alt="Aadya Residency aerial perspective" width="1920" height="1080" loading="lazy" decoding="async">
+                <figure class="about-carousel__slide" data-caption="Aadya Residency · aerial view" aria-hidden="true">
+                  <img src="images/photos/about-carousel/uniform/03-aadhya-residency-2-cropped.png" alt="Aadya Residency aerial perspective" width="1344" height="1080" loading="lazy" decoding="async">
                 </figure>
-                <figure class="about-carousel__slide" aria-hidden="true">
-                  <img src="images/photos/about-carousel/04-ayati-green-day.png" alt="Ayati Greens 1 daytime exterior render" width="1920" height="1080" loading="lazy" decoding="async">
+                <figure class="about-carousel__slide" data-caption="Ayati Greens · daytime exterior" aria-hidden="true">
+                  <img src="images/photos/about-carousel/uniform/04-ayati-green-day-cropped.png" alt="Ayati Greens 1 daytime exterior render" width="1344" height="1080" loading="lazy" decoding="async">
                 </figure>
-                <figure class="about-carousel__slide" aria-hidden="true">
-                  <img src="images/photos/about-carousel/05-ayati-green-zoom.jpg" alt="Ayati Greens residential development close view" width="1920" height="1080" loading="lazy" decoding="async">
+                <figure class="about-carousel__slide" data-caption="Ayati Greens · street view" aria-hidden="true">
+                  <img src="images/photos/about-carousel/uniform/05-ayati-green-zoom-cropped.jpg" alt="Ayati Greens residential development perspective" width="1344" height="1080" loading="lazy" decoding="async">
                 </figure>
-                <figure class="about-carousel__slide" aria-hidden="true">
-                  <img src="images/photos/about-carousel/10-aadya-homes.jpeg" alt="Aadya Homes, Sector 73, Noida" width="1536" height="1024" loading="lazy" decoding="async">
+                <figure class="about-carousel__slide" data-caption="Aadya Homes · exterior" aria-hidden="true">
+                  <img src="images/photos/about-carousel/uniform/10-aadya-homes-cropped.jpg" alt="Aadya Homes, Sector 73, Noida" width="1344" height="1080" loading="lazy" decoding="async">
                 </figure>
-              </div>
-              <div class="about-carousel__footer">
-                <button type="button" class="about-carousel__arrow about-carousel__arrow--prev" data-carousel-prev aria-label="Previous image">
+                <button type="button" class="about-carousel__nav about-carousel__nav--prev" data-carousel-prev aria-label="Previous image">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 9 12l5.5 6"/></svg>
                 </button>
-                <div class="about-carousel__progress" data-carousel-progressbar role="progressbar" aria-valuemin="1" aria-valuemax="1" aria-valuenow="1" aria-label="Gallery progress">
-                  <span class="about-carousel__progress-fill" data-carousel-progress></span>
-                </div>
-                <button type="button" class="about-carousel__arrow about-carousel__arrow--next" data-carousel-next aria-label="Next image">
+                <button type="button" class="about-carousel__nav about-carousel__nav--next" data-carousel-next aria-label="Next image">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6 15 12l-5.5 6"/></svg>
                 </button>
               </div>
+              <div class="about-carousel__footer">
+                <p class="about-carousel__label" data-carousel-label>Aadya Residency · street view</p>
+                <div class="about-carousel__dots" data-carousel-dots role="tablist" aria-label="Gallery slides"></div>
+              </div>
             </div>
+          </div>
+
+          <div class="about-section__intro">
+            <h2 id="about-heading" class="about-section__hero-title font-headline-lg text-headline-lg text-dark-olive">
+              Homes built with the standards we'd hold for our own families
+            </h2>
+            <p class="about-section__hero-lede font-body-md text-body-md text-on-surface-variant">
+              Independent floors and residential communities across Noida and Greater Noida
+            </p>
+          </div>
+
+          <div class="about-section__story">
+            <div class="about-section__story-content">
+              <p class="about-section__body-text font-body-lg text-body-lg text-on-surface-variant">
+                Ayati Group develops independent-floor homes and residential communities across Noida and Greater Noida. Layout, materials, and possession timelines are finalised before marketing begins — not adjusted around it.
+              </p>
+              <p class="about-section__body-text font-body-lg text-body-lg text-on-surface-variant">
+                Home finance is available through 8 approved lending partners. When you visit a site, you walk it with someone who knows every detail of the build — not someone reading from a script.
+              </p>
+            </div>
+
+            <ul class="about-section__principles" aria-label="How Ayati builds">
+              <li class="about-section__principle">
+                <span class="about-section__principle-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 384 512" aria-hidden="true"><path fill="#bf8211" d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H48zM464 48V276.7c-6.8 4.1-14.1 7.4-21.9 9.8V48H464z"/></svg>
+                </span>
+                <span class="about-section__principle-copy"><strong>Layout locked</strong> before we go to market</span>
+              </li>
+              <li class="about-section__principle">
+                <span class="about-section__principle-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 448 512" aria-hidden="true"><path fill="#bf8211" d="M1 441.7C5.5 463.5 24.8 480 48 480l352 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-48 0 0 72c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-72-64 0 0 72c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-72-72 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l72 0 0-64-72 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l72 0 0-48c0-26.5-21.5-48-48-48L48 32C21.5 32 0 53.5 0 80L0 432c0 3.3 .3 6.6 1 9.7z"/></svg>
+                </span>
+                <span class="about-section__principle-copy"><strong>Materials chosen</strong> upfront, not swapped later</span>
+              </li>
+              <li class="about-section__principle">
+                <span class="about-section__principle-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 512 512" aria-hidden="true"><path fill="#bf8211" d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0z"/><path fill="none" stroke="#faf8f4" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" d="M188 258l48 48 100-100"/></svg>
+                </span>
+                <span class="about-section__principle-copy"><strong>Timelines documented</strong> in your agreement</span>
+              </li>
+            </ul>
+
+            <a class="about-section__cta" href="#properties">
+              Explore our developments
+              <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Ayati: commitment cards (full-width band) -->
+      <div id="why-us" class="about-section__commitments" aria-labelledby="why-heading">
+        <div class="about-section__backdrop" aria-hidden="true">
+          <img class="about-section__trees" src="images/illustrations/about-trees.svg" alt="" width="1440" height="280" loading="lazy" decoding="async">
+        </div>
+        <div class="about-section__commitments-inner">
+          <header class="about-section__commitments-header">
+            <h2 id="why-heading" class="font-headline-lg text-headline-lg text-dark-olive">Why families choose Ayati</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant">We built these commitments because we'd want them ourselves.</p>
+          </header>
+          <div class="why-grid__items">
+            <article class="why-item">
+              <div class="why-item__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true"><path fill="#bf8211" d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0z"/><path fill="none" stroke="#faf8f4" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" d="M188 258l48 48 100-100"/></svg>
+              </div>
+              <h3 class="why-item__title font-headline-md text-headline-md text-dark-olive">No surprise bills</h3>
+              <p class="why-item__text font-body-md text-body-md text-on-surface-variant">Pricing is documented before you sign. What you're quoted is what you pay — no hidden charges or last-minute additions.</p>
+            </article>
+            <article class="why-item">
+              <div class="why-item__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 384 512" aria-hidden="true"><path fill="#bf8211" d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H48zM464 48V276.7c-6.8 4.1-14.1 7.4-21.9 9.8V48H464z"/></svg>
+              </div>
+              <h3 class="why-item__title font-headline-md text-headline-md text-dark-olive">Layouts for daily life</h3>
+              <p class="why-item__text font-body-md text-body-md text-on-surface-variant">Natural light, cross-ventilation, practical room plans. Vastu applied where it genuinely improves how a home feels.</p>
+            </article>
+            <article class="why-item">
+              <div class="why-item__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true"><path fill="#bf8211" d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
+              </div>
+              <h3 class="why-item__title font-headline-md text-headline-md text-dark-olive">Timelines you trust</h3>
+              <p class="why-item__text font-body-md text-body-md text-on-surface-variant">Possession dates are commitments, not estimates. Clear milestones from booking to handover with a team you can reach.</p>
+            </article>
           </div>
         </div>
       </div>
@@ -223,8 +296,7 @@
         <div class="section-head mb-8 lg:mb-12">
           <div class="section-head__rule" aria-hidden="true"></div>
           <h2 id="properties-heading" class="section-head__title mb-2 font-headline-lg text-headline-lg text-dark-olive">Our developments</h2>
-          <p class="section-head__lede font-body-lg text-body-lg text-on-surface-variant">Current and upcoming residential projects across Noida and Greater Noida.</p>
-          <p class="mt-2 font-label-sm text-label-sm text-muted-text lg:mt-3">Possession timelines shared on enquiry. Book a site visit to review dates for each project.</p>
+          <p class="section-head__lede font-body-lg text-body-lg text-on-surface-variant">Four projects — independent floors and low-density apartments.</p>
         </div>
 
         <div class="project-grid grid grid-cols-1 gap-gutter lg:grid-cols-2">
@@ -250,23 +322,20 @@
             <div class="project-card__body">
               <div class="project-card__copy">
                 <h3 class="mb-2 font-headline-md text-headline-md text-dark-olive">Aadya Homes</h3>
-                <p class="font-body-md text-body-md text-on-surface-variant">
-                  <span class="lg:hidden">3BHK independent floors in Sector 73, Noida.</span>
-                  <span class="hidden lg:inline">Spacious 3BHK independent floors, thoughtfully designed with modern amenities and premium construction for a private family lifestyle.</span>
-                </p>
+                <p class="font-body-md text-body-md text-on-surface-variant">Spacious independent floors with a private entrance — designed for light, privacy, and everyday family life.</p>
                 <div class="flex flex-wrap items-center gap-4 font-label-caps text-label-caps tracking-wider text-on-surface-variant">
                   <span>3 BHK</span>
-                  <span class="hidden h-1 w-1 rounded-full bg-border-subtle lg:inline-block" aria-hidden="true"></span>
-                  <span class="hidden lg:inline">Independent floors</span>
+                  <span class="h-1 w-1 rounded-full bg-border-subtle" aria-hidden="true"></span>
+                  <span>Independent floors</span>
                 </div>
               </div>
               <div class="project-card__actions flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                 <button type="button" class="brochure-btn inline-flex w-full items-center justify-center gap-1 rounded border border-dark-olive px-5 py-3 font-label-caps text-label-caps tracking-wider text-dark-olive transition-colors hover:bg-surface-container-low sm:w-auto sm:justify-start sm:py-2.5" data-brochure-src="docs/brochures/aadya-homes.pdf" data-property="Aadya Homes" aria-label="Download Aadya Homes brochure (PDF)">
                   Download brochure
-                  <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-download"></use></svg>
+                  <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="#icon-download"></use></svg>
                 </button>
                 <a class="inline-cta-link font-label-caps text-label-caps tracking-wider text-primary transition-colors hover:text-primary-deep" href="#schedule">
-                  Schedule a visit <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
+                  Book a visit <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                 </a>
               </div>
             </div>
@@ -288,11 +357,11 @@
               </a>
               <div class="project-card__media-actions">
                 <button type="button" class="floor-plan-btn" data-views-gallery-open="ayati-greens-1" aria-label="View 3D images of Ayati Greens 1">
-                  <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-architecture"></use></svg>
+                  <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="#icon-architecture"></use></svg>
                   View 3D images
                 </button>
                 <button type="button" class="floor-plan-btn" data-floor-plan-open="ayati-green-1" aria-label="View 3D render of Ayati Greens 1">
-                  <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-architecture"></use></svg>
+                  <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="#icon-architecture"></use></svg>
                   View 3D render
                 </button>
               </div>
@@ -300,26 +369,20 @@
             <div class="project-card__body">
               <div class="project-card__copy">
                 <h3 class="mb-2 font-headline-md text-headline-md text-dark-olive">Ayati Greens 1</h3>
-                <p class="font-body-md text-body-md text-on-surface-variant">
-                  <span class="lg:hidden">2 &amp; 3 BHK flats, three homes per floor.</span>
-                  <span class="hidden lg:inline">Thoughtfully planned 2 and 3 BHK apartments with three flats per floor: two 2 BHK and one 3 BHK, designed for light, ventilation, and everyday comfort.</span>
-                </p>
+                <p class="font-body-md text-body-md text-on-surface-variant">A quiet building where each floor holds just three homes — shared with only two other families.</p>
                 <div class="flex flex-wrap items-center gap-4 font-label-caps text-label-caps tracking-wider text-on-surface-variant">
                   <span>2 &amp; 3 BHK</span>
                   <span class="h-1 w-1 rounded-full bg-border-subtle" aria-hidden="true"></span>
                   <span>3 flats per floor</span>
-                  <span class="hidden h-1 w-1 rounded-full bg-border-subtle sm:inline-block" aria-hidden="true"></span>
-                  <span class="hidden sm:inline">2 × 2 BHK · 1 × 3 BHK</span>
+                  <span class="h-1 w-1 rounded-full bg-border-subtle" aria-hidden="true"></span>
+                  <span>2 × 2 BHK · 1 × 3 BHK</span>
                 </div>
               </div>
               <div class="project-card__actions flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                 <button type="button" class="brochure-btn inline-flex w-full items-center justify-center gap-1 rounded border border-dark-olive px-5 py-3 font-label-caps text-label-caps tracking-wider text-dark-olive transition-colors hover:bg-surface-container-low sm:w-auto sm:justify-start sm:py-2.5" data-brochure-src="docs/brochures/ayati-green-1.pdf" data-property="Ayati Greens 1" aria-label="Download Ayati Greens 1 brochure (PDF)">
                   Download brochure
-                  <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-download"></use></svg>
+                  <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="#icon-download"></use></svg>
                 </button>
-                <a class="inline-cta-link font-label-caps text-label-caps tracking-wider text-primary transition-colors hover:text-primary-deep" href="#schedule">
-                  Schedule a visit <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
-                </a>
               </div>
             </div>
           </article>
@@ -338,18 +401,11 @@
               <a class="project-whatsapp-btn" href="#" data-property-whatsapp="Aadya Residency" data-property-location="Sector 73, Noida" target="_blank" rel="noopener noreferrer" aria-label="Schedule a visit for Aadya Residency on WhatsApp">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               </a>
-              <button type="button" class="floor-plan-btn" data-floor-plan-open="aadhya-residency" aria-label="View 3D render of Aadya Residency">
-                <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-architecture"></use></svg>
-                View 3D render
-              </button>
             </div>
             <div class="project-card__body">
               <div class="project-card__copy">
                 <h3 class="mb-2 font-headline-md text-headline-md text-dark-olive">Aadya Residency</h3>
-                <p class="font-body-md text-body-md text-on-surface-variant">
-                  <span class="lg:hidden">3BHK apartments, two homes per floor.</span>
-                  <span class="hidden lg:inline">Premium 3BHK apartments with contemporary design, two flats per floor, and the clarity and service you expect from Ayati Group.</span>
-                </p>
+                <p class="font-body-md text-body-md text-on-surface-variant">Two homes per floor — more space, better light, and more privacy than a typical apartment tower.</p>
                 <div class="flex flex-wrap items-center gap-4 font-label-caps text-label-caps tracking-wider text-on-surface-variant">
                   <span>3 BHK</span>
                   <span class="h-1 w-1 rounded-full bg-border-subtle" aria-hidden="true"></span>
@@ -357,9 +413,9 @@
                 </div>
               </div>
               <div class="project-card__actions flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-                <a class="inline-cta-link inline-flex w-full items-center justify-center font-label-caps text-label-caps tracking-wider text-primary transition-colors hover:text-primary-deep sm:w-auto sm:justify-start" href="#schedule">
-                  Schedule a visit <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
-                </a>
+                <button type="button" class="inline-cta-link inline-flex w-full items-center justify-center gap-1 font-label-caps text-label-caps tracking-wider text-primary transition-colors hover:text-primary-deep sm:w-auto sm:justify-start" data-floor-plan-open="aadhya-residency">
+                  View 3D render <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                </button>
               </div>
             </div>
           </article>
@@ -385,11 +441,11 @@
             <div class="project-card__body">
               <div class="project-card__copy">
                 <h3 class="mb-2 font-headline-md text-headline-md text-dark-olive">Ayati Greens 2</h3>
-                <p class="font-body-md text-body-md text-on-surface-variant">The next phase of the Ayati Greens community. Details and floor plans will be shared soon.</p>
+                <p class="font-body-md text-body-md text-on-surface-variant">The next phase of the Ayati Greens community. Floor plans and pricing announced soon.</p>
               </div>
               <div class="project-card__actions flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                 <a class="inline-cta-link font-label-caps text-label-caps tracking-wider text-dark-olive transition-colors hover:text-primary" href="#schedule">
-                  Register your interest <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
+                  Register your interest <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                 </a>
               </div>
             </div>
@@ -399,40 +455,6 @@
       </div>
     </section>
 
-    <!-- ── Why Ayati ───────────────────────────────────────────────── -->
-    <section class="why-section relative isolate w-full overflow-hidden px-margin-mobile py-section lg:px-margin-desktop" id="why-us" aria-labelledby="why-heading">
-      <div class="why-section__ambient" aria-hidden="true">
-        <span class="why-section__sheen"></span>
-        <span class="why-section__glow why-section__glow--1"></span>
-        <span class="why-section__glow why-section__glow--2"></span>
-      </div>
-      <div class="relative z-10 mx-auto max-w-[1440px]">
-        <div class="why-section__panel">
-          <header class="why-section__header">
-            <div class="section-head__rule" aria-hidden="true"></div>
-            <h2 id="why-heading" class="section-head__title font-headline-lg text-headline-lg text-dark-olive">Why Ayati</h2>
-            <p class="section-head__lede font-body-md text-body-md text-on-surface-variant">What you can expect when you buy from us.</p>
-          </header>
-          <div class="why-grid__items">
-            <article class="why-item">
-              <h3 class="why-item__title font-headline-md text-headline-md text-dark-olive">Transparent from day one</h3>
-              <p class="why-item__text font-body-md text-body-md text-on-surface-variant">Clear pricing, documented timelines, and no surprise charges at possession.</p>
-            </article>
-            <article class="why-item">
-              <h3 class="why-item__title font-headline-md text-headline-md text-dark-olive">Built for daily life</h3>
-              <p class="why-item__text font-body-md text-body-md text-on-surface-variant">
-                <span class="lg:hidden">Practical layouts with natural light, ventilation, and Vastu where it improves comfort.</span>
-                <span class="hidden lg:inline">Natural light, ventilation, and practical layouts. Vastu applied where it improves comfort.</span>
-              </p>
-            </article>
-            <article class="why-item">
-              <h3 class="why-item__title font-headline-md text-headline-md text-dark-olive">Timelines you can plan around</h3>
-              <p class="why-item__text font-body-md text-body-md text-on-surface-variant">Possession dates treated as commitments, with clear timelines from booking through handover.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
     <section class="relative w-full bg-surface-section px-margin-mobile py-section lg:px-margin-desktop" id="insights" aria-labelledby="insights-heading">
       <div class="insights-section__bg pointer-events-none absolute inset-0 w-full opacity-[0.15] mix-blend-multiply" aria-hidden="true">
         <picture>
@@ -441,13 +463,11 @@
         </picture>
       </div>
       <div class="relative z-10 mx-auto max-w-[1440px]">
-        <div class="section-head mb-12 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 id="insights-heading" class="section-head__title font-headline-lg text-headline-lg text-dark-olive">Homebuyer insights</h2>
-            <p class="section-head__lede font-body-md text-body-md text-on-surface-variant">Guides on Vastu, independent floors, and the Central Noida market.</p>
-          </div>
-          <a href="blog/index.html" class="font-label-caps text-label-caps tracking-wider text-primary hover:text-primary-deep transition-colors inline-flex items-center gap-1 shrink-0">
-            All articles <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg>
+        <div class="section-head mb-12">
+          <h2 id="insights-heading" class="section-head__title font-headline-lg text-headline-lg text-dark-olive">Homebuyer insights</h2>
+          <p class="section-head__lede font-body-md text-body-md text-on-surface-variant">Practical guides for homebuyers.</p>
+          <a href="blog/index.html" class="mt-4 inline-flex items-center gap-1 font-label-caps text-label-caps tracking-wider text-primary transition-colors hover:text-primary-deep">
+            All articles <svg class="ui-icon ui-icon--18" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
           </a>
         </div>
 
@@ -456,25 +476,22 @@
           <a href="blog/central-noida-sectors-73-75.html" class="blog-preview-card group">
             <p class="blog-preview-card__tag">Location &amp; Investment</p>
             <h3 class="blog-preview-card__title">The Strategic Advantage of Central Noida: Sectors 73 &amp; 75</h3>
-            <p class="blog-preview-card__excerpt">
-              <span class="lg:hidden">Why Central Noida continues to outperform for homebuyers.</span>
-              <span class="hidden lg:inline">Expressway access, metro connectivity, and proximity to IT parks: why Central Noida continues to outperform.</span>
-            </p>
-            <span class="blog-preview-card__link">Read article <svg class="ui-icon ui-icon--16" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg></span>
+            <p class="blog-preview-card__excerpt">Expressway access, metro connectivity, and proximity to IT parks — why Central Noida continues to outperform.</p>
+            <span class="blog-preview-card__link">Read article <svg class="ui-icon ui-icon--16" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></span>
           </a>
 
-          <a href="blog/why-independent-floors-noida.html" class="blog-preview-card group hidden md:flex">
+          <a href="blog/why-independent-floors-noida.html" class="blog-preview-card group">
             <p class="blog-preview-card__tag">Living &amp; Design</p>
             <h3 class="blog-preview-card__title">Why Independent Floors Are the Future of Comfortable Living</h3>
             <p class="blog-preview-card__excerpt">More space, a private entrance, and land ownership: what makes independent floors the smart choice for families.</p>
-            <span class="blog-preview-card__link">Read article <svg class="ui-icon ui-icon--16" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg></span>
+            <span class="blog-preview-card__link">Read article <svg class="ui-icon ui-icon--16" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></span>
           </a>
 
-          <a href="blog/vastu-compliant-homes-india.html" class="blog-preview-card group hidden lg:flex">
+          <a href="blog/vastu-compliant-homes-india.html" class="blog-preview-card group">
             <p class="blog-preview-card__tag">Architecture &amp; Wellbeing</p>
             <h3 class="blog-preview-card__title">Why Vastu-Compliant Homes Are a Must for Indian Families</h3>
             <p class="blog-preview-card__excerpt">Vastu guides light, ventilation, and spatial flow. Here's how it shapes every floor plan we design.</p>
-            <span class="blog-preview-card__link">Read article <svg class="ui-icon ui-icon--16" aria-hidden="true"><use href="/images/icons.svg#icon-arrow-right"></use></svg></span>
+            <span class="blog-preview-card__link">Read article <svg class="ui-icon ui-icon--16" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></span>
           </a>
 
         </div>
@@ -486,8 +503,8 @@
       <div class="mx-auto max-w-[1440px] text-center">
         <div class="section-head section-head--center mx-auto mb-10 max-w-2xl">
           <div class="section-head__rule section-head__rule--center" aria-hidden="true"></div>
-          <h2 class="section-head__title font-headline-md text-headline-md text-dark-olive" id="finance-heading">Finance available</h2>
-          <p class="section-head__lede hidden font-body-md text-body-md text-on-surface-variant lg:block">Approved lending partners for flexible home financing.</p>
+          <h2 class="section-head__title font-headline-md text-headline-md text-dark-olive" id="finance-heading">Approved by leading lenders</h2>
+          <p class="section-head__lede font-body-md text-body-md text-on-surface-variant">When a bank approves a project for home loans, it has independently reviewed the builder and the build.</p>
         </div>
       </div>
       <div class="partner-marquee" role="region" aria-label="Approved finance partners">
@@ -578,11 +595,7 @@
       <div class="mx-auto max-w-4xl">
         <div class="schedule-intro mb-8 text-center lg:mb-10">
           <h2 id="schedule-heading" class="mb-3 font-headline-lg text-headline-lg lg:mb-4">Book a site visit</h2>
-          <p class="mx-auto max-w-xl font-body-lg text-body-lg">
-            <span class="lg:hidden">Message us on WhatsApp. We'll confirm your visit.</span>
-            <span class="hidden lg:inline">Message us on WhatsApp for the fastest reply, or leave your number and we'll call back within a few hours.</span>
-          </p>
-          <p class="mx-auto mt-3 hidden max-w-xl font-label-sm text-label-sm lg:block">We'll confirm a time, share directions to the site office, and answer any questions before you visit.</p>
+          <p class="mx-auto max-w-xl font-body-lg text-body-lg">Message us on WhatsApp for the fastest response — we typically reply within the hour.</p>
         </div>
 
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -601,23 +614,23 @@
           <!-- Callback form — tablet and desktop -->
           <div class="schedule-card hidden md:block">
             <form id="visit-form" class="rounded-lg border border-border-subtle bg-surface-container-lowest p-6 text-left">
-              <p class="mb-4 font-label-caps text-label-caps tracking-wider text-dark-olive">Or leave your details</p>
-              <div class="mb-4 space-y-5">
+              <p class="visit-form__title mb-5 font-headline-md text-headline-md text-dark-olive">Or leave your details</p>
+              <div class="visit-form__fields mb-4 space-y-5">
                 <div>
-                  <label class="mb-1.5 block font-label-caps text-label-caps tracking-wider text-dark-olive" for="visit-name">Name</label>
-                  <input class="w-full border-0 border-b border-border-subtle bg-transparent px-0 py-2 font-body-md text-dark-olive placeholder:text-muted-text focus:border-primary focus:ring-0" id="visit-name" name="name" type="text" placeholder="Full name" required autocomplete="name">
+                  <label class="visit-form__label mb-1.5 block font-label-caps text-label-caps tracking-wider text-dark-olive" for="visit-name">Name</label>
+                  <input class="visit-form__input w-full border-0 border-b border-border-subtle bg-transparent px-0 py-2 font-body-md text-dark-olive focus:border-primary focus:ring-0" id="visit-name" name="name" type="text" placeholder="Full name" required autocomplete="name">
                 </div>
                 <div>
-                  <label class="mb-1.5 block font-label-caps text-label-caps tracking-wider text-dark-olive" for="visit-phone">Phone</label>
-                  <input class="w-full border-0 border-b border-border-subtle bg-transparent px-0 py-2 font-body-md text-dark-olive placeholder:text-muted-text focus:border-primary focus:ring-0" id="visit-phone" name="phone" type="tel" placeholder="+91 98xxx xxxxx" pattern="[\+]?[0-9\s\-]{10,15}" required autocomplete="tel">
+                  <label class="visit-form__label mb-1.5 block font-label-caps text-label-caps tracking-wider text-dark-olive" for="visit-phone">Phone</label>
+                  <input class="visit-form__input w-full border-0 border-b border-border-subtle bg-transparent px-0 py-2 font-body-md text-dark-olive focus:border-primary focus:ring-0" id="visit-phone" name="phone" type="tel" placeholder="+91 98xxx xxxxx" pattern="[\+]?[0-9\s\-]{10,15}" required autocomplete="tel">
                 </div>
                 <div>
-                  <label class="mb-1.5 block font-label-caps text-label-caps tracking-wider text-dark-olive" for="visit-email">Email <span class="font-label-sm text-label-sm tracking-normal text-muted-text normal-case">(optional)</span></label>
-                  <input class="w-full border-0 border-b border-border-subtle bg-transparent px-0 py-2 font-body-md text-dark-olive placeholder:text-muted-text focus:border-primary focus:ring-0" id="visit-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+                  <label class="visit-form__label mb-1.5 block font-label-caps text-label-caps tracking-wider text-dark-olive" for="visit-email">Email <span class="font-label-sm text-label-sm tracking-normal text-on-surface-variant normal-case">(optional)</span></label>
+                  <input class="visit-form__input w-full border-0 border-b border-border-subtle bg-transparent px-0 py-2 font-body-md text-dark-olive focus:border-primary focus:ring-0" id="visit-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
                 </div>
                 <div>
-                  <label class="mb-1.5 block font-label-caps text-label-caps tracking-wider text-dark-olive" for="visit-message">Your requirements <span class="font-label-sm text-label-sm tracking-normal text-muted-text normal-case">(optional)</span></label>
-                  <textarea class="w-full resize-none border-0 border-b border-border-subtle bg-transparent px-0 py-2 font-body-md text-dark-olive placeholder:text-muted-text focus:border-primary focus:ring-0" id="visit-message" name="message" rows="2" placeholder="E.g. ground floor preferred, visit on weekend…"></textarea>
+                  <label class="visit-form__label mb-1.5 block font-label-caps text-label-caps tracking-wider text-dark-olive" for="visit-message">Your requirements <span class="font-label-sm text-label-sm tracking-normal text-on-surface-variant normal-case">(optional)</span></label>
+                  <textarea class="visit-form__input visit-form__textarea w-full resize-none border-0 border-b border-border-subtle bg-transparent px-0 py-2 font-body-md text-dark-olive focus:border-primary focus:ring-0" id="visit-message" name="message" rows="1" placeholder="E.g. ground floor preferred, visit on weekend…"></textarea>
                 </div>
               </div>
               <button class="mt-2 w-full rounded bg-dark-olive py-3.5 px-6 font-label-caps text-label-caps tracking-wider text-white transition-colors hover:bg-black" type="submit">Request a callback</button>
@@ -649,12 +662,9 @@
             <img src="images/logos/ayati-primary.png" alt="Ayati Group" width="1024" height="461" loading="lazy" decoding="async">
           </picture>
         </a>
-        <p class="max-w-sm font-body-md text-body-md text-muted-text">
-          <span class="lg:hidden">Residential developer in Noida &amp; Greater Noida.</span>
-          <span class="hidden lg:inline">Developing spaces that nurture modern living with transparency and architectural integrity.</span>
-        </p>
+        <p class="max-w-sm font-body-md text-body-md text-muted-text">Independent-floor homes — with pricing and timelines that hold.</p>
         <a class="social-link mt-5" href="https://www.instagram.com/ayatigroup/" aria-label="Ayati Group on Instagram" rel="noopener noreferrer" target="_blank">
-          <svg class="icon" aria-hidden="true" focusable="false"><use href="images/icons.svg#icon-instagram"></use></svg>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-instagram"></use></svg>
         </a>
       </div>
 
@@ -683,7 +693,7 @@
       <header class="lead-modal__header">
         <h2 class="lead-modal__title" id="brochure-modal-title">Download brochure</h2>
         <button type="button" class="lead-modal__close" data-brochure-close aria-label="Close dialog">
-          <svg class="ui-icon ui-icon--24" aria-hidden="true"><use href="/images/icons.svg#icon-close"></use></svg>
+          <svg class="ui-icon ui-icon--24" aria-hidden="true"><use href="#icon-close"></use></svg>
         </button>
       </header>
       <form id="brochure-form" class="lead-modal__form" novalidate>
@@ -717,7 +727,7 @@
           <p class="project-views-modal__hint">Arrow keys or buttons to browse · Esc to close</p>
         </div>
         <button type="button" class="project-views-modal__close" data-views-gallery-close aria-label="Close gallery">
-          <svg class="ui-icon ui-icon--24" aria-hidden="true"><use href="/images/icons.svg#icon-close"></use></svg>
+          <svg class="ui-icon ui-icon--24" aria-hidden="true"><use href="#icon-close"></use></svg>
         </button>
       </header>
       <div class="project-views-modal__stage" data-views-gallery-stage aria-roledescription="carousel" aria-label="Project 3D renders">
@@ -748,7 +758,7 @@
         <div class="floor-plan-modal__actions">
           <button type="button" class="floor-plan-modal__recenter" data-floor-plan-recenter>Recenter</button>
           <button type="button" class="floor-plan-modal__close" data-floor-plan-close aria-label="Close 3D viewer">
-            <svg class="ui-icon ui-icon--24" aria-hidden="true"><use href="/images/icons.svg#icon-close"></use></svg>
+            <svg class="ui-icon ui-icon--24" aria-hidden="true"><use href="#icon-close"></use></svg>
           </button>
         </div>
       </header>

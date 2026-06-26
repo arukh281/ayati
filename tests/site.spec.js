@@ -104,7 +104,7 @@ test.describe('GSAP motion', () => {
     await waitForGsap(page);
     await page.locator('#about').scrollIntoViewIfNeeded();
     await page.waitForTimeout(900);
-    const titleY = await page.locator('#about .section-head__title').evaluate((el) => {
+    const titleY = await page.locator('#about-heading').evaluate((el) => {
       const t = window.getComputedStyle(el).transform;
       if (t === 'none') return 0;
       const match = t.match(/matrix\([^,]+,[^,]+,[^,]+,[^,]+,[^,]+,\s*([^)]+)\)/);
@@ -131,24 +131,24 @@ test.describe('GSAP motion', () => {
 });
 
 test.describe('About carousel', () => {
-  test('advances slides on next click', async ({ page }) => {
+  test('advances on next click', async ({ page }) => {
     await page.goto('/');
     await page.locator('#about').scrollIntoViewIfNeeded();
-    const progress = page.locator('[data-carousel-progressbar]');
-    const initial = await progress.getAttribute('aria-valuenow');
+    await expect(page.locator('.about-carousel__slide')).toHaveCount(5);
+    const label = page.locator('[data-carousel-label]');
+    const initial = await label.textContent();
     await page.locator('[data-carousel-next]').click();
-    await expect(progress).not.toHaveAttribute('aria-valuenow', initial ?? '1');
+    await expect(label).not.toHaveText(initial ?? '');
   });
 
-  test('keeps advancing while hovered', async ({ page }) => {
+  test('uses uniform gallery frames for consistent carousel presentation', async ({ page }) => {
     await page.goto('/');
     await page.locator('#about').scrollIntoViewIfNeeded();
-    const carousel = page.locator('[data-about-carousel]');
-    const progress = page.locator('[data-carousel-progressbar]');
-    const initial = await progress.getAttribute('aria-valuenow');
-    await carousel.hover();
-    await page.waitForTimeout(3000);
-    await expect(progress).not.toHaveAttribute('aria-valuenow', initial ?? '1');
+    const img = page.locator('.about-carousel__slide.is-active img');
+    const src = await img.getAttribute('src');
+    expect(src).toContain('/uniform/');
+    const objectFit = await img.evaluate((el) => getComputedStyle(el).objectFit);
+    expect(objectFit).toBe('cover');
   });
 
   test('opens 3D model viewer for Ayati Greens 1', async ({ page }) => {

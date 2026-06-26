@@ -34,10 +34,7 @@
         .from('.hero-heading', { y: 20, autoAlpha: 0, duration: 0.65 }, '-=0.35')
         .from('.hero-subtext', { y: 16, autoAlpha: 0, duration: 0.5 }, '-=0.45')
         .from('.hero-cta', { y: 12, autoAlpha: 0, duration: 0.45, stagger: 0.08 }, '-=0.4')
-        .from('.hero-trust-item', { y: 10, autoAlpha: 0, duration: 0.4, stagger: 0.06 }, '-=0.3')
-        .from('.hero-trust-item .ui-icon',
-          { scale: 0.6, autoAlpha: 0, duration: 0.35, stagger: 0.06, transformOrigin: 'center center' },
-          '-=0.55');
+        .from('.hero-trust-item', { y: 10, autoAlpha: 0, duration: 0.4, stagger: 0.06 }, '-=0.3');
 
       if (desktop) {
         gsap.to('.hero-section__blueprint img', {
@@ -57,13 +54,13 @@
       };
 
       scrollTl('#about', [
-        ['#about .section-head__rule', { scaleX: 0, transformOrigin: 'left center', duration: 0.45 }],
-        ['#about .section-head__title', { y: 22, duration: 0.55 }, '-=0.2'],
-        ['#about .about-section__copy p', { y: 16, stagger: 0.08, duration: 0.5 }, '-=0.35'],
-        ['#about .about-section__link', { y: 10, duration: 0.4 }, '-=0.25'],
-        ['#about .about-carousel', {
-          x: desktop ? 32 : 0, y: desktop ? 0 : 24, duration: 0.65,
-        }, '-=0.55'],
+        ['#about .about-section__gallery', { y: desktop ? 0 : 20, x: desktop ? -28 : 0, duration: 0.65 }],
+        ['#about .about-section__intro', { y: 20, duration: 0.55 }, '-=0.45'],
+        ['#about .about-section__story-content p', { y: 16, stagger: 0.08, duration: 0.45 }, '-=0.35'],
+        ['#about .about-section__principle-copy', { y: 12, stagger: 0.08, duration: 0.4 }, '-=0.3'],
+        ['#about .about-section__cta', { y: 10, duration: 0.4 }, '-=0.25'],
+        ['#why-us .why-item__title', { y: 16, stagger: 0.1, duration: 0.45 }, '-=0.15'],
+        ['#why-us .why-item__text', { y: 12, stagger: 0.1, duration: 0.4 }, '-=0.45'],
       ]);
 
       scrollTl('#properties', [
@@ -73,13 +70,6 @@
         ['#properties .project-card', { y: 36, duration: 0.6, stagger: 0.14 }, '-=0.2'],
         ['#properties .project-card__media img',
           { scale: 1.06, duration: 0.75, stagger: 0.14, transformOrigin: 'center center' }, '-=0.5'],
-      ]);
-
-      scrollTl('#why-us', [
-        ['#why-us .section-head__rule', { scaleX: 0, transformOrigin: 'left center', duration: 0.45 }],
-        ['#why-us .section-head__title', { y: 18 }, '-=0.15'],
-        ['#why-us .section-head__lede', { y: 12, duration: 0.45 }, '-=0.35'],
-        ['#why-us .why-item', { y: 24, stagger: 0.1, duration: 0.55 }, '-=0.2'],
       ]);
 
       scrollTl('#insights', [

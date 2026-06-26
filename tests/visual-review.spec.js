@@ -21,8 +21,8 @@ test.describe('Visual review — about + Aadya Homes', () => {
       await page.waitForTimeout(800);
 
       const metrics = await page.evaluate(() => {
-        const copy = document.querySelector('.about-section__copy');
-        const copyP = document.querySelector('.about-section__copy p');
+        const copy = document.querySelector('.about-section__body-text');
+        const copyP = document.querySelector('.about-section__body-text');
         const aboutTitle = document.querySelector('#about-heading');
         const portraitMedia = document.querySelector('.project-card:first-child .project-card__media');
         const portraitImg = portraitMedia?.querySelector('img');
@@ -48,6 +48,10 @@ test.describe('Visual review — about + Aadya Homes', () => {
           aboutParagraphAlign: copyP ? getComputedStyle(copyP).textAlign : null,
           aboutTitleAlign: aboutTitle ? getComputedStyle(aboutTitle).textAlign : null,
           carouselSlideCount: document.querySelectorAll('.about-carousel__slide').length,
+          carouselObjectFit: (() => {
+            const img = document.querySelector('.about-carousel__slide.is-active img');
+            return img ? getComputedStyle(img).objectFit : null;
+          })(),
           portraitMedia: box(portraitMedia),
           portraitImg: box(portraitImg),
           landscapeMedia: box(landscapeMedia),
@@ -67,9 +71,10 @@ test.describe('Visual review — about + Aadya Homes', () => {
       await page.waitForTimeout(300);
       await page.locator('.project-grid').screenshot({ path: path.join(OUT, `properties-grid-${vp.name}.png`) });
 
-      expect(metrics.aboutParagraphAlign).toBe('justify');
-      expect(metrics.aboutTitleAlign).toBe('left');
+      expect(['left', 'start']).toContain(metrics.aboutParagraphAlign);
+      expect(['left', 'start']).toContain(metrics.aboutTitleAlign);
       expect(metrics.carouselSlideCount).toBe(5);
+      expect(metrics.carouselObjectFit).toBe('cover');
       expect(metrics.portraitImg?.objectFit).toBe('cover');
       if (vp.name === 'desktop' && metrics.portraitMedia && metrics.landscapeMedia) {
         expect(metrics.portraitMedia.h).toBe(metrics.landscapeMedia.h);

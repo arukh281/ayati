@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 280" fill="none" aria-hidden="true">
+  <!-- Full-width soft grove — overlapping canopies only, no trunks -->
+
+  <g fill="#526b47" fill-opacity="0.26">
+    <ellipse cx="72" cy="248" rx="52" ry="38"/>
+    <ellipse cx="128" cy="232" rx="44" ry="34"/>
+    <ellipse cx="48" cy="218" rx="36" ry="28"/>
+    <ellipse cx="168" cy="258" rx="38" ry="28"/>
+
+    <ellipse cx="252" cy="250" rx="48" ry="36"/>
+    <ellipse cx="312" cy="228" rx="42" ry="32"/>
+    <ellipse cx="220" cy="222" rx="34" ry="26"/>
+    <ellipse cx="348" cy="262" rx="36" ry="26"/>
+
+    <ellipse cx="432" cy="246" rx="50" ry="38"/>
+    <ellipse cx="492" cy="226" rx="44" ry="34"/>
+    <ellipse cx="396" cy="218" rx="32" ry="24"/>
+    <ellipse cx="528" cy="258" rx="38" ry="28"/>
+
+    <ellipse cx="612" cy="252" rx="52" ry="38"/>
+    <ellipse cx="672" cy="230" rx="46" ry="34"/>
+    <ellipse cx="576" cy="220" rx="36" ry="28"/>
+    <ellipse cx="708" cy="262" rx="40" ry="30"/>
+
+    <ellipse cx="792" cy="248" rx="48" ry="36"/>
+    <ellipse cx="852" cy="228" rx="42" ry="32"/>
+    <ellipse cx="756" cy="218" rx="34" ry="26"/>
+    <ellipse cx="888" cy="260" rx="38" ry="28"/>
+
+    <ellipse cx="972" cy="250" rx="50" ry="38"/>
+    <ellipse cx="1032" cy="226" rx="44" ry="34"/>
+    <ellipse cx="936" cy="220" rx="36" ry="28"/>
+    <ellipse cx="1068" cy="258" rx="38" ry="28"/>
+
+    <ellipse cx="1152" cy="246" rx="48" ry="36"/>
+    <ellipse cx="1212" cy="228" rx="42" ry="32"/>
+    <ellipse cx="1116" cy="218" rx="34" ry="26"/>
+    <ellipse cx="1248" cy="262" rx="40" ry="30"/>
+
+    <ellipse cx="1332" cy="252" rx="52" ry="38"/>
+    <ellipse cx="1392" cy="232" rx="44" ry="34"/>
+    <ellipse cx="1296" cy="222" rx="36" ry="28"/>
+    <ellipse cx="1428" cy="260" rx="36" ry="26"/>
+
+    <!-- Bridge fills between clusters -->
+    <ellipse cx="180" cy="242" rx="28" ry="22"/>
+    <ellipse cx="360" cy="240" rx="30" ry="22"/>
+    <ellipse cx="540" cy="244" rx="28" ry="20"/>
+    <ellipse cx="720" cy="242" rx="32" ry="24"/>
+    <ellipse cx="900" cy="238" rx="28" ry="22"/>
+    <ellipse cx="1080" cy="242" rx="30" ry="22"/>
+    <ellipse cx="1260" cy="240" rx="28" ry="20"/>
+  </g>
+</svg>
