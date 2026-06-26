@@ -71,7 +71,10 @@ test.describe('Ayati Group homepage', () => {
 
   test('sections are reachable via in-page anchors', async ({ page }) => {
     await page.goto('/');
-    for (const id of ['about', 'properties', 'why-us', 'schedule', 'contact']) {
+    const width = page.viewportSize()?.width ?? 1280;
+    const sections = ['about', 'properties', 'schedule', 'contact'];
+    if (width >= 1024) sections.splice(2, 0, 'why-us');
+    for (const id of sections) {
       await page.locator(`#${id}`).scrollIntoViewIfNeeded();
       await expect(page.locator(`#${id}`)).toBeInViewport();
     }

@@ -255,7 +255,18 @@
   }
 
   .blog-card {
-    padding: 1.25rem;
+    padding: 1.125rem;
+    gap: 0.625rem;
+  }
+
+  .blog-card__excerpt,
+  .article-meta__dot,
+  .article-meta span:nth-child(n + 3) {
+    display: none;
+  }
+
+  .blog-listing .grid > .blog-card:nth-child(n + 2) {
+    display: none;
   }
 
   .article-pullquote {
@@ -266,5 +277,23 @@
 
   .related-card {
     padding: 1.125rem;
+  }
+
+  .related-card:nth-child(n + 2) {
+    display: none;
+  }
+
+  .article-hero h1 {
+    font-size: clamp(1.75rem, 7vw, 2.25rem) !important;
+  }
+
+  .article-body p {
+    margin-bottom: 1.1rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .blog-card {
+    padding: 1.5rem;
   }
 }

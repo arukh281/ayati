@@ -236,10 +236,29 @@
 
 @media (max-width: 767px) {
   .job-card {
-    padding: 1.25rem;
+    padding: 1.125rem;
+    gap: 1rem;
   }
 
   .job-card__header {
     flex-direction: column;
+  }
+
+  .job-card__salary {
+    white-space: normal;
+  }
+
+  .job-card__summary,
+  .job-card__list,
+  .job-card__section-title {
+    display: none;
+  }
+
+  .job-card__apply {
+    width: 100%;
+  }
+
+  .careers-hero__intro .font-body-lg {
+    display: none;
   }
 }

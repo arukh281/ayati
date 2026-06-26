@@ -123,19 +123,19 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.625rem 0.75rem;
+  padding: 0.75rem 0.875rem;
   border-radius: 0.375rem;
   background: #faf8f4;
   border: 1px solid rgba(228, 224, 216, 0.7);
 }
 
 .about-section__principle-icon {
-  display: inline-flex;
+  display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   background: #f5ebe0;
   overflow: visible;
@@ -145,11 +145,15 @@
 .about-section__commitments .why-item__icon svg {
   display: block;
   flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
 }
 
 .about-section__principle-copy {
+  flex: 1;
+  min-width: 0;
   font-size: 0.875rem;
-  line-height: 1.45;
+  line-height: 1.35;
   color: #3a3228;
 }
 
@@ -401,6 +405,49 @@
   margin: 0;
   line-height: 1.6;
   color: #514535;
+}
+
+@media (max-width: 767px) {
+  .about-section__showcase {
+    gap: 1.5rem;
+  }
+
+  .about-section__hero-title {
+    font-size: clamp(1.5rem, 6vw, 1.85rem);
+  }
+
+  .about-section__principle {
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0.875rem;
+  }
+
+  .about-section__principle-copy {
+    font-size: 0.8125rem;
+    line-height: 1.35;
+  }
+
+  .about-section__principles {
+    gap: 0.5rem;
+  }
+
+  .about-section__cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .about-carousel__nav {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .about-carousel__nav--prev {
+    left: 0.5rem;
+  }
+
+  .about-carousel__nav--next {
+    right: 0.5rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

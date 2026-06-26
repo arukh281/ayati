@@ -25,16 +25,25 @@
   // ── Project WhatsApp links ─────────────────────────────────────────
   const WHATSAPP_NUMBER = '919953533766';
 
-  function buildPropertyWhatsAppUrl(property, location) {
-    const lines = [
-      'Hi Ayati Group,',
-      '',
-      `I'd like to schedule a site visit for ${property}.`,
-    ];
+  function buildPropertyWhatsAppUrl(property, location, intent) {
+    const isInterest = intent === 'interest';
+    const lines = isInterest
+      ? [
+          'Hi Ayati Group,',
+          '',
+          `I'd like to register my interest in ${property}.`,
+        ]
+      : [
+          'Hi Ayati Group,',
+          '',
+          `I'd like to schedule a site visit for ${property}.`,
+        ];
     if (location) lines.push('', `Location: ${location}`);
     lines.push(
       '',
-      'Please share available slots, pricing, and floor plan options.',
+      isInterest
+        ? 'Please notify me when floor plans and pricing are announced.'
+        : 'Please share available slots, pricing, and floor plan options.',
       '',
       'Thank you.'
     );
@@ -44,7 +53,11 @@
   document.querySelectorAll('[data-property-whatsapp]').forEach((link) => {
     const property = link.dataset.propertyWhatsapp?.trim();
     if (!property) return;
-    link.href = buildPropertyWhatsAppUrl(property, link.dataset.propertyLocation?.trim() || '');
+    link.href = buildPropertyWhatsAppUrl(
+      property,
+      link.dataset.propertyLocation?.trim() || '',
+      link.dataset.whatsappIntent?.trim() || 'visit'
+    );
   });
 
   menuToggle?.addEventListener('click', () => {
