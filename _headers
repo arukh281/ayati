@@ -10,3 +10,8 @@
   Content-Type: application/pdf
   X-Content-Type-Options: nosniff
   Content-Disposition: attachment
+
+/brochures/*
+  Content-Type: application/pdf
+  X-Content-Type-Options: nosniff
+  Content-Disposition: inline
