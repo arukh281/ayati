@@ -27,7 +27,8 @@ Static marketing site for Ayati Group (Noida residential developer).
 │   ├── webp/               Responsive WebP derivatives
 │   ├── models/             GLB 3D models (aadhya-residency, ayati-green)
 │   └── icons.svg           Inline SVG icon sprite
-├── docs/brochures/         PDF brochures (lead-gated download)
+├── brochures/              PDF brochures on public direct URLs (WhatsApp links)
+├── docs/brochures/         Same PDFs, served behind the lead-gated download
 ├── tests/                  Playwright specs
 ├── _headers                Security headers (Netlify / compatible hosts)
 └── vercel.json             Cache headers for static assets
@@ -42,6 +43,27 @@ npm install
 npm run build:css    # after changing Tailwind classes
 npm run dev          # http://127.0.0.1:8765
 ```
+
+## Brochures
+
+Every brochure is served twice: `docs/brochures/` backs the lead-gated download
+button on the site, and `brochures/` exposes the same PDF on a clean public URL
+for sharing as a WhatsApp attachment. Keep both copies in sync when a brochure
+is replaced. Vercel serves these as static files with `application/pdf`, and no
+rewrite intercepts them.
+
+| Project | Public URL |
+| --- | --- |
+| Aadya Homes | https://ayatigroup.com/brochures/aadya-homes.pdf |
+| Aadya Residency | https://ayatigroup.com/brochures/aadya-residency.pdf |
+| Ayati Greens 1 | https://ayatigroup.com/brochures/ayati-greens-1.pdf |
+| Ayati Greens 1 floor plans | https://ayatigroup.com/brochures/ayati-greens-1-floor-plans.pdf |
+
+Brochures are large by nature. Before committing one, check where its weight
+actually is: photos stored losslessly should be re-encoded as JPEG, and a page
+carrying tens of thousands of vector paths is usually cheaper rasterised at
+300dpi. Leave pages with QR codes as vectors, and confirm the codes still scan
+afterwards.
 
 ## Deploy
 
