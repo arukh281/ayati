@@ -35,6 +35,7 @@
   let viewer = null;
   let viewerPromise = null;
   let activeTool = 'rotate';
+  let _fpTriggerEl = null;
 
   function getModelConfig(modelId) {
     return MODELS[modelId] || MODELS['aadhya-residency'];
@@ -135,13 +136,19 @@
     }
   }
 
-  function openModal(modelId) {
+  function openModal(modelId, triggerEl) {
     const id = modelId || 'aadhya-residency';
     updateModalCopy(id);
     modal.hidden = false;
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('floor-plan-modal-open');
     isOpen = true;
+    _fpTriggerEl = triggerEl || null;
+    window.AyatiA11y?.trapFocus(modal);
+    requestAnimationFrame(() => {
+      // The backdrop div carries data-floor-plan-close too — target the button.
+      modal.querySelector('button[data-floor-plan-close]')?.focus();
+    });
     loadModel(id).then(() => viewer?.start());
     waitForLayout().then(() => viewer?.resize());
   }
@@ -152,6 +159,9 @@
     document.body.classList.remove('floor-plan-modal-open');
     isOpen = false;
     viewer?.stop();
+    window.AyatiA11y?.releaseFocus();
+    _fpTriggerEl?.focus();
+    _fpTriggerEl = null;
   }
 
   document.querySelectorAll('[data-viewer-tool]').forEach((btn) => {
@@ -179,7 +189,7 @@
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      openModal(btn.dataset.floorPlanOpen || 'aadhya-residency');
+      openModal(btn.dataset.floorPlanOpen || 'aadhya-residency', btn);
     });
   });
 

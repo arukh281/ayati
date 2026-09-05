@@ -19,22 +19,30 @@
 
       if (reduceMotion) return;
 
-      /* ── Header (load only) ────────────────────────────────────── */
+      /* ── Header (load only) — runs on every page ───────────────── */
       gsap.from('header .brand-logo', { y: -8, duration: 0.5, delay: 0.05 });
       gsap.from('header .nav-link', { y: -6, duration: 0.4, stagger: 0.05, delay: 0.15 });
-      gsap.from('header a[href="#schedule"], header a[href*="schedule"]', {
-        scale: 0.96, duration: 0.45, delay: 0.35, clearProps: 'transform',
-      });
+
+      /* Only animate the CTA button when it exists (absent on /careers/) */
+      const scheduleCta = document.querySelector('header a[href="#schedule"], header a[href*="schedule"]');
+      if (scheduleCta) {
+        gsap.from(scheduleCta, {
+          scale: 0.96, duration: 0.45, delay: 0.35, clearProps: 'transform',
+        });
+      }
+
+      /* ── Homepage-only guard ────────────────────────────────────── */
+      if (!document.getElementById('about')) return;
 
       /* ── Hero (load only) ──────────────────────────────────────── */
       gsap.timeline({ defaults: { ease: 'power3.out' } })
-        .from('.hero-section__blueprint', { autoAlpha: 0, duration: 1 })
+        .from('.hero-section__blueprint', { scale: 1.02, duration: 1 })
         .from('.hero-accent', { scaleX: 0, transformOrigin: 'left center', duration: 0.45 }, '-=0.55')
-        .from('.hero-eyebrow', { y: 12, autoAlpha: 0, duration: 0.5 }, '-=0.3')
-        .from('.hero-heading', { y: 20, autoAlpha: 0, duration: 0.65 }, '-=0.35')
-        .from('.hero-subtext', { y: 16, autoAlpha: 0, duration: 0.5 }, '-=0.45')
-        .from('.hero-cta', { y: 12, autoAlpha: 0, duration: 0.45, stagger: 0.08 }, '-=0.4')
-        .from('.hero-trust-item', { y: 10, autoAlpha: 0, duration: 0.4, stagger: 0.06 }, '-=0.3');
+        .from('.hero-eyebrow', { y: 12, duration: 0.5 }, '-=0.3')
+        .from('.hero-heading', { y: 20, duration: 0.65 }, '-=0.35')
+        .from('.hero-subtext', { y: 16, duration: 0.5 }, '-=0.45')
+        .from('.hero-cta', { y: 12, duration: 0.45, stagger: 0.08 }, '-=0.4')
+        .from('.hero-trust-item', { y: 10, duration: 0.4, stagger: 0.06 }, '-=0.3');
 
       if (desktop) {
         gsap.to('.hero-section__blueprint img', {
@@ -72,9 +80,9 @@
           { scale: 1.06, duration: 0.75, stagger: 0.14, transformOrigin: 'center center' }, '-=0.5'],
       ]);
 
+      /* #insights section-head has no rule element — animate title first */
       scrollTl('#insights', [
-        ['#insights .section-head__rule', { scaleX: 0, transformOrigin: 'left center', duration: 0.45 }],
-        ['#insights .section-head__title', { y: 18 }, '-=0.15'],
+        ['#insights .section-head__title', { y: 18 }],
         ['#insights .section-head__lede', { y: 12, duration: 0.45 }, '-=0.35'],
         ['#insights .blog-preview-card', { y: 24, stagger: 0.1, duration: 0.55 }, '-=0.2'],
       ]);

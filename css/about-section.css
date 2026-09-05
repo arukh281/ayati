@@ -13,12 +13,20 @@
   right: 0;
   bottom: 0;
   z-index: 0;
-  width: 100vw;
-  max-width: none;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
   pointer-events: none;
-  overflow: visible;
+  /* clip (not hidden) prevents the scale(1.14) tree transform from inflating
+     scrollWidth — clip does not create a scroll container so the overflow is
+     truly invisible to the layout engine, not just visually masked. */
+  overflow: clip;
+}
+
+/* Wrap trees in a positioned box so the scale() transform cannot inflate
+   the backdrop's scrollWidth. The abs+inset:0 box is opaque to its parent's
+   scroll-content measurement even though its own scrollWidth is inflated. */
+.about-section__trees-clip {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
 }
 
 .about-section__trees {
@@ -294,28 +302,37 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.375rem;
+  gap: 0; /* padding on each dot handles spacing so hit areas just touch */
 }
 
+/* Touch target: 44×44px using transparent padding + background-clip (WCAG 2.5.5).
+   box-sizing: content-box means width/height set the visual pip; padding extends
+   the element's hit area without changing pip dimensions or background render area. */
 .about-carousel__dot {
-  width: 1.25rem;
-  height: 2px;
-  padding: 0;
+  box-sizing: content-box;
+  width: 1.25rem;  /* visual pip width  */
+  height: 2px;     /* visual pip height */
+  padding: 21px 12px; /* total element: (20+24)×(2+42) = 44×44px */
   border: none;
   border-radius: 999px;
   background: rgba(45, 46, 30, 0.2);
+  background-clip: content-box; /* colour only the 1.25rem×2px pip, not the padding */
   cursor: pointer;
   transition: background-color 0.2s ease, width 0.2s ease;
 }
 
 .about-carousel__dot.is-active {
   background: #bf8211;
-  width: 1.75rem;
+  background-clip: content-box;
+  width: 1.75rem; /* wider pip; with box-sizing: content-box total = (28+24)×44 = 52×44px */
 }
 
 /* Commitments */
 .about-section__commitments {
-  position: relative;
+  /* No position:relative here — the backdrop needs section.about-section as its
+     containing block (full viewport width) so it can bleed edge-to-edge without
+     overflowing #why-us. The inner content keeps z-index:1 via its own
+     position:relative, and the section's isolation:isolate forms the stacking ctx. */
   width: 100%;
   overflow: visible;
   margin-top: clamp(0.5rem, 1.5vw, 1rem);
@@ -442,8 +459,8 @@
   }
 
   .about-carousel__nav {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.75rem;  /* 44px — WCAG 2.5.5 touch target */
+    height: 2.75rem;
   }
 
   .about-carousel__nav--prev {

@@ -118,8 +118,8 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
   outline: none;
-  border-color: #bf8211;
-  box-shadow: 0 0 0 2px rgba(191, 130, 17, 0.25);
+  border-color: #9a6a0e;
+  box-shadow: 0 0 0 3px rgba(154, 106, 14, 0.55);
 }
 
 /* ─── Header scroll state ────────────────────────────────────────── */
@@ -139,6 +139,7 @@ header {
   align-items: center;
   line-height: 0;
   opacity: 1;
+  min-height: 44px; /* touch target height (WCAG 2.5.5) */
 }
 
 .brand-logo:hover {
@@ -562,7 +563,15 @@ header {
   overflow: hidden;
 }
 
-.project-card__media picture,
+.project-card__media picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+  /* overflow:clip stops the img's natural dimensions from inflating scrollWidth
+     of the picture element beyond the container bounds. */
+  overflow: clip;
+}
+
 .project-card__media img {
   position: absolute;
   inset: 0;
@@ -626,8 +635,9 @@ header .nav-link {
 }
 
 .footer-contact__list a {
-  display: inline;
-  min-height: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px; /* touch target (WCAG 2.5.5) */
   padding: 0;
   text-decoration: none;
 }
@@ -750,7 +760,7 @@ button.inline-cta-link {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #bf8211;
+  color: #9a6a0e; /* was #bf8211 — raised to ≥4.5:1 on white */
   font-variant-numeric: tabular-nums;
 }
 
@@ -816,13 +826,19 @@ button.inline-cta-link {
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+  visibility: hidden;
+  /* visibility delays until after the close animation so links can't be tabbed off-screen */
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease,
+    visibility 0s linear 0.35s;
 }
 
 #mobile-menu.is-open {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease,
+    visibility 0s linear 0s;
 }
 
 #menu-toggle[aria-expanded='true'] .icon-menu {
@@ -840,8 +856,8 @@ button.inline-cta-link {
 /* ─── Active nav link ─────────────────────────────────────────────── */
 
 .nav-link--active {
-  color: #bf8211 !important;
-  border-bottom: 2px solid #bf8211;
+  color: #9a6a0e !important; /* raised from #bf8211 (3.27:1) → 4.73:1 on white (WCAG AA) */
+  border-bottom: 2px solid #9a6a0e;
   padding-bottom: 2px;
 }
 
@@ -901,10 +917,11 @@ button.inline-cta-link {
 #visit-form .visit-form__input {
   font-size: 1rem;
   line-height: 1.5;
+  min-height: 44px; /* WCAG 2.5.5 touch target */
 }
 
 #visit-form .visit-form__input::placeholder {
-  color: #9a9b8c;
+  color: #6b6a62; /* was #9a9b8c — raised to ≥4.5:1 on white */
   opacity: 1;
 }
 
@@ -1051,7 +1068,7 @@ button.inline-cta-link {
 }
 
 .lead-modal__input::placeholder {
-  color: #9a9b8c;
+  color: #6b6a62; /* was #9a9b8c — raised to ≥4.5:1 on white */
 }
 
 .lead-modal__input:focus {
@@ -1066,7 +1083,7 @@ button.inline-cta-link {
   padding: 0.875rem 1.5rem;
   border: none;
   border-radius: 0.25rem;
-  background: #bf8211;
+  background: #9a6a0e; /* raised from #bf8211 (3.27:1) → 4.73:1 white-on-gold (WCAG AA) */
   color: #fff;
   font-family: 'Figtree', system-ui, sans-serif;
   font-size: 0.8125rem;
@@ -1078,7 +1095,7 @@ button.inline-cta-link {
 }
 
 .lead-modal__submit:hover {
-  background: #a7720f;
+  background: #7a5509;
 }
 
 .lead-modal__submit:focus-visible {
@@ -1706,10 +1723,23 @@ body.project-views-modal-open {
   background-color: #9a6a0e;
 }
 
+/* Ensure primary CTA anchors meet 44px touch target (WCAG 2.5.5) */
+a.bg-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+
 a.bg-primary:hover,
 button.bg-primary:hover,
 .hover\:bg-primary-deep:hover {
   background-color: #7a5509;
+}
+
+/* Ensure section-head action links (e.g. "All articles") meet 44px touch target */
+.section-head a {
+  min-height: 44px;
 }
 
 .text-primary {
@@ -1904,7 +1934,7 @@ a.text-primary-deep,
 
 .nav-overlay__cta {
   display: inline-block;
-  background: #BF8211;
+  background: #9a6a0e; /* raised from #BF8211 (3.27:1) → 4.73:1 white-on-gold (WCAG AA) */
   color: #fff;
   padding: 0.875rem 2rem;
   font-size: 0.8125rem;
@@ -1919,7 +1949,7 @@ a.text-primary-deep,
 }
 
 .nav-overlay__cta:hover {
-  background: #9A6A0E;
+  background: #7a5509;
 }
 
 /* ─── Mobile responsiveness ─────────────────────────────────────── */
@@ -1963,12 +1993,7 @@ a.text-primary-deep,
   box-shadow: 0 12px 32px rgba(45, 46, 30, 0.08);
 }
 
-/* Compact layout: phones + tablet portrait (incl. 773×854) */
-@media (max-width: 1023px) {
-  .about-section__commitments {
-    display: none;
-  }
-}
+/* Compact layout: phones + tablet portrait — commitments band visible on all viewports */
 
 @media (max-width: 899px) {
   .nav-star-btn,
@@ -2093,29 +2118,113 @@ a.text-primary-deep,
     font-size: 16px;
   }
 
-  /* ── Mobile content reduction ─────────────────────────────────── */
+  /* ── Mobile trust layer — restored compactly ──────────────────── */
 
-  .hero-eyebrow,
-  .hero-trust,
-  .hero-cta--secondary,
-  .about-section__hero-lede,
-  .about-section__story-content .about-section__body-text + .about-section__body-text,
-  .section-head__lede,
-  #schedule .schedule-intro > p,
-  .blog-preview-card__excerpt {
+  /* Only schedule intro prose stays hidden on mobile */
+  #schedule .schedule-intro > p {
     display: none;
   }
 
-  #properties .section-head__lede {
-    display: block;
+  /* Hero eyebrow: visible, small */
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  /* Hero trust row: tight single-column list */
+  .hero-trust {
+    gap: 0.5rem;
+    padding-top: 0.875rem;
+    margin-top: 0.5rem;
+  }
+
+  .hero-trust-item {
+    gap: 0.5rem;
+  }
+
+  .hero-trust-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .hero-trust-item span {
+    font-size: 0.8125rem;
+    line-height: 1.3;
+  }
+
+  /* Secondary hero CTA: inline text link instead of full-width button */
+  .hero-cta--secondary {
+    width: auto;
+    border: none;
+    background: none !important;
+    padding: 0.75rem 0; /* vertical padding provides ≥44px touch target */
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    justify-content: flex-start;
+    text-align: left;
+    letter-spacing: 0.01em;
+    font-size: 0.875rem;
+    min-height: 44px; /* WCAG 2.5.5 touch target */
+    border-radius: 0;
+  }
+
+  /* Reduce gap between primary CTA and secondary text link */
+  .hero-section .mb-10 {
+    margin-bottom: 0;
+    gap: 0.5rem;
   }
 
   .hero-subtext {
     margin-bottom: 1.25rem;
   }
 
-  .hero-section .mb-10 {
-    margin-bottom: 0;
+  /* About section hero lede: compact */
+  .about-section__hero-lede {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  /* About second paragraph: visible, slightly smaller */
+  .about-section__story-content .about-section__body-text + .about-section__body-text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  /* Section ledes: compact */
+  .section-head__lede {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  /* Blog preview card excerpts: 2-line clamp */
+  .blog-preview-card__excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.875rem;
+  }
+
+  /* Why Ayati commitments: compact mobile layout */
+  .about-section__commitments {
+    padding-top: clamp(1rem, 3vw, 1.5rem);
+    padding-bottom: clamp(1.75rem, 5vw, 2.5rem);
+    margin-bottom: -1.25rem;
+  }
+
+  .about-section__commitments-header {
+    margin-bottom: 1rem;
+  }
+
+  .about-section__commitments .why-item {
+    padding: 1rem;
+  }
+
+  .about-section__commitments .why-item__icon {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.125rem;
   }
 
   .about-section,
@@ -2131,9 +2240,7 @@ a.text-primary-deep,
     gap: 1.5rem;
   }
 
-  #insights .grid > .blog-preview-card:nth-child(n + 2) {
-    display: none;
-  }
+  /* All 3 insight cards visible on mobile — grid is already grid-cols-1 */
 
   .blog-preview-card {
     gap: 0.5rem;
@@ -2221,7 +2328,7 @@ a.text-primary-deep,
   }
 
   .project-card__media-actions .floor-plan-btn {
-    min-height: 2rem;
+    min-height: 44px; /* WCAG 2.5.5 touch target (was 2rem/32px) */
     padding: 0.375rem 0.6875rem;
     font-size: 0.5625rem;
     letter-spacing: 0.09em;
@@ -2310,5 +2417,190 @@ a.text-primary-deep,
   #menu-toggle {
     display: none;
   }
+}
+
+/* ─── Persistent mobile CTA bar (≤899px) ────────────────────────── */
+
+.mobile-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* z-index: below modals (200+), below mobile menu (40), above page content */
+  z-index: 30;
+  display: flex;
+  min-height: 52px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: #faf9f7;
+  border-top: 1px solid rgba(45, 46, 30, 0.14);
+  box-shadow: 0 -2px 16px rgba(45, 46, 30, 0.08);
+  transform: translateY(100%);
+  /* visibility delays until after close animation so links can't be tabbed off-screen */
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.3s;
+  will-change: transform;
+}
+
+.mobile-cta-bar.is-visible {
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+/* Hidden on desktop */
+@media (min-width: 900px) {
+  .mobile-cta-bar {
+    display: none !important;
+  }
+}
+
+/* Body clearance so footer links are never covered on mobile.
+   Scoped to pages that actually contain the bar so subpages
+   (blog, careers) do not inherit a phantom 52px gap. */
+@media (max-width: 899px) {
+  body:has(.mobile-cta-bar) {
+    padding-bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Project overlay buttons: raise to ≥44px touch target (WCAG 2.5.5) */
+  .floor-plan-btn {
+    min-height: 44px;
+  }
+}
+
+.mobile-cta-bar__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 52px;
+  padding: 0 0.875rem;
+  font-family: 'Figtree', system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+  /* Generous touch target */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* WhatsApp: neutral/dark — not garish green */
+.mobile-cta-bar__btn--wa {
+  background: #f5f3ef;
+  color: #2d2e1e;
+  border-right: 1px solid rgba(45, 46, 30, 0.12);
+}
+
+.mobile-cta-bar__btn--wa:hover,
+.mobile-cta-bar__btn--wa:active {
+  background: #edeae3;
+}
+
+.mobile-cta-bar__btn--wa svg {
+  flex-shrink: 0;
+}
+
+/* Schedule: brand gold (primary) — #9a6a0e gives 4.73:1 white-on-gold (WCAG AA) */
+.mobile-cta-bar__btn--schedule {
+  background: #9a6a0e; /* raised from #BF8211 (3.27:1) */
+  color: #fff;
+}
+
+.mobile-cta-bar__btn--schedule:hover,
+.mobile-cta-bar__btn--schedule:active {
+  background: #7a5509;
+}
+
+/* Select field styling within the visit form */
+select.visit-form__input {
+  /* Override @tailwindcss/forms background-color while preserving arrow */
+  background-color: transparent;
+  cursor: pointer;
+}
+
+select.visit-form__input option {
+  background-color: #fff;
+  color: #2d2e1e;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-cta-bar {
+    transition: none;
+  }
+}
+
+/* ─── Footer touch targets (WCAG 2.5.5 ≥44×44px) ────────────────── */
+
+/* Logo links in sub-page footers (blog, careers) that lack the .brand-logo class */
+footer a:has(picture) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Tel/mailto/article links inside footer paragraphs and lists */
+footer p > a,
+footer li > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ── Development comparison table (#properties) ───────────────────── */
+.dev-compare {
+  margin-top: 3rem;
+  max-width: 48rem;
+}
+
+.dev-compare__scroll {
+  overflow-x: auto;
+}
+
+.dev-compare__table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: 'Figtree', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: #3a3228;
+}
+
+.dev-compare__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dev-compare__table th,
+.dev-compare__table td {
+  vertical-align: top;
+  padding: 0.6rem 1rem 0.6rem 0;
+  border-bottom: 1px solid #E4E0D8;
+}
+
+.dev-compare__table thead th {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-weight: 600;
+  color: #2d2e1e;
+  white-space: nowrap;
+}
+
+.dev-compare__table tbody th {
+  font-weight: 600;
+  color: #2d2e1e;
 }
 

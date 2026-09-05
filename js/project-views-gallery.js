@@ -6,32 +6,38 @@
       title: 'Ayati Greens 1 · 3D images',
       images: [
         {
-          src: 'images/photos/about-carousel/04-ayati-green-day.png',
+          src: 'images/webp/gallery-04-green-day-1200.webp',
+          fallback: 'images/photos/about-carousel/04-ayati-green-day.png',
           alt: 'Ayati Greens 1 daytime exterior render',
           caption: 'Day exterior',
         },
         {
-          src: 'images/photos/about-carousel/05-ayati-green-zoom.jpg',
+          src: 'images/webp/gallery-05-green-zoom-1200.webp',
+          fallback: 'images/photos/about-carousel/05-ayati-green-zoom.jpg',
           alt: 'Ayati Greens 1 close-up exterior view',
           caption: 'Close view',
         },
         {
-          src: 'images/photos/about-carousel/06-ayati-green-aerial-1.png',
+          src: 'images/webp/gallery-06-aerial-1-1200.webp',
+          fallback: 'images/photos/about-carousel/06-ayati-green-aerial-1.png',
           alt: 'Ayati Greens 1 bird\'s-eye aerial view',
           caption: 'Bird\'s-eye view',
         },
         {
-          src: 'images/photos/about-carousel/07-ayati-green-aerial-2.png',
+          src: 'images/webp/gallery-07-aerial-2-1200.webp',
+          fallback: 'images/photos/about-carousel/07-ayati-green-aerial-2.png',
           alt: 'Ayati Greens 1 campus aerial perspective',
           caption: 'Aerial perspective',
         },
         {
-          src: 'images/photos/about-carousel/08-ayati-green-top.png',
+          src: 'images/webp/gallery-08-top-1200.webp',
+          fallback: 'images/photos/about-carousel/08-ayati-green-top.png',
           alt: 'Ayati Greens 1 top-down site view',
           caption: 'Top view',
         },
         {
-          src: 'images/photos/about-carousel/09-ayati-green-floor-plate.png',
+          src: 'images/webp/gallery-09-floor-plate-1200.webp',
+          fallback: 'images/photos/about-carousel/09-ayati-green-floor-plate.png',
           alt: 'Ayati Greens 1 floor plate bird\'s-eye view',
           caption: 'Floor plate',
         },
@@ -51,11 +57,13 @@
   let gallery = null;
   let index = 0;
   let isOpen = false;
+  let _galleryTriggerEl = null;
 
   function renderSlide() {
     if (!gallery || !imageEl) return;
 
     const slide = gallery.images[index];
+    imageEl.onerror = slide.fallback ? () => { imageEl.onerror = null; imageEl.src = slide.fallback; } : null;
     imageEl.src = slide.src;
     imageEl.alt = slide.alt;
 
@@ -70,12 +78,13 @@
     renderSlide();
   }
 
-  function openGallery(id) {
+  function openGallery(id, triggerEl) {
     const config = GALLERIES[id];
     if (!config?.images.length) return;
 
     gallery = config;
     index = 0;
+    _galleryTriggerEl = triggerEl || null;
 
     if (titleEl) titleEl.textContent = config.title;
     renderSlide();
@@ -84,7 +93,11 @@
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('project-views-modal-open');
     isOpen = true;
-    modal.querySelector('[data-views-gallery-close]')?.focus();
+    window.AyatiA11y?.trapFocus(modal);
+    requestAnimationFrame(() => {
+      // The backdrop div carries data-views-gallery-close too — target the button.
+      modal.querySelector('button[data-views-gallery-close]')?.focus();
+    });
   }
 
   function closeGallery() {
@@ -94,13 +107,16 @@
     isOpen = false;
     gallery = null;
     if (imageEl) imageEl.removeAttribute('src');
+    window.AyatiA11y?.releaseFocus();
+    _galleryTriggerEl?.focus();
+    _galleryTriggerEl = null;
   }
 
   document.querySelectorAll('[data-views-gallery-open]').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      openGallery(btn.dataset.viewsGalleryOpen || '');
+      openGallery(btn.dataset.viewsGalleryOpen || '', btn);
     });
   });
 

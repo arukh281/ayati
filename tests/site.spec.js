@@ -31,7 +31,7 @@ test.describe('Ayati Group homepage', () => {
     await expect(page.locator('.hero-heading')).toBeVisible();
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       'content',
-      /Noida-based residential developer/i
+      /independent-floor homes/i
     );
   });
 

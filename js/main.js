@@ -123,16 +123,20 @@
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const nameEl  = form.querySelector('#visit-name');
-    const phoneEl = form.querySelector('#visit-phone');
-    const emailEl = form.querySelector('#visit-email');
-    const msgEl   = form.querySelector('#visit-message');
-    const submitBtn = form.querySelector('[type="submit"]');
+    const nameEl      = form.querySelector('#visit-name');
+    const phoneEl     = form.querySelector('#visit-phone');
+    const emailEl     = form.querySelector('#visit-email');
+    const msgEl       = form.querySelector('#visit-message');
+    const projectEl   = form.querySelector('#visit-project');
+    const stageEl     = form.querySelector('#visit-stage');
+    const submitBtn   = form.querySelector('[type="submit"]');
 
     const name    = nameEl?.value.trim() ?? '';
     const phone   = phoneEl?.value.trim() ?? '';
     const email   = emailEl?.value.trim() ?? '';
     const message = msgEl?.value.trim() ?? '';
+    const project = projectEl?.value.trim() ?? '';
+    const stage   = stageEl?.value.trim() ?? '';
 
     if (!name) {
       showMsg('Please enter your name.', 'error');
@@ -154,6 +158,8 @@
 
     let waText = `Hi Ayati Group,\n\nI'd like to request a callback for a site visit.\n\nName: ${name}\nPhone: ${phone}`;
     if (email)   waText += `\nEmail: ${email}`;
+    if (project) waText += `\nInterested in: ${project}`;
+    if (stage)   waText += `\nSearch stage: ${stage}`;
     if (message) waText += `\n\nRequirements: ${message}`;
 
     if (submitBtn) {
@@ -167,6 +173,8 @@
         name,
         phone,
         email,
+        project,
+        stage,
         msg: message,
       });
     } catch {
@@ -215,6 +223,7 @@
   const brochurePhoneInput = document.getElementById('brochure-phone');
   const brochureEmailInput = document.getElementById('brochure-email');
   let brochureOpen = false;
+  let _brochureTriggerEl = null;
 
   function showBrochureMsg(text, type) {
     if (!brochureMsg) return;
@@ -228,7 +237,7 @@
     brochureMsg.className = 'form-message';
   }
 
-  function openBrochureModal(src, property) {
+  function openBrochureModal(src, property, triggerEl) {
     if (!brochureModal || !brochureForm) return;
     const safeSrc = sanitizeBrochureSrc(src);
     if (brochurePropertyInput) brochurePropertyInput.value = property || '';
@@ -239,7 +248,9 @@
     brochureModal.hidden = false;
     brochureModal.setAttribute('aria-hidden', 'false');
     brochureOpen = true;
+    _brochureTriggerEl = triggerEl || null;
     document.body.style.overflow = 'hidden';
+    trapFocus(brochureModal);
     brochureNameInput?.focus();
   }
 
@@ -251,6 +262,9 @@
     document.body.style.overflow = '';
     clearBrochureMsg();
     brochureForm?.reset();
+    releaseFocus();
+    _brochureTriggerEl?.focus();
+    _brochureTriggerEl = null;
   }
 
   function downloadBrochure(src) {
@@ -271,7 +285,7 @@
 
   document.querySelectorAll('.brochure-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      openBrochureModal(btn.dataset.brochureSrc || '', btn.dataset.property || '');
+      openBrochureModal(btn.dataset.brochureSrc || '', btn.dataset.property || '', btn);
     });
   });
 
@@ -373,43 +387,56 @@
     }, 1500);
   });
 
+  // ── Shared focus-trap helper ───────────────────────────────────────
+  // Exported as window.AyatiA11y so gallery and 3D floor-plan scripts
+  // (which load before main.js) can call it on user interaction.
+  const _FOCUSABLE_SEL =
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  let _ftHandler = null;
+  let _ftContainer = null;
+
+  function trapFocus(container) {
+    releaseFocus();
+    _ftContainer = container;
+    _ftHandler = (e) => {
+      if (e.key !== 'Tab') return;
+      const nodes = Array.from(container.querySelectorAll(_FOCUSABLE_SEL)).filter(
+        (el) => el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden'
+      );
+      if (!nodes.length) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      // Focus escaped (or never entered) the dialog — pull it back in.
+      if (!container.contains(document.activeElement)) {
+        e.preventDefault();
+        first.focus();
+        return;
+      }
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else if (document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    };
+    // Document-level (capture) so Tab is contained even when focus sits
+    // outside the container — a container listener can never recover that.
+    document.addEventListener('keydown', _ftHandler, true);
+  }
+
+  function releaseFocus() {
+    if (_ftHandler) {
+      document.removeEventListener('keydown', _ftHandler, true);
+    }
+    _ftHandler = null;
+    _ftContainer = null;
+  }
+
+  window.AyatiA11y = { trapFocus, releaseFocus };
+
   // ── Scrolled-nav star: open / close overlay ──────────────────────────
   const navStarBtn  = document.getElementById('nav-star-btn');
   const navOverlay  = document.getElementById('nav-overlay');
   let   navOvOpen   = false;
-  let   overlayFocusTrap = null;
-
-  function trapOverlayFocus() {
-    if (!navOverlay) return;
-    const focusable = navOverlay.querySelectorAll(
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    );
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    overlayFocusTrap = (e) => {
-      if (e.key !== 'Tab') return;
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        }
-      } else if (document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-    navOverlay.addEventListener('keydown', overlayFocusTrap);
-    first.focus();
-  }
-
-  function releaseOverlayFocus() {
-    if (overlayFocusTrap && navOverlay) {
-      navOverlay.removeEventListener('keydown', overlayFocusTrap);
-      overlayFocusTrap = null;
-    }
-    navStarBtn?.focus();
-  }
 
   function openNavOverlay() {
     if (!navOverlay || navOvOpen) return;
@@ -433,7 +460,8 @@
         rotation: 45, duration: 0.35, ease: 'power3.out', overwrite: true,
       });
     }
-    trapOverlayFocus();
+    trapFocus(navOverlay);
+    navOverlay.querySelector(_FOCUSABLE_SEL)?.focus();
   }
 
   function closeNavOverlay(instant) {
@@ -441,7 +469,8 @@
     navOvOpen = false;
     navOverlay.setAttribute('aria-hidden', 'true');
     navStarBtn?.setAttribute('aria-expanded', 'false');
-    releaseOverlayFocus();
+    releaseFocus();
+    navStarBtn?.focus();
 
     if (typeof gsap !== 'undefined' && !instant) {
       gsap.to(navOverlay, {
@@ -482,7 +511,7 @@
     return hdr ? hdr.offsetHeight : 72;
   }
 
-  // ── Smooth nav scroll offset (fallback for browsers ignoring scroll-padding) ──
+  // ── Smooth nav scroll offset + skip-link focus ────────────────────
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       const href = anchor.getAttribute('href');
@@ -493,7 +522,65 @@
       const offset = getHeaderOffset();
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
+      // Move keyboard focus so skip-link actually works and in-page anchor
+      // navigation lands focus correctly for screen-reader and keyboard users.
+      if (!target.hasAttribute('tabindex')) {
+        target.setAttribute('tabindex', '-1');
+      }
+      target.focus({ preventScroll: true });
     });
   });
+
+  // ── Persistent mobile CTA bar ─────────────────────────────────────
+  // Visible only on ≤899px, after hero scrolls out of view, hidden when
+  // #schedule is in view, and hidden when any modal or the mobile menu is open.
+  const mobileCTABar = document.getElementById('mobile-cta-bar');
+
+  if (mobileCTABar) {
+    let _ctaHeroOut  = false;  // true once the hero exits the viewport
+    let _ctaSchedIn  = false;  // true while #schedule is in the viewport
+
+    function _updateCTABar() {
+      const menuIsOpen  = menuToggle?.getAttribute('aria-expanded') === 'true';
+      const modalIsOpen = document.body.style.overflow === 'hidden';
+      const show = _ctaHeroOut && !_ctaSchedIn && !menuIsOpen && !modalIsOpen;
+      mobileCTABar.classList.toggle('is-visible', show);
+      mobileCTABar.setAttribute('aria-hidden', String(!show));
+    }
+
+    if ('IntersectionObserver' in window) {
+      // Observe hero: show bar once hero fully exits view
+      const heroEl = document.querySelector('.hero-section');
+      if (heroEl) {
+        new IntersectionObserver(
+          (entries) => { _ctaHeroOut = !entries[0].isIntersecting; _updateCTABar(); },
+          { threshold: 0 }
+        ).observe(heroEl);
+      } else {
+        // No hero element found — show bar immediately
+        _ctaHeroOut = true;
+        _updateCTABar();
+      }
+
+      // Observe #schedule: hide bar when it is visible (redundant CTA)
+      const schedEl = document.getElementById('schedule');
+      if (schedEl) {
+        new IntersectionObserver(
+          (entries) => { _ctaSchedIn = entries[0].isIntersecting; _updateCTABar(); },
+          { threshold: 0 }
+        ).observe(schedEl);
+      }
+    } else {
+      // IntersectionObserver not supported: show bar as safe visible default
+      _ctaHeroOut = true;
+      _updateCTABar();
+    }
+
+    // React to menu open/close and modal open/close via body style mutation
+    new MutationObserver(() => _updateCTABar()).observe(document.body, {
+      attributes: true,
+      attributeFilter: ['style'],
+    });
+  }
 
 })();

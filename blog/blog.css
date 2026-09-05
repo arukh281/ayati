@@ -64,6 +64,43 @@
   color: #2d2e1e;
 }
 
+.article-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.4rem;
+}
+
+.article-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  text-align: left;
+}
+
+.article-table caption {
+  text-align: left;
+  font-size: 0.875rem;
+  color: #5C5C4A;
+  padding-bottom: 0.5rem;
+}
+
+.article-table th,
+.article-table td {
+  vertical-align: top;
+  padding: 0.65rem 0.9rem 0.65rem 0;
+  border-bottom: 1px solid #E4E0D8;
+}
+
+.article-table thead th {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-weight: 600;
+  color: #2d2e1e;
+}
+
+.article-table tbody th {
+  font-weight: 600;
+  color: #2d2e1e;
+}
+
 /* Article hero */
 .article-hero {
   position: relative;
@@ -159,7 +196,7 @@
   font-family: 'Figtree', system-ui, sans-serif;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #BF8211;
+  color: #9a6a0e; /* raised from #BF8211 (3.27:1) → 4.73:1 on white (WCAG AA) */
   text-transform: uppercase;
 }
 
@@ -183,18 +220,19 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  min-height: 44px; /* WCAG 2.5.5 touch target */
   font-size: 0.8125rem;
   font-family: 'Figtree', system-ui, sans-serif;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #BF8211;
+  color: #9a6a0e; /* raised from #BF8211 (3.27:1) → 4.73:1 on white (WCAG AA) */
   margin-top: auto;
   transition: gap 0.2s, color 0.2s;
   text-decoration: none;
 }
 
 .blog-card__link:hover {
-  color: #9A6A0E;
+  color: #7a5509;
   gap: 0.55rem;
 }
 
@@ -231,7 +269,7 @@
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #BF8211;
+  color: #9a6a0e; /* raised from #BF8211 (3.27:1) → 4.73:1 on white (WCAG AA) */
   text-transform: uppercase;
   font-family: 'Figtree', system-ui, sans-serif;
 }
@@ -259,15 +297,24 @@
     gap: 0.625rem;
   }
 
-  .blog-card__excerpt,
-  .article-meta__dot,
-  .article-meta span:nth-child(n + 3) {
+  /* Dot separators hidden; read-time (nth-child 3) kept; trailing topic tags (nth-child 4+) hidden */
+  .article-meta__dot {
     display: none;
   }
 
-  .blog-listing .grid > .blog-card:nth-child(n + 2) {
+  .article-meta span:nth-child(n + 4) {
     display: none;
   }
+
+  /* Excerpts: 2-line clamp instead of hidden */
+  .blog-card__excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* All blog listing cards visible on mobile */
 
   .article-pullquote {
     margin-left: 0;
@@ -296,4 +343,50 @@
   .blog-card {
     padding: 1.5rem;
   }
+}
+
+/* ── Article hero h1 ──────────────────────────────────────────────
+   Replaces per-element inline styles; mobile font-size override
+   at max-width: 767px above keeps the existing responsive scale. */
+.article-hero h1 {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #2d2e1e;
+}
+
+/* ── Article sidebar ─────────────────────────────────────────────
+   Cascades Figtree to all sidebar text nodes, replacing
+   per-element font-family inline styles. */
+.blog-article-sidebar {
+  font-family: 'Figtree', system-ui, sans-serif;
+}
+
+/* ── Blog article page footer CTA heading ────────────────────────
+   Used on h2 inside the dark-bg footer CTA band on article pages
+   AND the blog listing page. */
+.blog-cta-heading {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* ── Blog listing page hero ──────────────────────────────────────
+   Replaces inline styles on the h1 and intro paragraph of the
+   blog/index.html hero section. */
+.blog-index__hero-title {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #2d2e1e;
+}
+
+.blog-index__hero-lede {
+  /* font-family inherited from body (Figtree); override line-height only */
+  line-height: 1.65;
 }
