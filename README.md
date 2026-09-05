@@ -30,9 +30,17 @@ Static marketing site for Ayati Group (Noida residential developer).
 ├── brochures/              PDF brochures on public direct URLs (WhatsApp links)
 ├── docs/brochures/         Same PDFs, served behind the lead-gated download
 ├── tests/                  Playwright specs
-├── _headers                Security headers (Netlify / compatible hosts)
+├── _headers                Netlify-format security headers. NOT read by the current Vercel deploy; vercel.json carries the live headers.
 └── vercel.json             Cache headers for static assets
 ```
+
+Security and cache headers are configured in `vercel.json`, which is the only header
+source the live Vercel deployment reads. `_headers` is kept for Netlify compatibility
+and has no effect today. The Content-Security-Policy in `_headers` is NOT ported to
+`vercel.json`: it is missing the allowances the Draco-compressed 3D models need
+(`'wasm-unsafe-eval'` in script-src, `worker-src 'self' blob:`, and cdn.jsdelivr.net in
+connect-src), so porting it requires a preview deployment and a manual test of the 3D
+floor-plan modal first.
 
 Drop raw client deliverables into a local folder, then export final assets into `images/` or `docs/` — do not commit source-drop folders.
 
