@@ -8,9 +8,9 @@
     },
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/blog/index.html", "destination": "/blog/", "permanent": true },
-    { "source": "/careers/index.html", "destination": "/careers/", "permanent": true },
     { "source": "/blog", "destination": "/blog/", "permanent": true },
-    { "source": "/careers", "destination": "/careers/", "permanent": true }
+    { "source": "/careers", "destination": "/", "permanent": true },
+    { "source": "/careers/:path*", "destination": "/", "permanent": true }
   ],
   "headers": [
     {
@@ -48,10 +48,6 @@
     },
     {
       "source": "/blog/blog.css",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }]
-    },
-    {
-      "source": "/careers/careers.css",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }]
     }
   ]
