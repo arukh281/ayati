@@ -10,6 +10,7 @@
     { "source": "/blog/index.html", "destination": "/blog/", "permanent": true },
     { "source": "/blog", "destination": "/blog/", "permanent": true },
     { "source": "/careers", "destination": "/", "permanent": true },
+    { "source": "/careers/", "destination": "/", "permanent": true },
     { "source": "/careers/:path*", "destination": "/", "permanent": true }
   ],
   "headers": [
